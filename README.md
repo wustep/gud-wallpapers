@@ -1,12 +1,11 @@
 # Project 6
 ### Ruby on Rails Project
+Gud Wallpapers : wallpaper aggregator and sharing service
 
 ### Roles
-* Overall Project Manager:
+* Overall Project Manager: Stephen
 * Coding Manager:
 * Testing Manager:
 * Documentation:
 
 ### Contributions
-Please list who did what for each part of the project.
-Also list if people worked together (pair programmed) on a particular section.
