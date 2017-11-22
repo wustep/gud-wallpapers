@@ -4,3 +4,749 @@ Started GET "/" for 127.0.0.1 at 2017-11-12 11:49:46 -0500
 Processing by Rails::WelcomeController#index as HTML
   Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/railties-4.2.6/lib/rails/templates/rails/welcome/index.html.erb (1.3ms)
 Completed 200 OK in 24ms (Views: 12.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (9.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (44.3ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateWallpapers (20171122192903)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "wallpapers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20171122192903"]]
+  [1m[35m (5.1ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-22 14:41:08 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/railties-4.2.6/lib/rails/templates/rails/welcome/index.html.erb (1.5ms)
+Completed 200 OK in 44ms (Views: 21.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/wallpapers" for 127.0.0.1 at 2017-11-22 14:41:14 -0500
+Processing by WallpapersController#index as HTML
+  [1m[35mWallpaper Load (0.1ms)[0m  SELECT "wallpapers".* FROM "wallpapers"
+  Rendered wallpapers/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 1652ms (Views: 1649.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/scaffolds.self-77b49e14f78b029df92cfaf4520a616b5344522727dbf652ed272d8136a4ecf1.css?body=1" for 127.0.0.1 at 2017-11-22 14:41:16 -0500
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for 127.0.0.1 at 2017-11-22 14:41:16 -0500
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for 127.0.0.1 at 2017-11-22 14:41:16 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2017-11-22 14:41:16 -0500
+
+
+Started GET "/assets/wallpapers.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2017-11-22 14:41:16 -0500
+
+
+Started GET "/assets/wallpapers.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2017-11-22 14:41:16 -0500
+
+
+Started GET "/assets/turbolinks.self-1d1fddf91adc38ac2045c51f0a3e05ca97d07d24d15a4dcbf705009106489e69.js?body=1" for 127.0.0.1 at 2017-11-22 14:41:16 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2017-11-22 14:41:16 -0500
+
+
+Started GET "/wallpapers/new" for 127.0.0.1 at 2017-11-22 14:43:32 -0500
+Processing by WallpapersController#new as HTML
+  Rendered wallpapers/_form.html.erb (115.1ms)
+  Rendered wallpapers/new.html.erb within layouts/application (122.3ms)
+Completed 200 OK in 179ms (Views: 168.8ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/wallpapers" for 127.0.0.1 at 2017-11-22 14:43:43 -0500
+Processing by WallpapersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VQ3KVk32rbfUffhWv3oXj/yXHH2fksU2LXhUF3BDiPYz0ouzExfwEaaUYXsx34cuPzFN0iSgaXwpgVgGZmxKwA==", "wallpaper"=>{"title"=>"osu", "image"=>#<ActionDispatch::Http::UploadedFile:0x007f9a75679000 @tempfile=#<Tempfile:/tmp/RackMultipart20171122-434-i8bi9f.png>, @original_filename="index.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"wallpaper[image]\"; filename=\"index.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Create Wallpaper"}
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.0ms)
+
+NameError (uninitialized constant Aws::VERSION):
+  app/controllers/wallpapers_controller.rb:27:in `create'
+
+
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.1ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (18.1ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (57.9ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (5.6ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (46.0ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (87.3ms)
+
+
+Started GET "/wallpapers" for 127.0.0.1 at 2017-11-22 14:46:09 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WallpapersController#index as HTML
+  [1m[35mWallpaper Load (0.1ms)[0m  SELECT "wallpapers".* FROM "wallpapers"
+  Rendered wallpapers/index.html.erb within layouts/application (11.9ms)
+Completed 200 OK in 495ms (Views: 475.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/wallpapers/new" for 127.0.0.1 at 2017-11-22 14:46:11 -0500
+Processing by WallpapersController#new as HTML
+  Rendered wallpapers/_form.html.erb (42.1ms)
+  Rendered wallpapers/new.html.erb within layouts/application (50.8ms)
+Completed 200 OK in 127ms (Views: 119.5ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/wallpapers" for 127.0.0.1 at 2017-11-22 14:46:17 -0500
+Processing by WallpapersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"H+g4/mfzWs6gA6yGm7E7nUF9G6Eb7XPzWSxLoH/GP7V5N3kbORIHaNLqNasVFKs8gttKDqDf37ld1Uexaen9gw==", "wallpaper"=>{"title"=>"osu", "image"=>#<ActionDispatch::Http::UploadedFile:0x007fd0e51d2938 @tempfile=#<Tempfile:/tmp/RackMultipart20171122-920-m908mo.png>, @original_filename="index.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"wallpaper[image]\"; filename=\"index.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Create Wallpaper"}
+Command :: file -b --mime '/tmp/6a992d5529f459a44fee58c733255e8620171122-920-1actd7l.png'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-920-1ogad2a.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-920-1ogad2a.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-920-1ogad2a.png[0]' -auto-orient -resize "64x64" '/tmp/88eb34d5f898cba1b1f2be4cd723f89c20171122-920-1lvhlsk'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-920-1ogad2a.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-920-1ogad2a.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-920-1ogad2a.png[0]' -auto-orient -resize "200x200" '/tmp/88eb34d5f898cba1b1f2be4cd723f89c20171122-920-dql4nj'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-920-1ogad2a.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-920-1ogad2a.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-920-1ogad2a.png[0]' -auto-orient -resize "400x400" '/tmp/88eb34d5f898cba1b1f2be4cd723f89c20171122-920-8e6ix4'
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Command :: file -b --mime '/tmp/6a992d5529f459a44fee58c733255e8620171122-920-1qx3re5.png'
+  [1m[35mSQL (3.6ms)[0m  INSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["title", "osu"], ["image_file_name", "index.png"], ["image_content_type", "image/png"], ["image_file_size", 2804], ["image_updated_at", "2017-11-22 19:46:17.363536"], ["created_at", "2017-11-22 19:46:17.828876"], ["updated_at", "2017-11-22 19:46:17.828876"]]
+[paperclip] saving images/1.png
+  [1m[36m (4.5ms)[0m  [1mrollback transaction[0m
+Completed 500 Internal Server Error in 3903ms (ActiveRecord: 8.3ms)
+
+Aws::Errors::MissingCredentialsError (unable to sign request without credentials set):
+  app/controllers/wallpapers_controller.rb:30:in `block in create'
+  app/controllers/wallpapers_controller.rb:29:in `create'
+
+
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (15.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (56.0ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (32.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (77.9ms)
+
+
+Started POST "/wallpapers" for 127.0.0.1 at 2017-11-22 14:47:25 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WallpapersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"H+g4/mfzWs6gA6yGm7E7nUF9G6Eb7XPzWSxLoH/GP7V5N3kbORIHaNLqNasVFKs8gttKDqDf37ld1Uexaen9gw==", "wallpaper"=>{"title"=>"osu", "image"=>#<ActionDispatch::Http::UploadedFile:0x005619f66ee130 @tempfile=#<Tempfile:/tmp/RackMultipart20171122-1056-s0yv1l.png>, @original_filename="index.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"wallpaper[image]\"; filename=\"index.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Create Wallpaper"}
+Command :: file -b --mime '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-14no736.png'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-1xp0vce.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-1xp0vce.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-1xp0vce.png[0]' -auto-orient -resize "64x64" '/tmp/424300bc7ba14d310b8ae6fa276b1bac20171122-1056-ggo134'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-1xp0vce.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-1xp0vce.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-1xp0vce.png[0]' -auto-orient -resize "200x200" '/tmp/424300bc7ba14d310b8ae6fa276b1bac20171122-1056-1drmsb3'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-1xp0vce.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-1xp0vce.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-1xp0vce.png[0]' -auto-orient -resize "400x400" '/tmp/424300bc7ba14d310b8ae6fa276b1bac20171122-1056-1sjwa1n'
+  [1m[35m (0.1ms)[0m  begin transaction
+Command :: file -b --mime '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-1dypinn.png'
+  [1m[36mSQL (6.4ms)[0m  [1mINSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "osu"], ["image_file_name", "index.png"], ["image_content_type", "image/png"], ["image_file_size", 2804], ["image_updated_at", "2017-11-22 19:47:26.028163"], ["created_at", "2017-11-22 19:47:26.211685"], ["updated_at", "2017-11-22 19:47:26.211685"]]
+[paperclip] saving images/1.png
+  [1m[35m (0.3ms)[0m  rollback transaction
+Completed 500 Internal Server Error in 3566ms (ActiveRecord: 7.1ms)
+
+Aws::Errors::MissingCredentialsError (unable to sign request without credentials set):
+  app/controllers/wallpapers_controller.rb:30:in `block in create'
+  app/controllers/wallpapers_controller.rb:29:in `create'
+
+
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.0ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (49.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (46.7ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (83.2ms)
+
+
+Started POST "/wallpapers" for 127.0.0.1 at 2017-11-22 14:47:34 -0500
+Processing by WallpapersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"H+g4/mfzWs6gA6yGm7E7nUF9G6Eb7XPzWSxLoH/GP7V5N3kbORIHaNLqNasVFKs8gttKDqDf37ld1Uexaen9gw==", "wallpaper"=>{"title"=>"osu", "image"=>#<ActionDispatch::Http::UploadedFile:0x007f1582157248 @tempfile=#<Tempfile:/tmp/RackMultipart20171122-1056-tf849l.png>, @original_filename="index.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"wallpaper[image]\"; filename=\"index.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Create Wallpaper"}
+Command :: file -b --mime '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-nzmi8h.png'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-148t59u.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-148t59u.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-148t59u.png[0]' -auto-orient -resize "64x64" '/tmp/eddbcf05e04a7b061f051410dc3f684720171122-1056-uueeso'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-148t59u.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-148t59u.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-148t59u.png[0]' -auto-orient -resize "200x200" '/tmp/eddbcf05e04a7b061f051410dc3f684720171122-1056-1e27x03'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-148t59u.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-148t59u.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-148t59u.png[0]' -auto-orient -resize "400x400" '/tmp/eddbcf05e04a7b061f051410dc3f684720171122-1056-2aa31b'
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Command :: file -b --mime '/tmp/6a992d5529f459a44fee58c733255e8620171122-1056-otmp9q.png'
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["title", "osu"], ["image_file_name", "index.png"], ["image_content_type", "image/png"], ["image_file_size", 2804], ["image_updated_at", "2017-11-22 19:47:34.924039"], ["created_at", "2017-11-22 19:47:35.119628"], ["updated_at", "2017-11-22 19:47:35.119628"]]
+[paperclip] saving images/1.png
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Completed 500 Internal Server Error in 212ms (ActiveRecord: 0.5ms)
+
+Aws::Errors::MissingCredentialsError (unable to sign request without credentials set):
+  app/controllers/wallpapers_controller.rb:30:in `block in create'
+  app/controllers/wallpapers_controller.rb:29:in `create'
+
+
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.7ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (8.9ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (42.8ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (29.9ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (69.7ms)
+
+
+Started POST "/wallpapers" for 127.0.0.1 at 2017-11-22 14:48:28 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WallpapersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"H+g4/mfzWs6gA6yGm7E7nUF9G6Eb7XPzWSxLoH/GP7V5N3kbORIHaNLqNasVFKs8gttKDqDf37ld1Uexaen9gw==", "wallpaper"=>{"title"=>"osu", "image"=>#<ActionDispatch::Http::UploadedFile:0x005581ab9b0028 @tempfile=#<Tempfile:/tmp/RackMultipart20171122-1191-8682i5.png>, @original_filename="index.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"wallpaper[image]\"; filename=\"index.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Create Wallpaper"}
+Command :: file -b --mime '/tmp/6a992d5529f459a44fee58c733255e8620171122-1191-vs9yd9.png'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-1191-16zy5de.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-1191-16zy5de.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-1191-16zy5de.png[0]' -auto-orient -resize "64x64" '/tmp/29ab810f2ea6d209a59cce06d00b649c20171122-1191-1eg1t0a'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-1191-16zy5de.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-1191-16zy5de.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-1191-16zy5de.png[0]' -auto-orient -resize "200x200" '/tmp/29ab810f2ea6d209a59cce06d00b649c20171122-1191-lwbq8f'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-1191-16zy5de.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-1191-16zy5de.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-1191-16zy5de.png[0]' -auto-orient -resize "400x400" '/tmp/29ab810f2ea6d209a59cce06d00b649c20171122-1191-b8tklt'
+  [1m[35m (0.1ms)[0m  begin transaction
+Command :: file -b --mime '/tmp/6a992d5529f459a44fee58c733255e8620171122-1191-13r506l.png'
+  [1m[36mSQL (3.2ms)[0m  [1mINSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "osu"], ["image_file_name", "index.png"], ["image_content_type", "image/png"], ["image_file_size", 2804], ["image_updated_at", "2017-11-22 19:48:29.332146"], ["created_at", "2017-11-22 19:48:29.513054"], ["updated_at", "2017-11-22 19:48:29.513054"]]
+[paperclip] saving images/1.png
+  [1m[35m (0.1ms)[0m  rollback transaction
+Completed 500 Internal Server Error in 3724ms (ActiveRecord: 3.8ms)
+
+Aws::Errors::MissingCredentialsError (unable to sign request without credentials set):
+  app/controllers/wallpapers_controller.rb:30:in `block in create'
+  app/controllers/wallpapers_controller.rb:29:in `create'
+
+
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.6ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (56.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (41.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (91.2ms)
+
+
+Started POST "/wallpapers" for 127.0.0.1 at 2017-11-22 14:49:33 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WallpapersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"H+g4/mfzWs6gA6yGm7E7nUF9G6Eb7XPzWSxLoH/GP7V5N3kbORIHaNLqNasVFKs8gttKDqDf37ld1Uexaen9gw==", "wallpaper"=>{"title"=>"osu", "image"=>#<ActionDispatch::Http::UploadedFile:0x0055cb2c9d2fe0 @tempfile=#<Tempfile:/tmp/RackMultipart20171122-1301-1t8p1h1.png>, @original_filename="index.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"wallpaper[image]\"; filename=\"index.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Create Wallpaper"}
+Command :: file -b --mime '/tmp/6a992d5529f459a44fee58c733255e8620171122-1301-n3ging.png'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-1301-1oxgtku.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-1301-1oxgtku.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-1301-1oxgtku.png[0]' -auto-orient -resize "64x64" '/tmp/96387ee11c5401c1270610fad2e141d820171122-1301-x676cu'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-1301-1oxgtku.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-1301-1oxgtku.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-1301-1oxgtku.png[0]' -auto-orient -resize "200x200" '/tmp/96387ee11c5401c1270610fad2e141d820171122-1301-1b862ok'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-1301-1oxgtku.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-1301-1oxgtku.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-1301-1oxgtku.png[0]' -auto-orient -resize "400x400" '/tmp/96387ee11c5401c1270610fad2e141d820171122-1301-1ixmcto'
+  [1m[35m (0.1ms)[0m  begin transaction
+Command :: file -b --mime '/tmp/6a992d5529f459a44fee58c733255e8620171122-1301-mccuzx.png'
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "osu"], ["image_file_name", "index.png"], ["image_content_type", "image/png"], ["image_file_size", 2804], ["image_updated_at", "2017-11-22 19:49:34.284812"], ["created_at", "2017-11-22 19:49:34.471035"], ["updated_at", "2017-11-22 19:49:34.471035"]]
+[paperclip] saving images/1.png
+[paperclip] saving images/1.png
+[paperclip] saving images/1.png
+[paperclip] saving images/1.png
+  [1m[35m (47.3ms)[0m  commit transaction
+Redirected to http://localhost:3000/wallpapers/1
+Completed 302 Found in 1412ms (ActiveRecord: 48.0ms)
+
+
+Started GET "/wallpapers/1" for 127.0.0.1 at 2017-11-22 14:49:35 -0500
+Processing by WallpapersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mWallpaper Load (0.2ms)[0m  [1mSELECT  "wallpapers".* FROM "wallpapers" WHERE "wallpapers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered wallpapers/show.html.erb within layouts/application (8.6ms)
+Completed 200 OK in 338ms (Views: 324.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/wallpapers" for 127.0.0.1 at 2017-11-22 14:51:36 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WallpapersController#index as HTML
+  [1m[35mWallpaper Load (0.1ms)[0m  SELECT "wallpapers".* FROM "wallpapers"
+  Rendered wallpapers/index.html.erb within layouts/application (12.3ms)
+Completed 200 OK in 333ms (Views: 311.3ms | ActiveRecord: 0.4ms)
+
+
+Started DELETE "/wallpapers/1" for 127.0.0.1 at 2017-11-22 14:51:39 -0500
+Processing by WallpapersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"QxxIyg16X5GdT+fEU6VHpPDF42uq6xA0xGZWaJp9SCMlwwkvU5sCN++mfundANcFM2OyxBHZvH7An1p5jFKKFQ==", "id"=>"1"}
+  [1m[36mWallpaper Load (0.2ms)[0m  [1mSELECT  "wallpapers".* FROM "wallpapers" WHERE "wallpapers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Completed 500 Internal Server Error in 3525ms (ActiveRecord: 0.4ms)
+
+Aws::Errors::MissingCredentialsError (unable to sign request without credentials set):
+  app/controllers/wallpapers_controller.rb:57:in `destroy'
+
+
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (13.8ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (5.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (61.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (61.0ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (97.3ms)
+
+
+Started DELETE "/wallpapers/1" for 127.0.0.1 at 2017-11-22 14:53:35 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WallpapersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"QxxIyg16X5GdT+fEU6VHpPDF42uq6xA0xGZWaJp9SCMlwwkvU5sCN++mfundANcFM2OyxBHZvH7An1p5jFKKFQ==", "id"=>"1"}
+  [1m[35mWallpaper Load (0.2ms)[0m  SELECT  "wallpapers".* FROM "wallpapers" WHERE "wallpapers"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+Completed 500 Internal Server Error in 3494ms (ActiveRecord: 0.6ms)
+
+Aws::Errors::MissingCredentialsError (unable to sign request without credentials set):
+  app/controllers/wallpapers_controller.rb:57:in `destroy'
+
+
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (12.7ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (54.2ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (3.8ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (2.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (47.2ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (92.6ms)
+
+
+Started DELETE "/wallpapers/1" for 127.0.0.1 at 2017-11-22 14:56:14 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WallpapersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"QxxIyg16X5GdT+fEU6VHpPDF42uq6xA0xGZWaJp9SCMlwwkvU5sCN++mfundANcFM2OyxBHZvH7An1p5jFKKFQ==", "id"=>"1"}
+  [1m[35mWallpaper Load (0.2ms)[0m  SELECT  "wallpapers".* FROM "wallpapers" WHERE "wallpapers"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+Completed 500 Internal Server Error in 3480ms (ActiveRecord: 3.4ms)
+
+Aws::Errors::MissingCredentialsError (unable to sign request without credentials set):
+  app/controllers/wallpapers_controller.rb:57:in `destroy'
+
+
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.1ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (9.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (88.2ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (42.9ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (2.1ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (82.4ms)
+
+
+Started GET "/wallpapers/" for 127.0.0.1 at 2017-11-22 14:59:48 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WallpapersController#index as HTML
+  [1m[35mWallpaper Load (0.2ms)[0m  SELECT "wallpapers".* FROM "wallpapers"
+  Rendered wallpapers/index.html.erb within layouts/application (28.5ms)
+Completed 200 OK in 530ms (Views: 506.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/wallpapers/new" for 127.0.0.1 at 2017-11-22 15:00:53 -0500
+Processing by WallpapersController#new as HTML
+  Rendered wallpapers/_form.html.erb (25.6ms)
+  Rendered wallpapers/new.html.erb within layouts/application (32.5ms)
+Completed 200 OK in 51ms (Views: 50.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/wallpapers" for 127.0.0.1 at 2017-11-22 15:00:58 -0500
+Processing by WallpapersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"xLf412l4+91yfg7ceIq3pgDw1il08wNYa3VZBQJ8dTWiaLkyN5mmewCXl/H2LycHw1aHhs/BrxJvjFUUFFO3Aw==", "wallpaper"=>{"title"=>"tst", "image"=>#<ActionDispatch::Http::UploadedFile:0x007f2cf2752eb8 @tempfile=#<Tempfile:/tmp/RackMultipart20171122-1798-syoenx.png>, @original_filename="index.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"wallpaper[image]\"; filename=\"index.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Create Wallpaper"}
+Command :: file -b --mime '/tmp/6a992d5529f459a44fee58c733255e8620171122-1798-1snwthx.png'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-1798-3fzob9.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-1798-3fzob9.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-1798-3fzob9.png[0]' -auto-orient -resize "64x64" '/tmp/beed13fda2c6a5fe1d5739fb49610df120171122-1798-kqlpfh'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-1798-3fzob9.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-1798-3fzob9.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-1798-3fzob9.png[0]' -auto-orient -resize "200x200" '/tmp/beed13fda2c6a5fe1d5739fb49610df120171122-1798-14hjj80'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-1798-3fzob9.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-1798-3fzob9.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-1798-3fzob9.png[0]' -auto-orient -resize "400x400" '/tmp/beed13fda2c6a5fe1d5739fb49610df120171122-1798-1hxa8b2'
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Command :: file -b --mime '/tmp/6a992d5529f459a44fee58c733255e8620171122-1798-we5vto.png'
+  [1m[35mSQL (3.3ms)[0m  INSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["title", "tst"], ["image_file_name", "index.png"], ["image_content_type", "image/png"], ["image_file_size", 2804], ["image_updated_at", "2017-11-22 20:00:58.112140"], ["created_at", "2017-11-22 20:00:58.305610"], ["updated_at", "2017-11-22 20:00:58.305610"]]
+[paperclip] saving images/2.png
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+Completed 500 Internal Server Error in 3646ms (ActiveRecord: 3.6ms)
+
+Aws::Errors::MissingCredentialsError (unable to sign request without credentials set):
+  app/controllers/wallpapers_controller.rb:30:in `block in create'
+  app/controllers/wallpapers_controller.rb:29:in `create'
+
+
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (11.8ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (8.8ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (47.7ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (4.2ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (40.5ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (73.3ms)
+
+
+Started POST "/wallpapers" for 127.0.0.1 at 2017-11-22 15:05:54 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WallpapersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"xLf412l4+91yfg7ceIq3pgDw1il08wNYa3VZBQJ8dTWiaLkyN5mmewCXl/H2LycHw1aHhs/BrxJvjFUUFFO3Aw==", "wallpaper"=>{"title"=>"tst", "image"=>#<ActionDispatch::Http::UploadedFile:0x00560e8b40c960 @tempfile=#<Tempfile:/tmp/RackMultipart20171122-2305-1lztrwa.png>, @original_filename="index.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"wallpaper[image]\"; filename=\"index.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Create Wallpaper"}
+Command :: file -b --mime '/tmp/6a992d5529f459a44fee58c733255e8620171122-2305-1yo5k6u.png'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-2305-1rc8fkg.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-2305-1rc8fkg.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-2305-1rc8fkg.png[0]' -auto-orient -resize "64x64" '/tmp/867ff743ad325fb4d30a8912928b367e20171122-2305-gzc4v3'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-2305-1rc8fkg.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-2305-1rc8fkg.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-2305-1rc8fkg.png[0]' -auto-orient -resize "200x200" '/tmp/867ff743ad325fb4d30a8912928b367e20171122-2305-z6l806'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-2305-1rc8fkg.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-2305-1rc8fkg.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-2305-1rc8fkg.png[0]' -auto-orient -resize "400x400" '/tmp/867ff743ad325fb4d30a8912928b367e20171122-2305-16uh1q8'
+  [1m[35m (0.1ms)[0m  begin transaction
+Command :: file -b --mime '/tmp/6a992d5529f459a44fee58c733255e8620171122-2305-1dbacor.png'
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "tst"], ["image_file_name", "index.png"], ["image_content_type", "image/png"], ["image_file_size", 2804], ["image_updated_at", "2017-11-22 20:05:55.116634"], ["created_at", "2017-11-22 20:05:55.295587"], ["updated_at", "2017-11-22 20:05:55.295587"]]
+[paperclip] saving images/2.png
+  [1m[35m (0.1ms)[0m  rollback transaction
+Completed 500 Internal Server Error in 3556ms (ActiveRecord: 0.9ms)
+
+Aws::Errors::MissingCredentialsError (unable to sign request without credentials set):
+  app/controllers/wallpapers_controller.rb:30:in `block in create'
+  app/controllers/wallpapers_controller.rb:29:in `create'
+
+
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.2ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (29.0ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (8.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (46.6ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/nprabhu/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (86.2ms)
+
+
+Started POST "/wallpapers" for 127.0.0.1 at 2017-11-22 15:10:05 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WallpapersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"xLf412l4+91yfg7ceIq3pgDw1il08wNYa3VZBQJ8dTWiaLkyN5mmewCXl/H2LycHw1aHhs/BrxJvjFUUFFO3Aw==", "wallpaper"=>{"title"=>"tst", "image"=>#<ActionDispatch::Http::UploadedFile:0x00556e190d62e0 @tempfile=#<Tempfile:/tmp/RackMultipart20171122-2535-nh4hyv.png>, @original_filename="index.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"wallpaper[image]\"; filename=\"index.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Create Wallpaper"}
+Command :: file -b --mime '/tmp/6a992d5529f459a44fee58c733255e8620171122-2535-wqttde.png'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-2535-1wrc0n.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-2535-1wrc0n.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-2535-1wrc0n.png[0]' -auto-orient -resize "64x64" '/tmp/cad5c325d8412033d0873a668cb1562f20171122-2535-bxjzsg'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-2535-1wrc0n.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-2535-1wrc0n.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-2535-1wrc0n.png[0]' -auto-orient -resize "200x200" '/tmp/cad5c325d8412033d0873a668cb1562f20171122-2535-1vpmvf3'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/6a992d5529f459a44fee58c733255e8620171122-2535-1wrc0n.png[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/6a992d5529f459a44fee58c733255e8620171122-2535-1wrc0n.png[0]'
+Command :: convert '/tmp/6a992d5529f459a44fee58c733255e8620171122-2535-1wrc0n.png[0]' -auto-orient -resize "400x400" '/tmp/cad5c325d8412033d0873a668cb1562f20171122-2535-jzmruv'
+  [1m[35m (0.1ms)[0m  begin transaction
+Command :: file -b --mime '/tmp/6a992d5529f459a44fee58c733255e8620171122-2535-8ym133.png'
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "tst"], ["image_file_name", "index.png"], ["image_content_type", "image/png"], ["image_file_size", 2804], ["image_updated_at", "2017-11-22 20:10:06.288163"], ["created_at", "2017-11-22 20:10:06.475588"], ["updated_at", "2017-11-22 20:10:06.475588"]]
+[paperclip] saving images/2.png
+[paperclip] saving images/2.png
+[paperclip] saving images/2.png
+[paperclip] saving images/2.png
+  [1m[35m (8.9ms)[0m  commit transaction
+Redirected to http://localhost:3000/wallpapers/2
+Completed 302 Found in 1416ms (ActiveRecord: 9.7ms)
+
+
+Started GET "/wallpapers/2" for 127.0.0.1 at 2017-11-22 15:10:07 -0500
+Processing by WallpapersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mWallpaper Load (0.3ms)[0m  [1mSELECT  "wallpapers".* FROM "wallpapers" WHERE "wallpapers"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered wallpapers/show.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 358ms (Views: 343.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/wallpapers" for 127.0.0.1 at 2017-11-22 15:10:09 -0500
+Processing by WallpapersController#index as HTML
+  [1m[35mWallpaper Load (0.2ms)[0m  SELECT "wallpapers".* FROM "wallpapers"
+  Rendered wallpapers/index.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 30ms (Views: 29.0ms | ActiveRecord: 0.2ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Command :: file -b --mime '/tmp/2ee46d5430c44c1e9d2ecabeb400aaae20171122-3048-1uh9fzc.jpg'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/2ee46d5430c44c1e9d2ecabeb400aaae20171122-3048-nwzkfc.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/2ee46d5430c44c1e9d2ecabeb400aaae20171122-3048-nwzkfc.jpg[0]'
+Command :: convert '/tmp/2ee46d5430c44c1e9d2ecabeb400aaae20171122-3048-nwzkfc.jpg[0]' -auto-orient -resize "64x64" '/tmp/111f292bf58544f5198571bc25639ce820171122-3048-1kzzn0i'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/2ee46d5430c44c1e9d2ecabeb400aaae20171122-3048-nwzkfc.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/2ee46d5430c44c1e9d2ecabeb400aaae20171122-3048-nwzkfc.jpg[0]'
+Command :: convert '/tmp/2ee46d5430c44c1e9d2ecabeb400aaae20171122-3048-nwzkfc.jpg[0]' -auto-orient -resize "200x200" '/tmp/111f292bf58544f5198571bc25639ce820171122-3048-1ogvuei'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/2ee46d5430c44c1e9d2ecabeb400aaae20171122-3048-nwzkfc.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/2ee46d5430c44c1e9d2ecabeb400aaae20171122-3048-nwzkfc.jpg[0]'
+Command :: convert '/tmp/2ee46d5430c44c1e9d2ecabeb400aaae20171122-3048-nwzkfc.jpg[0]' -auto-orient -resize "400x400" '/tmp/111f292bf58544f5198571bc25639ce820171122-3048-d97kvo'
+  [1m[35m (0.1ms)[0m  begin transaction
+Command :: file -b --mime '/tmp/2ee46d5430c44c1e9d2ecabeb400aaae20171122-3048-17fiax5.jpg'
+  [1m[36mSQL (5.8ms)[0m  [1mINSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "As far as the eye can see. Dyrholaey Iceland. [3601x4646][OC]"], ["image_file_name", "nppva79db5zz.jpg"], ["image_content_type", "image/jpeg"], ["image_file_size", 1921509], ["image_updated_at", "2017-11-22 20:29:09.624405"], ["created_at", "2017-11-22 20:29:11.904106"], ["updated_at", "2017-11-22 20:29:11.904106"]]
+[paperclip] saving images/3.jpg
+[paperclip] saving images/3.jpg
+[paperclip] saving images/3.jpg
+[paperclip] saving images/3.jpg
+  [1m[35m (19.7ms)[0m  commit transaction
+Command :: file -b --mime '/tmp/cf4d0bfcfa63729354fb2f79194b66a420171122-3048-1u06j9.jpg'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/cf4d0bfcfa63729354fb2f79194b66a420171122-3048-kpjohx.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/cf4d0bfcfa63729354fb2f79194b66a420171122-3048-kpjohx.jpg[0]'
+Command :: convert '/tmp/cf4d0bfcfa63729354fb2f79194b66a420171122-3048-kpjohx.jpg[0]' -auto-orient -resize "64x64" '/tmp/d8ee40b97b32a05b3fcaf8b3b8da052e20171122-3048-1502w7'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/cf4d0bfcfa63729354fb2f79194b66a420171122-3048-kpjohx.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/cf4d0bfcfa63729354fb2f79194b66a420171122-3048-kpjohx.jpg[0]'
+Command :: convert '/tmp/cf4d0bfcfa63729354fb2f79194b66a420171122-3048-kpjohx.jpg[0]' -auto-orient -resize "200x200" '/tmp/d8ee40b97b32a05b3fcaf8b3b8da052e20171122-3048-np5t0b'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/cf4d0bfcfa63729354fb2f79194b66a420171122-3048-kpjohx.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/cf4d0bfcfa63729354fb2f79194b66a420171122-3048-kpjohx.jpg[0]'
+Command :: convert '/tmp/cf4d0bfcfa63729354fb2f79194b66a420171122-3048-kpjohx.jpg[0]' -auto-orient -resize "400x400" '/tmp/d8ee40b97b32a05b3fcaf8b3b8da052e20171122-3048-1tvt46h'
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Command :: file -b --mime '/tmp/cf4d0bfcfa63729354fb2f79194b66a420171122-3048-1xmrbd7.jpg'
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["title", "The moment when the aurora is so strong, it illuminates the landscape in green - Lofoten, Norway [OC][1800x1396]"], ["image_file_name", "o6ik9p0ikdyz.jpg"], ["image_content_type", "image/jpeg"], ["image_file_size", 216930], ["image_updated_at", "2017-11-22 20:29:15.004251"], ["created_at", "2017-11-22 20:29:15.424722"], ["updated_at", "2017-11-22 20:29:15.424722"]]
+[paperclip] saving images/4.jpg
+[paperclip] saving images/4.jpg
+[paperclip] saving images/4.jpg
+[paperclip] saving images/4.jpg
+  [1m[36m (13.5ms)[0m  [1mcommit transaction[0m
+Command :: file -b --mime '/tmp/df2816c3239cfd43e9919a1a828dda5f20171122-3048-18b32rn.jpg'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/df2816c3239cfd43e9919a1a828dda5f20171122-3048-1fmbk1v.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/df2816c3239cfd43e9919a1a828dda5f20171122-3048-1fmbk1v.jpg[0]'
+Command :: convert '/tmp/df2816c3239cfd43e9919a1a828dda5f20171122-3048-1fmbk1v.jpg[0]' -auto-orient -resize "64x64" '/tmp/529abc5a1d315315bf0b97c5dcc252c020171122-3048-n2av7t'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/df2816c3239cfd43e9919a1a828dda5f20171122-3048-1fmbk1v.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/df2816c3239cfd43e9919a1a828dda5f20171122-3048-1fmbk1v.jpg[0]'
+Command :: convert '/tmp/df2816c3239cfd43e9919a1a828dda5f20171122-3048-1fmbk1v.jpg[0]' -auto-orient -resize "200x200" '/tmp/529abc5a1d315315bf0b97c5dcc252c020171122-3048-1bkxaz3'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/df2816c3239cfd43e9919a1a828dda5f20171122-3048-1fmbk1v.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/df2816c3239cfd43e9919a1a828dda5f20171122-3048-1fmbk1v.jpg[0]'
+Command :: convert '/tmp/df2816c3239cfd43e9919a1a828dda5f20171122-3048-1fmbk1v.jpg[0]' -auto-orient -resize "400x400" '/tmp/529abc5a1d315315bf0b97c5dcc252c020171122-3048-1rdfusr'
+  [1m[35m (0.1ms)[0m  begin transaction
+Command :: file -b --mime '/tmp/df2816c3239cfd43e9919a1a828dda5f20171122-3048-67159z.jpg'
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Stars above Crater Lake (OR) on a clear night (OC)[2000x1600] @rosssvhphoto"], ["image_file_name", "PLevinV.jpg"], ["image_content_type", "image/jpeg"], ["image_file_size", 131039], ["image_updated_at", "2017-11-22 20:29:16.297654"], ["created_at", "2017-11-22 20:29:16.489502"], ["updated_at", "2017-11-22 20:29:16.489502"]]
+[paperclip] saving images/5.jpg
+[paperclip] saving images/5.jpg
+[paperclip] saving images/5.jpg
+[paperclip] saving images/5.jpg
+  [1m[35m (12.6ms)[0m  commit transaction
+Command :: file -b --mime '/tmp/8a1970638279047fdebc0051b179c2fa20171122-3048-1trxun7.jpg'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/8a1970638279047fdebc0051b179c2fa20171122-3048-zs56oz.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/8a1970638279047fdebc0051b179c2fa20171122-3048-zs56oz.jpg[0]'
+Command :: convert '/tmp/8a1970638279047fdebc0051b179c2fa20171122-3048-zs56oz.jpg[0]' -auto-orient -resize "64x64" '/tmp/5d8a117e8e1837baea093314e1f6aebe20171122-3048-1iwm8u'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/8a1970638279047fdebc0051b179c2fa20171122-3048-zs56oz.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/8a1970638279047fdebc0051b179c2fa20171122-3048-zs56oz.jpg[0]'
+Command :: convert '/tmp/8a1970638279047fdebc0051b179c2fa20171122-3048-zs56oz.jpg[0]' -auto-orient -resize "200x200" '/tmp/5d8a117e8e1837baea093314e1f6aebe20171122-3048-gsrtqe'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/8a1970638279047fdebc0051b179c2fa20171122-3048-zs56oz.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/8a1970638279047fdebc0051b179c2fa20171122-3048-zs56oz.jpg[0]'
+Command :: convert '/tmp/8a1970638279047fdebc0051b179c2fa20171122-3048-zs56oz.jpg[0]' -auto-orient -resize "400x400" '/tmp/5d8a117e8e1837baea093314e1f6aebe20171122-3048-c99e6j'
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Command :: file -b --mime '/tmp/8a1970638279047fdebc0051b179c2fa20171122-3048-1mog08p.jpg'
+  [1m[35mSQL (1.9ms)[0m  INSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["title", "A Giant In The Mist Along The Pacific Crest Trail, Snoqualmie Pass, WA [3276x4296][OC]"], ["image_file_name", "mk27azoqetyz.jpg"], ["image_content_type", "image/jpeg"], ["image_file_size", 2622945], ["image_updated_at", "2017-11-22 20:29:17.340889"], ["created_at", "2017-11-22 20:29:19.372683"], ["updated_at", "2017-11-22 20:29:19.372683"]]
+[paperclip] saving images/6.jpg
+[paperclip] saving images/6.jpg
+[paperclip] saving images/6.jpg
+[paperclip] saving images/6.jpg
+  [1m[36m (14.3ms)[0m  [1mcommit transaction[0m
+Command :: file -b --mime '/tmp/f2958a9098557fb92aba8a33f4f936cf20171122-3048-1akxqrz.jpg'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/f2958a9098557fb92aba8a33f4f936cf20171122-3048-18ul6pf.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/f2958a9098557fb92aba8a33f4f936cf20171122-3048-18ul6pf.jpg[0]'
+Command :: convert '/tmp/f2958a9098557fb92aba8a33f4f936cf20171122-3048-18ul6pf.jpg[0]' -auto-orient -resize "64x64" '/tmp/4faa2cc3958c12f463782ae686e2129820171122-3048-xw1tzh'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/f2958a9098557fb92aba8a33f4f936cf20171122-3048-18ul6pf.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/f2958a9098557fb92aba8a33f4f936cf20171122-3048-18ul6pf.jpg[0]'
+Command :: convert '/tmp/f2958a9098557fb92aba8a33f4f936cf20171122-3048-18ul6pf.jpg[0]' -auto-orient -resize "200x200" '/tmp/4faa2cc3958c12f463782ae686e2129820171122-3048-144jr7r'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/f2958a9098557fb92aba8a33f4f936cf20171122-3048-18ul6pf.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/f2958a9098557fb92aba8a33f4f936cf20171122-3048-18ul6pf.jpg[0]'
+Command :: convert '/tmp/f2958a9098557fb92aba8a33f4f936cf20171122-3048-18ul6pf.jpg[0]' -auto-orient -resize "400x400" '/tmp/4faa2cc3958c12f463782ae686e2129820171122-3048-weeycb'
+  [1m[35m (0.1ms)[0m  begin transaction
+Command :: file -b --mime '/tmp/f2958a9098557fb92aba8a33f4f936cf20171122-3048-1fklh8b.jpg'
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Kvalvika beach opens its jaws... One of the most dramatic light I have witnessed appeared between numerous snow and rain storms. Lofoten islands always deliver! Kvalvika - Lofoten - Norway [OC] [960x640]"], ["image_file_name", "tbvux9mbqiyz.jpg"], ["image_content_type", "image/jpeg"], ["image_file_size", 112594], ["image_updated_at", "2017-11-22 20:29:23.487414"], ["created_at", "2017-11-22 20:29:23.646970"], ["updated_at", "2017-11-22 20:29:23.646970"]]
+[paperclip] saving images/7.jpg
+[paperclip] saving images/7.jpg
+[paperclip] saving images/7.jpg
+[paperclip] saving images/7.jpg
+  [1m[35m (11.9ms)[0m  commit transaction
+Command :: file -b --mime '/tmp/3e0391b004aa6c2ad49e69de31a17f1820171122-3048-1jox4x1.jpg'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/3e0391b004aa6c2ad49e69de31a17f1820171122-3048-bldilz.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/3e0391b004aa6c2ad49e69de31a17f1820171122-3048-bldilz.jpg[0]'
+Command :: convert '/tmp/3e0391b004aa6c2ad49e69de31a17f1820171122-3048-bldilz.jpg[0]' -auto-orient -resize "64x64" '/tmp/8f7d3013caae26cf65f9dd3cc34c9e2a20171122-3048-u2ucrh'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/3e0391b004aa6c2ad49e69de31a17f1820171122-3048-bldilz.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/3e0391b004aa6c2ad49e69de31a17f1820171122-3048-bldilz.jpg[0]'
+Command :: convert '/tmp/3e0391b004aa6c2ad49e69de31a17f1820171122-3048-bldilz.jpg[0]' -auto-orient -resize "200x200" '/tmp/8f7d3013caae26cf65f9dd3cc34c9e2a20171122-3048-ov0zpf'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/3e0391b004aa6c2ad49e69de31a17f1820171122-3048-bldilz.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/3e0391b004aa6c2ad49e69de31a17f1820171122-3048-bldilz.jpg[0]'
+Command :: convert '/tmp/3e0391b004aa6c2ad49e69de31a17f1820171122-3048-bldilz.jpg[0]' -auto-orient -resize "400x400" '/tmp/8f7d3013caae26cf65f9dd3cc34c9e2a20171122-3048-12xn65p'
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Command :: file -b --mime '/tmp/3e0391b004aa6c2ad49e69de31a17f1820171122-3048-snc7op.jpg'
+  [1m[35mSQL (1.8ms)[0m  INSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["title", "From my trip to Ireland a little over a year ago. Downpatrick Head, County Mayo, Ireland [2926 × 4393] [OC]"], ["image_file_name", "5juntp0ea9zz.jpg"], ["image_content_type", "image/jpeg"], ["image_file_size", 1057228], ["image_updated_at", "2017-11-22 20:29:24.755071"], ["created_at", "2017-11-22 20:29:26.480104"], ["updated_at", "2017-11-22 20:29:26.480104"]]
+[paperclip] saving images/8.jpg
+[paperclip] saving images/8.jpg
+[paperclip] saving images/8.jpg
+[paperclip] saving images/8.jpg
+  [1m[36m (14.7ms)[0m  [1mcommit transaction[0m
+Command :: file -b --mime '/tmp/cfd607eca4176a35b7dcd58785a3e99120171122-3048-d7k5d9.jpg'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/cfd607eca4176a35b7dcd58785a3e99120171122-3048-19535j0.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/cfd607eca4176a35b7dcd58785a3e99120171122-3048-19535j0.jpg[0]'
+Command :: convert '/tmp/cfd607eca4176a35b7dcd58785a3e99120171122-3048-19535j0.jpg[0]' -auto-orient -resize "64x64" '/tmp/f4b9fd0434492a6a6790369d0f656bec20171122-3048-1fk89no'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/cfd607eca4176a35b7dcd58785a3e99120171122-3048-19535j0.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/cfd607eca4176a35b7dcd58785a3e99120171122-3048-19535j0.jpg[0]'
+Command :: convert '/tmp/cfd607eca4176a35b7dcd58785a3e99120171122-3048-19535j0.jpg[0]' -auto-orient -resize "200x200" '/tmp/f4b9fd0434492a6a6790369d0f656bec20171122-3048-w7ftv1'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/cfd607eca4176a35b7dcd58785a3e99120171122-3048-19535j0.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/cfd607eca4176a35b7dcd58785a3e99120171122-3048-19535j0.jpg[0]'
+Command :: convert '/tmp/cfd607eca4176a35b7dcd58785a3e99120171122-3048-19535j0.jpg[0]' -auto-orient -resize "400x400" '/tmp/f4b9fd0434492a6a6790369d0f656bec20171122-3048-1m8ochs'
+  [1m[35m (0.1ms)[0m  begin transaction
+Command :: file -b --mime '/tmp/cfd607eca4176a35b7dcd58785a3e99120171122-3048-1g64hxf.jpg'
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "A glimpse of last autumn light colors some mossy flowers - mountain top view in Norway [OC] [1342x2048]"], ["image_file_name", "qi8fion9qxyz.jpg"], ["image_content_type", "image/jpeg"], ["image_file_size", 594702], ["image_updated_at", "2017-11-22 20:29:27.786056"], ["created_at", "2017-11-22 20:29:28.257153"], ["updated_at", "2017-11-22 20:29:28.257153"]]
+[paperclip] saving images/9.jpg
+[paperclip] saving images/9.jpg
+[paperclip] saving images/9.jpg
+[paperclip] saving images/9.jpg
+  [1m[35m (15.2ms)[0m  commit transaction
+Command :: file -b --mime '/tmp/0d77b71fc2c952fc3da68ffb224c4d8e20171122-3048-1ix0u3p.jpg'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/0d77b71fc2c952fc3da68ffb224c4d8e20171122-3048-enpjwo.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/0d77b71fc2c952fc3da68ffb224c4d8e20171122-3048-enpjwo.jpg[0]'
+Command :: convert '/tmp/0d77b71fc2c952fc3da68ffb224c4d8e20171122-3048-enpjwo.jpg[0]' -auto-orient -resize "64x64" '/tmp/dbff1784d3d9c3736c559c83b89f4a0f20171122-3048-z2ldcs'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/0d77b71fc2c952fc3da68ffb224c4d8e20171122-3048-enpjwo.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/0d77b71fc2c952fc3da68ffb224c4d8e20171122-3048-enpjwo.jpg[0]'
+Command :: convert '/tmp/0d77b71fc2c952fc3da68ffb224c4d8e20171122-3048-enpjwo.jpg[0]' -auto-orient -resize "200x200" '/tmp/dbff1784d3d9c3736c559c83b89f4a0f20171122-3048-2xvffa'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/0d77b71fc2c952fc3da68ffb224c4d8e20171122-3048-enpjwo.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/0d77b71fc2c952fc3da68ffb224c4d8e20171122-3048-enpjwo.jpg[0]'
+Command :: convert '/tmp/0d77b71fc2c952fc3da68ffb224c4d8e20171122-3048-enpjwo.jpg[0]' -auto-orient -resize "400x400" '/tmp/dbff1784d3d9c3736c559c83b89f4a0f20171122-3048-1fk5arp'
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Command :: file -b --mime '/tmp/0d77b71fc2c952fc3da68ffb224c4d8e20171122-3048-x5ksf1.jpg'
+  [1m[35mSQL (1.4ms)[0m  INSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["title", "Rainbow over the Tetons as thunderstorms pass through during sunrise (Antelope Flats, Wyomnig, U.S.) [OC] [4912x7360]"], ["image_file_name", "jghsn6n71qyz.jpg"], ["image_content_type", "image/jpeg"], ["image_file_size", 3719602], ["image_updated_at", "2017-11-22 20:29:29.355950"], ["created_at", "2017-11-22 20:29:34.953594"], ["updated_at", "2017-11-22 20:29:34.953594"]]
+[paperclip] saving images/10.jpg
+[paperclip] saving images/10.jpg
+[paperclip] saving images/10.jpg
+[paperclip] saving images/10.jpg
+  [1m[36m (11.7ms)[0m  [1mcommit transaction[0m
+Command :: file -b --mime '/tmp/a6184ad891b722facc4e837d234e4f7b20171122-3048-18jpucp.jpg'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/a6184ad891b722facc4e837d234e4f7b20171122-3048-1og0b55.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/a6184ad891b722facc4e837d234e4f7b20171122-3048-1og0b55.jpg[0]'
+Command :: convert '/tmp/a6184ad891b722facc4e837d234e4f7b20171122-3048-1og0b55.jpg[0]' -auto-orient -resize "64x64" '/tmp/e6e474444fa6ab4bb0d0c3e62a75d4e720171122-3048-1a9nm0'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/a6184ad891b722facc4e837d234e4f7b20171122-3048-1og0b55.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/a6184ad891b722facc4e837d234e4f7b20171122-3048-1og0b55.jpg[0]'
+Command :: convert '/tmp/a6184ad891b722facc4e837d234e4f7b20171122-3048-1og0b55.jpg[0]' -auto-orient -resize "200x200" '/tmp/e6e474444fa6ab4bb0d0c3e62a75d4e720171122-3048-11zs3xk'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/a6184ad891b722facc4e837d234e4f7b20171122-3048-1og0b55.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/a6184ad891b722facc4e837d234e4f7b20171122-3048-1og0b55.jpg[0]'
+Command :: convert '/tmp/a6184ad891b722facc4e837d234e4f7b20171122-3048-1og0b55.jpg[0]' -auto-orient -resize "400x400" '/tmp/e6e474444fa6ab4bb0d0c3e62a75d4e720171122-3048-1m11jpb'
+  [1m[35m (0.1ms)[0m  begin transaction
+Command :: file -b --mime '/tmp/a6184ad891b722facc4e837d234e4f7b20171122-3048-cwgdme.jpg'
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Early risers were treated to an impressive sunrise in the PNW this morning! [Washington, USA] [OC] [6000x4000]"], ["image_file_name", "5g708b0541zz.jpg"], ["image_content_type", "image/jpeg"], ["image_file_size", 250174], ["image_updated_at", "2017-11-22 20:29:41.099484"], ["created_at", "2017-11-22 20:29:41.522123"], ["updated_at", "2017-11-22 20:29:41.522123"]]
+[paperclip] saving images/11.jpg
+[paperclip] saving images/11.jpg
+[paperclip] saving images/11.jpg
+[paperclip] saving images/11.jpg
+  [1m[35m (12.3ms)[0m  commit transaction
+Command :: file -b --mime '/tmp/4a33100e3782c09e7885e242c1cc1fc120171122-3048-3qzrbz.jpg'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/4a33100e3782c09e7885e242c1cc1fc120171122-3048-13p1phw.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/4a33100e3782c09e7885e242c1cc1fc120171122-3048-13p1phw.jpg[0]'
+Command :: convert '/tmp/4a33100e3782c09e7885e242c1cc1fc120171122-3048-13p1phw.jpg[0]' -auto-orient -resize "64x64" '/tmp/01d5130e3f6c523f3882fd11f61f1a3f20171122-3048-122qlq7'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/4a33100e3782c09e7885e242c1cc1fc120171122-3048-13p1phw.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/4a33100e3782c09e7885e242c1cc1fc120171122-3048-13p1phw.jpg[0]'
+Command :: convert '/tmp/4a33100e3782c09e7885e242c1cc1fc120171122-3048-13p1phw.jpg[0]' -auto-orient -resize "200x200" '/tmp/01d5130e3f6c523f3882fd11f61f1a3f20171122-3048-12cjp1q'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/4a33100e3782c09e7885e242c1cc1fc120171122-3048-13p1phw.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/4a33100e3782c09e7885e242c1cc1fc120171122-3048-13p1phw.jpg[0]'
+Command :: convert '/tmp/4a33100e3782c09e7885e242c1cc1fc120171122-3048-13p1phw.jpg[0]' -auto-orient -resize "400x400" '/tmp/01d5130e3f6c523f3882fd11f61f1a3f20171122-3048-1ifigxk'
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Command :: file -b --mime '/tmp/4a33100e3782c09e7885e242c1cc1fc120171122-3048-4oftwl.jpg'
+  [1m[35mSQL (3.6ms)[0m  INSERT INTO "wallpapers" ("title", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["title", "A sublime iceberg in Southern Greenland [OC][2000x2500]"], ["image_file_name", "FireAndIceberg-2000px.jpg"], ["image_content_type", "image/jpeg"], ["image_file_size", 1507936], ["image_updated_at", "2017-11-22 20:29:42.653319"], ["created_at", "2017-11-22 20:29:44.263688"], ["updated_at", "2017-11-22 20:29:44.263688"]]
+[paperclip] saving images/12.jpg
+[paperclip] saving images/12.jpg
+[paperclip] saving images/12.jpg
+[paperclip] saving images/12.jpg
+  [1m[36m (15.4ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/wallpapers" for 127.0.0.1 at 2017-11-22 15:31:26 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WallpapersController#index as HTML
+  [1m[35mWallpaper Load (0.3ms)[0m  SELECT "wallpapers".* FROM "wallpapers"
+  Rendered wallpapers/index.html.erb within layouts/application (19.6ms)
+Completed 200 OK in 378ms (Views: 351.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/scaffolds.self-77b49e14f78b029df92cfaf4520a616b5344522727dbf652ed272d8136a4ecf1.css?body=1" for 127.0.0.1 at 2017-11-22 15:31:27 -0500
+
+
+Started GET "/assets/wallpapers.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2017-11-22 15:31:27 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2017-11-22 15:31:27 -0500
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for 127.0.0.1 at 2017-11-22 15:31:27 -0500
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for 127.0.0.1 at 2017-11-22 15:31:27 -0500
+
+
+Started GET "/assets/wallpapers.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2017-11-22 15:31:27 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2017-11-22 15:31:27 -0500
+
+
+Started GET "/assets/turbolinks.self-1d1fddf91adc38ac2045c51f0a3e05ca97d07d24d15a4dcbf705009106489e69.js?body=1" for 127.0.0.1 at 2017-11-22 15:31:27 -0500
+
+
+Started GET "/wallpapers/12" for 127.0.0.1 at 2017-11-22 15:31:31 -0500
+Processing by WallpapersController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[36mWallpaper Load (0.2ms)[0m  [1mSELECT  "wallpapers".* FROM "wallpapers" WHERE "wallpapers"."id" = ? LIMIT 1[0m  [["id", 12]]
+  Rendered wallpapers/show.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 54ms (Views: 33.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/wallpapers/11" for 127.0.0.1 at 2017-11-22 15:31:35 -0500
+Processing by WallpapersController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[35mWallpaper Load (0.1ms)[0m  SELECT  "wallpapers".* FROM "wallpapers" WHERE "wallpapers"."id" = ? LIMIT 1  [["id", 11]]
+  Rendered wallpapers/show.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 38ms (Views: 34.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/wallpapers/6" for 127.0.0.1 at 2017-11-22 15:31:38 -0500
+Processing by WallpapersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mWallpaper Load (0.1ms)[0m  [1mSELECT  "wallpapers".* FROM "wallpapers" WHERE "wallpapers"."id" = ? LIMIT 1[0m  [["id", 6]]
+  Rendered wallpapers/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 25ms (Views: 23.5ms | ActiveRecord: 0.1ms)

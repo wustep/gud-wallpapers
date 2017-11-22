@@ -35,7 +35,19 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-
+  # config for amazon S3 and paperclip, method 2 using dotenv direct
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => '',
+      :access_key_id => '',
+      :secret_access_key => '',
+      :s3_region => ''
+    },
+    :url => ':s3_alias_url',
+    :s3_host_alias => 'd2cvlttosszbwx.cloudfront.net',
+    :path => "images/:id.:extension"
+  }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
