@@ -1,10 +1,16 @@
 class Wallpaper < ActiveRecord::Base
+  paginates_per 30
   has_attached_file :image, styles: {
-    small: "64x64",
-		med: "200x200",
-		large: "400x400"
-  }
+    index: "600x600"
+  },
+  :path => "images/:class/:style/:id:title.:extension"
 
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+  def get_hashed_title
 
+  end
+
+  Paperclip.interpolates :title  do |attachment, style|
+    Digest::MD5.hexdigest(attachment.instance.title)[0..6]
+  end
 end

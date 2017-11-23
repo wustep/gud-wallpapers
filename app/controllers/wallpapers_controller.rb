@@ -4,7 +4,12 @@ class WallpapersController < ApplicationController
   # GET /wallpapers
   # GET /wallpapers.json
   def index
-    @wallpapers = Wallpaper.all
+    @wallpapers = Wallpaper.page params[:page]
+    puts "test"
+    respond_to do |format|
+      format.html
+      format.js { render 'partials/wallpaper_page'}
+    end
   end
 
   # GET /wallpapers/1

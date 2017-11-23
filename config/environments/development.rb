@@ -39,14 +39,14 @@ Rails.application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => '',
-      :access_key_id => '',
-      :secret_access_key => '',
-      :s3_region => ''
+      :bucket => Rails.application.secrets.bucket,
+      :access_key_id => Rails.application.secrets.access_key_id,
+      :secret_access_key => Rails.application.secrets.secret_access_key,
+      :s3_region => Rails.application.secrets.s3_region
     },
     :url => ':s3_alias_url',
     :s3_host_alias => 'd2cvlttosszbwx.cloudfront.net',
-    :path => "images/:id.:extension"
+
   }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

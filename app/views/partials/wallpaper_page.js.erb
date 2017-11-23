@@ -1,0 +1,9 @@
+console.log("test");
+$('#wallpapers').append('<%= j render "partials/images" %>');
+<% if @wallpapers.next_page %>
+  $('.pagination').replaceWith('<%= j paginate @wallpapers %>');
+<% else %>
+  $(window).off('scroll');
+  $('.pagination').remove();
+  $('#load-more').remove();
+<% end %>

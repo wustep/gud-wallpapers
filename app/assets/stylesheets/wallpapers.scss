@@ -1,3 +1,48 @@
 // Place all the styles related to the Wallpapers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#wallpapers {
+  .image-row {
+    overflow: hidden;
+    margin-bottom: 10px;
+    padding: 5px 0;
+    .wallpaper {
+      display: block;
+      border: 0;
+      text-decoration: none;
+      float: left;
+      margin: 0px 10px 0px;
+      height: 250px;
+      background-size: cover;
+      background-position: center center;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+#load-more {
+        background-color: #eee;
+        color: #999;
+        font-weight: bold;
+        text-align: center;
+        padding: 10px 0;
+        cursor: pointer;
+        &:hover {
+          color: #666;
+        }
+    }
+.single-wallpaper {
+  img {
+    display:block;
+    margin:auto;
+    width:75%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  }
+}
+#infinite-scrolling {
+  visibility: hidden;
+}

@@ -1,14 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @wallpaper.title %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= image_tag @wallpaper.image.url(:med) %>
-</p>
-
-<%= link_to 'Edit', edit_wallpaper_path(@wallpaper) %> |
-<%= link_to 'Back', wallpapers_path %>
+<div class="single-wallpaper">
+  <%= image_tag @wallpaper.image.url(:original) %>
+</div>
+<div class="wallpaper-info">
+  <h2><%=@wallpaper.title %>
+  <%= link_to 'Back', wallpapers_path %>
+</div>

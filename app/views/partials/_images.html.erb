@@ -1,0 +1,7 @@
+<% @wallpapers.each_slice(5) do |slice| %>
+  <div class="image-row">
+    <% slice.each do |wallpaper| %>
+      <a class="wallpaper" href="<%= wallpaper_path(wallpaper) %>" style="width: 18%; background-image: url(<%=wallpaper.image.url(:index) %>)"></a>
+    <% end %>
+  </div>
+<% end %>
