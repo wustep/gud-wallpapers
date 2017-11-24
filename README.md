@@ -24,8 +24,8 @@ Gud Wallpapers : wallpaper aggregator and sharing service
     * Linux: `sudo apt-get install imagemagick`
 
  3. Setup secrets.yml (more below)
- 4. Seed the database with the command: `rake db:seed`
- 5. Run the server with `rails s`
+ 4. Setup the database with `rake db:reset`
+ 6. Run the server with `rails s`
 
 ## secrets.yml Setup
 Paste the following code into /config/secrets.yml and revise the keys accordingly
