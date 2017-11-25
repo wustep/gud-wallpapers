@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+gem 'sprockets-rails', '>=2.1.4'
+gem 'bootstrap-sass', '~> 3.3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -17,16 +19,18 @@ gem 'redd'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'acts-as-taggable-on', '~> 4.0'
 
 gem 'aws-sdk', '~> 2.3'
 gem 'paperclip' 		# paperclip gem for file management
 gem 'figaro'
 gem 'kaminari'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

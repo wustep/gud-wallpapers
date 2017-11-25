@@ -1,9 +1,10 @@
 class Wallpaper < ActiveRecord::Base
   paginates_per 30
+  acts_as_taggable
   has_attached_file :image, styles: {
     index: "600x600"
   },
-  :path => "images/:class/:style/:id:title.:extension"
+  :path => "images/:class/nishad/:style/:id:title.:extension"
 
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
   def get_hashed_title

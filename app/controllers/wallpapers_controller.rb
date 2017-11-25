@@ -5,7 +5,6 @@ class WallpapersController < ApplicationController
   # GET /wallpapers.json
   def index
     @wallpapers = Wallpaper.page params[:page]
-    puts "test"
     respond_to do |format|
       format.html
       format.js { render 'partials/wallpaper_page'}
@@ -15,6 +14,7 @@ class WallpapersController < ApplicationController
   # GET /wallpapers/1
   # GET /wallpapers/1.json
   def show
+    @tag_list = Wallpaper.find(params[:id])
   end
 
   # GET /wallpapers/new
@@ -25,6 +25,7 @@ class WallpapersController < ApplicationController
   # GET /wallpapers/1/edit
   def edit
   end
+
 
   # POST /wallpapers
   # POST /wallpapers.json
@@ -74,6 +75,6 @@ class WallpapersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wallpaper_params
-      params.require(:wallpaper).permit(:title, :image)
+      params.require(:wallpaper).permit(:title, :image, :tag_list)
     end
 end

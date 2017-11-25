@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function () {
+$(document).ready(function () {
   var isLoading = false;
   if ($('#infinite-scrolling').size() > 0) {
     $('#load-more').on('click', function() {
@@ -13,5 +13,7 @@ $(document).on('ready page:load', function () {
         });
       }
     });
+  } else {
+    $('#load-more').remove();
   }
 });

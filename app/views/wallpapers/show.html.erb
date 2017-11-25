@@ -2,6 +2,11 @@
   <%= image_tag @wallpaper.image.url(:original) %>
 </div>
 <div class="wallpaper-info">
-  <h2><%=@wallpaper.title %>
+  <h2><%=@wallpaper.title %></h2>
+  <div class="taglist">
+    <% @wallpaper.tag_list.each do |tag| %>
+      <span class="wallpaper-tag"><%= tag %></span>
+    <% end %>
+  </div>
   <%= link_to 'Back', wallpapers_path %>
 </div>
