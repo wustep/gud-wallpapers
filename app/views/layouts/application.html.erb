@@ -6,7 +6,8 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body id="main-body">
+<%= render "/partials/header" %>
 
 <%= yield %>
 
