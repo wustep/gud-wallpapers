@@ -1,7 +1,9 @@
-<% @wallpapers.each_slice(5) do |slice| %>
+<% @wallpapers.each_slice(4) do |slice| %>
   <div class="image-row">
     <% slice.each do |wallpaper| %>
-      <a class="wallpaper" href="<%= wallpaper_path(wallpaper) %>" style="width: 18%; background-image: url(<%=wallpaper.image.url(:index) %>)"></a>
+    <div class="col-lg-auto col-md-3 col-sm-6 col-xs-12">
+      <a class="wallpaper img-thumbnail img-responsive" href="<%= wallpaper_path(wallpaper) %>" style="width:100%; background-image: url(<%=wallpaper.image.url(:index) %>)"></a>
+    </div>
     <% end %>
   </div>
 <% end %>

@@ -1,5 +1,5 @@
 class Wallpaper < ActiveRecord::Base
-  paginates_per 30
+  paginates_per 28
   acts_as_taggable
   has_attached_file :image, styles: {
     index: "600x600"
