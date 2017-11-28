@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  # Root: show wallpapers
   root 'wallpapers#index'
+
+  # Omniauth routes
+  get "/auth/oauth2/callback" => "auth0#callback"
+  get "/auth/failure" => "auth0#failure"
+
   resources :wallpapers
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
