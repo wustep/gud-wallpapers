@@ -6,7 +6,7 @@ class WallpapersController < ApplicationController
   def index
     @wallpapers = Wallpaper.page params[:page]
     @sortOrder = params[:sortOrder]
-    if @sortOrder == 'new'
+    if @sortOrder == 'latest'
       @wallpapers = @wallpapers.order(created_at: :desc)
     elsif @sortOrder == 'top'
       @wallpapers = @wallpapers.order(impressions_count: :desc)
@@ -23,8 +23,10 @@ class WallpapersController < ApplicationController
   # GET /wallpapers/1
   # GET /wallpapers/1.json
   def show
-    @tag_list = Wallpaper.find(params[:id]).tag_list
-    @view_count = Wallpaper.find(params[:id]).impressionist_count
+    @wallpaper = Wallpaper.find(params[:id])
+    @tag_list = @wallpaper.tag_list
+    @view_count = @wallpaper.impressionist_count
+    @wallpaper.update_column(:priority, @wallpaper.get_priority)
   end
 
   # GET /wallpapers/new

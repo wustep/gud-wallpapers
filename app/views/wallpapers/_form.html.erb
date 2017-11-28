@@ -1,28 +1,45 @@
-<%= form_for(@wallpaper) do |f| %>
-  <% if @wallpaper.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@wallpaper.errors.count, "error") %> prohibited this wallpaper from being saved:</h2>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-      <ul>
-      <% @wallpaper.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Upload</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for(@wallpaper) do |f| %>
+          <% if @wallpaper.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@wallpaper.errors.count, "error") %> prohibited this wallpaper from being saved:</h2>
+
+              <ul>
+              <% @wallpaper.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field">
+            <%= f.label :title %><br>
+            <%= f.text_field :title %>
+          </div>
+          <div class="field">
+            <%= f.label :image %><br>
+            <%= f.file_field :image %>
+          </div>
+          <div class="field">
+            <%= f.label "Tags" %><br>
+            <%= f.text_field :tag_list, 'data-role' =>'tagsinput', id: "testID"%>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
   </div>
-  <div class="field">
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
-  </div>
-  <div class="field">
-    <%= f.label "Tags" %><br>
-    <%= f.text_field :tag_list, 'data-role' =>'tagsinput' %>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

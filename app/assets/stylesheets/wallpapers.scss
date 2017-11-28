@@ -3,6 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #content {
   width: 100%;
+  #buttons {
+    text-align: center;
+    width: 20%;
+    margin: auto;
+  }
   #wallpapers {
     .image-row {
       overflow: hidden;
@@ -47,6 +52,7 @@
     }
   }
 }
+
 #load-more {
   background-color: #eee;
   color: #999;
