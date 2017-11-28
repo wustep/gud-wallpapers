@@ -15,6 +15,7 @@ class WallpapersController < ApplicationController
   # GET /wallpapers/1.json
   def show
     @tag_list = Wallpaper.find(params[:id])
+    @view_count = Wallpaper.find(params[:id]).impressionist_count
   end
 
   # GET /wallpapers/new

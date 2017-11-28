@@ -4,6 +4,9 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.6'
 # sqlite3 for the database for Active Record
 gem 'sqlite3'
+gem 'sprockets-rails', '>=2.1.4'
+gem 'bootstrap-sass', '~> 3.3.7'
+gem 'autoprefixer-rails'
 # sass-rails to allow SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Uglifier as compressor for JavaScript assets
@@ -14,8 +17,6 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'redd'
 # jquery as the JavaScript library
 gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -26,26 +27,27 @@ gem 'aws-sdk', '~> 2.3'
 gem 'paperclip'
 # kaminari gem for pagination
 gem 'kaminari'
+# tagging images
+gem 'acts-as-taggable-on', '~> 4.0'
 # impressionist gem for counting page views
 gem 'impressionist'
 # omniauth and auth0 gem is used for the authentication service
 gem 'omniauth', '~> 1.6.1'
 gem 'omniauth-auth0', '~> 2.0.0'
 
+# Unused gems
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
 # Use Unicorn as the app server
 # gem 'unicorn'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
 # figaro gem is for extended app configuration
 # gem 'figaro'
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# gem 'turbolinks'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

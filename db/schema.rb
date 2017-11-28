@@ -11,7 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171125023724) do
+ActiveRecord::Schema.define(version: 20171128012451) do
+
+  create_table "impressions", force: :cascade do |t|
+    t.string   "impressionable_type"
+    t.integer  "impressionable_id"
+    t.integer  "user_id"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.string   "view_name"
+    t.string   "request_hash"
+    t.string   "ip_address"
+    t.string   "session_hash"
+    t.text     "message"
+    t.text     "referrer"
+    t.text     "params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "impressions", ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index"
+  add_index "impressions", ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index"
+  add_index "impressions", ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "params"], name: "poly_params_request_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
+  add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
+  add_index "impressions", ["user_id"], name: "index_impressions_on_user_id"
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
