@@ -1,10 +1,18 @@
 class WallpapersController < ApplicationController
   before_action :set_wallpaper, only: [:show, :edit, :update, :destroy]
-
+  impressionist :actions=>[:show]
   # GET /wallpapers
   # GET /wallpapers.json
   def index
     @wallpapers = Wallpaper.page params[:page]
+    @sortOrder = params[:sortOrder]
+    if @sortOrder == 'new'
+      @wallpapers = @wallpapers.order(created_at: :desc)
+    elsif @sortOrder == 'top'
+      @wallpapers = @wallpapers.order(impressions_count: :desc)
+    else
+      @wallpapers = @wallpapers.order(priority: :desc)
+    end
     respond_to do |format|
       format.html
       format.js { render 'partials/wallpaper_page'}
@@ -14,7 +22,13 @@ class WallpapersController < ApplicationController
   # GET /wallpapers/1
   # GET /wallpapers/1.json
   def show
-    @tag_list = Wallpaper.find(params[:id])
+    @wallpaper = Wallpaper.find(params[:id])
+    @tag_list = Wallpaper.find(params[:id]).tag_list
+    @wallpaper.priority = @wallpaper.get_priority
+    @test = false
+    if @wallpaper.save
+      @test = true
+    end
     @view_count = Wallpaper.find(params[:id]).impressionist_count
   end
 
@@ -32,7 +46,7 @@ class WallpapersController < ApplicationController
   # POST /wallpapers.json
   def create
     @wallpaper = Wallpaper.new(wallpaper_params)
-
+    @wallpaper.priority = @wallpaper.get_priority
     respond_to do |format|
       if @wallpaper.save
         format.html { redirect_to @wallpaper, notice: 'Wallpaper was successfully created.' }

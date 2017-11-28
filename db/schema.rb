@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128012451) do
+ActiveRecord::Schema.define(version: 20171128030734) do
 
   create_table "impressions", force: :cascade do |t|
     t.string   "impressionable_type"
@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 20171128012451) do
     t.datetime "image_updated_at"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "impressions_count"
+    t.float    "priority"
   end
 
 end
