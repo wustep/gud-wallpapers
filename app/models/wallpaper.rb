@@ -1,3 +1,7 @@
+# Wallpaper model
+#
+# Author:: Nishad
+
 class Wallpaper < ActiveRecord::Base
   # Only pull 28 wallpapers per page
   paginates_per 28

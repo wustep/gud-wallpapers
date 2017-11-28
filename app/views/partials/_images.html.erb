@@ -1,4 +1,8 @@
-<!-- insert a row of 4 wallpapers until we are out of wallpapers -->
+<%#
+Insert a row of 4 wallpapers until we are out of wallpapers
+
+Author:: Nishad
+#%>
 <% @wallpapers.each_slice(4) do |slice| %>
   <div class="image-row">
     <% slice.each do |wallpaper| %>

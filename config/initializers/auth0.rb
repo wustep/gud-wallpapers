@@ -2,6 +2,8 @@
 # Source:: https://auth0.com/docs/quickstart/webapp/rails/01-login#install-the-dependencies
 # Implementer(11/27/17):: Stephen
 
+# Be sure to restart your server when you modify this file.
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider(
     :auth0,
