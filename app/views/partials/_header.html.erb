@@ -3,6 +3,7 @@ Main header page
 
 Author:: Nishad
 Update(11/27/17):: [Stephen] Added Login button
+Update(11/28/17):: [Martin] Added basic search bar
 %>
 <header>
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -21,6 +22,14 @@ Update(11/27/17):: [Stephen] Added Login button
         <div id="navbarCollapse" class="collapse navbar-collapse" data-toggle="collapse" data-target="#navbarCollapse">
             <ul class="nav navbar-nav">
                 <li><%= link_to 'Upload', new_wallpaper_path, remote: true%></li>
+            </ul>
+            <ul class="nav navbar-nav" role="search" style="padding: 15px"> 
+                <li>
+                    <%= form_tag(wallpapers_path, :method => "get", id: "search-form") do %>
+                        <%= text_field_tag :search, params[:search], placeholder: "Search Wallpapers" %>
+                        <%= submit_tag "Search", :name => nil %>
+                    <% end %>      
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>

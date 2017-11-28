@@ -7,7 +7,7 @@ Author:: Nishad
 $(document).ready(function () {
   var isLoading = false;
   //Make sure there are still pages left
-  if ($('#infinite-scrolling').size() > 0) {
+  if ($('.pagination').length) {
     $('#load-more').on('click', function() {
       //Get url of next page
       var more_wallpapers_url = $('.pagination a[rel=next]').attr('href');

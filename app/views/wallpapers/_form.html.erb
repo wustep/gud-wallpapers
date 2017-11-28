@@ -13,7 +13,7 @@ Author:: Nishad
         <h4 class="modal-title">Upload</h4>
       </div>
       <div class="modal-body">
-        <%= form_for(@wallpaper) do |f| %>
+        <%= form_for(@wallpaper, remote: true) do |f| %>
           <% if @wallpaper.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(@wallpaper.errors.count, "error") %> prohibited this wallpaper from being saved:</h2>
@@ -38,7 +38,7 @@ Author:: Nishad
             <%= f.label "Tags" %><br>
             <%= f.text_field :tag_list, 'data-role' =>'tagsinput', id: "testID"%>
           <div class="actions">
-            <%= f.submit %>
+            <%= f.submit "Upload" %>
           </div>
         <% end %>
       </div>

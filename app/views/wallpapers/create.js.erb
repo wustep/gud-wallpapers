@@ -1,2 +1,13 @@
-//Hides the modal once a wallpaper is uploaded
+//Hides the modal once submit is clicked
 $('#myModal').modal('hide');
+
+<% if !@wallpaper.errors.blank? %>
+  //Create a new modal
+  $('<%= j render "form" %>').on('shown.bs.modal', function(e) {
+    $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
+  }).on('hidden.bs.modal', function() {
+    $(this).data('bs.modal', null);
+    $(this).remove();
+  }).modal();
+
+<% end %>
