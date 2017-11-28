@@ -1,3 +1,9 @@
+<%#
+Main header page
+
+Author:: Nishad
+Update(11/27/17):: [Stephen] Added Login button
+%>
 <header>
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -17,7 +23,9 @@
                 <li><%= link_to 'Upload', new_wallpaper_path %></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/auth/auth0">Login</a></li>
+                <li>
+                    <a href="/auth/auth0">Login</a>
+                </li>
             </ul>
         </div>
     </div>
