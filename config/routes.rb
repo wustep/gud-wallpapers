@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   get "/auth/oauth2/callback"   => "auth0#callback"
   get "/auth/failure"           => "auth0#failure"
 
+  # User routed
+  #resources :users
+  get '/user', action: :index, controller: 'users'
+
   # In wallpapers, allow for different sort orders in first param of URL
   resources :wallpapers
   get '/:sortOrder', to: 'wallpapers#index'
