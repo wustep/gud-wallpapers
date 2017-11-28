@@ -1,13 +1,7 @@
-# This file should contain all the record creation needed to seed the database with its default values.
+# Record creation to seed database with default values, scraping reddit
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-# Reddit wallpaper scraper
-#
-# Author:: Ben(11/11/17)
+# Author(11/11/17):: Ben
 
 require 'redd'
 require 'open-uri'
@@ -42,8 +36,8 @@ def isValid?(post)
   true
 end
 i = 0
-session.my_subreddits('subscriber').each do |subreddit|
 
+session.my_subreddits('subscriber').each do |subreddit|
   # Iterate through top posts of the week on the account's front page
   subreddit.top(:time => :day, :limit => 10).each do |post|
 

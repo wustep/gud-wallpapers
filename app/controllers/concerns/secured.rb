@@ -1,4 +1,5 @@
-# Secured concern to check if user is authenticated
+# Secured concern to check if user is authenticated, otherwise redirect to root
+#
 # Source:: https://auth0.com/docs/quickstart/webapp/rails/01-login
 # Implemented(11/27/17):: Stephen
 

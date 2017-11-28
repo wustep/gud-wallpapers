@@ -1,3 +1,8 @@
+/*
+Load More Wallpapers button handler
+
+Author:: Nishad
+*/
 
 $(document).ready(function () {
   var isLoading = false;

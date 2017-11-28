@@ -1,13 +1,21 @@
+# Rails routes
+#
+# Update(11/22/17):: [Nishad] Added initial wallpapers index route
+# Update(11/27/17):: [Stephen] Added omni auth callback & failure
+# Update(11/27/17):: [Ben] Added sort order route
+
 Rails.application.routes.draw do
-  # Root: show wallpapers
+  # Root: show list of wallpapers
   root 'wallpapers#index'
 
   # Omniauth routes
-  get "/auth/oauth2/callback" => "auth0#callback"
-  get "/auth/failure" => "auth0#failure"
+  get "/auth/oauth2/callback"   => "auth0#callback"
+  get "/auth/failure"           => "auth0#failure"
 
+  # In wallpapers, allow for different sort orders in first param of URL
   resources :wallpapers
   get '/:sortOrder', to: 'wallpapers#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

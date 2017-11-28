@@ -1,5 +1,9 @@
-//This file is rendered when the GET request for more wallpapers is successful.
-//Append a new index page onto the current one
+/*
+This file is rendered when the GET request for more wallpapers is successful:
+Append a new index page onto the current one
+
+Author:: Nishad
+*/
 $('#wallpapers').append('<%= j render "partials/images" %>');
 <% if @wallpapers.next_page %>
   //Add pagination again
