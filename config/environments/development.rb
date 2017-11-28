@@ -1,3 +1,7 @@
+# Development environment config
+
+require File.expand_path('../shared', __FILE__)
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -35,19 +39,7 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-  # config for amazon S3 and paperclip, method 2 using dotenv direct
-  config.paperclip_defaults = {
-    :storage => :s3,
-    :s3_credentials => {
-      :bucket => Rails.application.secrets.bucket,
-      :access_key_id => Rails.application.secrets.access_key_id,
-      :secret_access_key => Rails.application.secrets.secret_access_key,
-      :s3_region => Rails.application.secrets.s3_region
-    },
-    :url => ':s3_alias_url',
-    :s3_host_alias => 'd2cvlttosszbwx.cloudfront.net',
 
-  }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

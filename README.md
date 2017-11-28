@@ -25,7 +25,7 @@ Gud Wallpapers : wallpaper aggregator and sharing service
     * Linux: `sudo apt-get install imagemagick`
 
  3. Setup secrets.yml (more below)
- 4. Setup the database with `rake db:reset`
+ 4. Setup the database with `bundle exec rake db:reset`
  6. Run the server with `rails s`
 
 ## secrets.yml Setup
@@ -43,17 +43,24 @@ Paste the following code into /config/secrets.yml and revise the keys accordingl
 # Make sure the secrets in this file are kept private
 # if you're sharing your code publicly.
 
+shared: &shared
+  aws_bucket: [aws_bucket]
+  aws_access_key_id: [aws_access_key_id]
+  aws_secret_access_key: [aws_secret_access_key]
+  aws_s3_region: [aws_s3_region]
+  aws_s3_host_alias: [aws_s3_host_alias]
+
 development:
-  secret_key_base: [SECRET_KEY_BASE_HERE]
-  bucket: [BUCKET]
-  access_key_id: [ACCESS_KEY_ID]
-  secret_access_key: [SECRET_ACCESS_KEY]
-  s3_region: [S3 REGION]
+  <<: *shared
+  secret_key_base: [development: secret_key_base]
+
 test:
-  secret_key_base: [SECRET_KEY_BASE]
+  <<: *shared
+  secret_key_base: [test: secret_key_base]
 
 # Do not keep production secrets in the repository,
 # instead read values from the environment.
 production:
+  <<: *shared
   secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
 ````
