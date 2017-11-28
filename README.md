@@ -12,9 +12,10 @@ Gud Wallpapers : wallpaper aggregator and sharing service
 * Database Creation: Stephen
 * Login/Authorization: Stephen
 * Reddit Scraping: Ben
+* Image Favoriting/View Count: Ben
 * Image Uploading/Sorting/Tagging: Nishad
 * Image Searching/Filtering: Martin
-* Image Favoriting/User Gallery/View Count: Jason
+* User Gallery: Jason
 
 
 ## Running Instructions
