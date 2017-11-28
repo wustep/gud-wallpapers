@@ -23,7 +23,7 @@ session = Redd.it(
 # Characters to trim from image names
 @garbage_chars = '\/'
 # Cutoff for score of images to download
-@score_cutoff = 1000
+@score_cutoff = 0
 
 # Determine if a post is valid
 # Author:: Ben(11/12/17)
@@ -45,7 +45,7 @@ i = 0
 session.my_subreddits('subscriber').each do |subreddit|
 
   # Iterate through top posts of the week on the account's front page
-  subreddit.top(:time => :week, :limit => 10).each do |post|
+  subreddit.top(:time => :day, :limit => 10).each do |post|
 
     title = post.title
     puts i.to_s + ". " + title

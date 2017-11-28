@@ -3,12 +3,13 @@
 </div>
 <div class="wallpaper-info">
   <h2><%=@wallpaper.title %></h2>
+  <!-- List tags -->
   <div class="taglist">
     <% @wallpaper.tag_list.each do |tag| %>
       <span class="wallpaper-tag"><%= tag %></span>
     <% end %>
   </div>
   <%= @view_count %>
-  <%= @test %>
+
   <%= link_to 'Back', wallpapers_path %>
 </div>

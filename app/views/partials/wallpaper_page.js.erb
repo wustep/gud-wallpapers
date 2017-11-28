@@ -1,8 +1,11 @@
-console.log("test");
+//This file is rendered when the GET request for more wallpapers is successful.
+//Append a new index page onto the current one
 $('#wallpapers').append('<%= j render "partials/images" %>');
 <% if @wallpapers.next_page %>
+  //Add pagination again
   $('.pagination').replaceWith('<%= j paginate @wallpapers %>');
 <% else %>
+  //If there are no more pages remove pagination and load more button
   $(window).off('scroll');
   $('.pagination').remove();
   $('#load-more').remove();

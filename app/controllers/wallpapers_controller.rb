@@ -15,6 +15,7 @@ class WallpapersController < ApplicationController
     end
     respond_to do |format|
       format.html
+      #If the request was AJAX then render the js to append more wallpapers
       format.js { render 'partials/wallpaper_page'}
     end
   end
@@ -22,13 +23,7 @@ class WallpapersController < ApplicationController
   # GET /wallpapers/1
   # GET /wallpapers/1.json
   def show
-    @wallpaper = Wallpaper.find(params[:id])
     @tag_list = Wallpaper.find(params[:id]).tag_list
-    @wallpaper.priority = @wallpaper.get_priority
-    @test = false
-    if @wallpaper.save
-      @test = true
-    end
     @view_count = Wallpaper.find(params[:id]).impressionist_count
   end
 
