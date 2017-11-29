@@ -7,12 +7,7 @@
 require 'redd'
 require 'open-uri'
 
-print Rails.application.secrets.reddit_user_agent
-print Rails.application.secrets.reddit_client_id
-print Rails.application.secrets.reddit_client_secret
-print Rails.application.secrets.reddit_username
-print Rails.application.secrets.reddit_password
-
+# Create session from config vars from secrets.yml
 session = Redd.it(
   user_agent: Rails.application.secrets.reddit_user_agent,
   client_id:  Rails.application.secrets.reddit_client_id,
@@ -31,17 +26,26 @@ session = Redd.it(
 def isValid?(post)
   # Check for high enough score
   if post.score < @score_cutoff
+    puts post.url + " - too low score"
     return false
   # Check for existence of image
   elsif File.file?("../img/" + post.title)
+    puts post.url + " - already exists"
     return false
   # Check that the post derectly links to an image
   elsif !post.url.end_with?(".jpg", "jpeg", ".gif", ".png", ".tif", ".tiff")
-    puts post.url + " is not valid."
+    puts post.url + " - invalid extension"
     return false
   end
   true
 end
+
+# Scrape wallpapers
+# Author:: Ben(11/12/17)
+# Update(11/29/17):: [Nishad] Added tags to database
+# Update(11/29/17):: [Stephen] Changed tags to use subreddit name instead of title
+# Update(11/29/17):: [Nishad, Stephen] Improved debug info, added rescue from 404
+puts "\r\n[Scraping from subscribed subreddits]"
 i = 0
 reddit = User.find_or_create_by(id: 1)
 reddit.nickname = "Reddit"
@@ -50,20 +54,23 @@ session.my_subreddits('subscriber').each do |subreddit|
   # Iterate through top posts of the week on the account's front page
   subreddit.top(:time => :day, :limit => 10).each do |post|
     title = post.title
-    puts i.to_s + ". " + title
     i = i + 1
+    puts "\r\n" + i.to_s + ". " + title
     # Trim troublesome characters
     title.tr!(@garbage_chars, '')
     # Try to get the image if the post is valid
-    if isValid? post
-        puts post.url
-        # Open and download the image
-        wp = Wallpaper.new
-        wp.title = post.title
-        wp.image = post.url
-        wp.set_owner_tag_list_on(reddit, :tags, subreddit.title)
-        wp.save
-      # Catch page loading errors
+    begin
+      if isValid? post
+          # Open and download the image
+          wp = Wallpaper.new
+          wp.title = post.title
+          wp.image = post.url
+          wp.set_owner_tag_list_on(reddit, :tags, subreddit.display_name)
+          wp.save
+          puts post.url + " - added from " + subreddit.display_name
+      end
+    rescue # Catch page loading errors
+      puts post.url + " - invalid url"
     end
   end
 end
