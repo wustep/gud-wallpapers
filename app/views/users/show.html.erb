@@ -16,6 +16,19 @@ Help:: https://auth0.com/docs/quickstart/webapp/rails/03-user-profile
   </section>
   <section id="page-header-section">
     <h2 id="page-header"><%= params[:gallery] == "favorites" ? "Your Favorites(#{@wallpapers.length})" : "Your Uploads(#{@wallpapers.length})" %></h2>
+    <% if params[:gallery] == "favorites" %>
+      <% if @wallpapers.empty? %>
+        <h3 id="no-favorites-message">
+          It looks like you don't have any favorited wallpapers. <%= link_to "Click here to start browsing wallpapers.", "/index" %>
+        </h3>
+      <% end %>
+    <% else %>
+      <% if @wallpapers.empty? %>
+        <h3 id="no-uploads-message">
+          It looks like you haven't uploaded any wallpapers yet. <%= link_to "Click here to upload your first wallpaper.", new_wallpaper_path, remote: true %>
+        </h3>
+      <% end %>
+    <% end %>
   </section>
   <section id="wallpapers">
     <%= render "/partials/images" %>
