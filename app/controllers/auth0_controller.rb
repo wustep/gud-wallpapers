@@ -4,14 +4,23 @@
 # Implementer(11/27/17):: Stephen
 
 class Auth0Controller < ApplicationController
+  #Called after successful auth
   def callback
-    # This stores all the user information that came from Auth0
-    # and the IdP
-    session[:userinfo] = request.env['omniauth.auth']
-    # Redirect to the URL you want after successful auth
-    redirect_to '/wallpapers'
+    @user = User.find_or_create_from_auth(request.env['omniauth.auth'])
+    if @user
+      set_current_user @user
+      redirect_to users_path
+    else
+      redirect_to root_path
+    end
   end
 
+  #Logout
+  def destroy
+    current_user = nil
+    session.delete(:user_id)
+    redirect_to root_path
+  end
   def failure
     # show a failure page or redirect to an error page
     @error_msg = request.params['message']

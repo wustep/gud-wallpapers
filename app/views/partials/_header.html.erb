@@ -23,17 +23,22 @@ Update(11/28/17):: [Martin] Added basic search bar
             <ul class="nav navbar-nav">
                 <li><%= link_to 'Upload', new_wallpaper_path, remote: true%></li>
             </ul>
-            <ul class="nav navbar-nav" role="search" style="padding: 15px"> 
+            <ul class="nav navbar-nav" role="search" style="padding: 15px">
                 <li>
                     <%= form_tag(wallpapers_path, :method => "get", id: "search-form") do %>
                         <%= text_field_tag :search, params[:search], placeholder: "Search Wallpapers" %>
                         <%= submit_tag "Search", :name => nil %>
-                    <% end %>      
+                    <% end %>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="/auth/auth0">Login</a>
+                    <% if signed_in? %>
+                      <%= current_user.name %>
+                      <a href="/logout">Logout</a>
+                    <% else %>
+                      <a href="/auth/auth0">Login</a>
+                    <% end %>
                 </li>
             </ul>
         </div>

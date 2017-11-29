@@ -6,6 +6,7 @@
 
 class WallpapersController < ApplicationController
   before_action :set_wallpaper, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize!, :only => [:new]
   impressionist :actions=>[:show]
 
   # GET /wallpapers

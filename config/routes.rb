@@ -11,14 +11,16 @@ Rails.application.routes.draw do
   # Omniauth routes
   get "/auth/oauth2/callback"   => "auth0#callback"
   get "/auth/failure"           => "auth0#failure"
+  get '/logout', to: 'auth0#destroy'
 
   # User routed
-  #resources :users
-  get '/user', action: :index, controller: 'users'
+  resources :users
 
   # In wallpapers, allow for different sort orders in first param of URL
   resources :wallpapers
   get '/:sortOrder', to: 'wallpapers#index'
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

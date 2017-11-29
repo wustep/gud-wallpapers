@@ -7,6 +7,6 @@ class UsersController < ApplicationController
   include Secured
   # GET /user
   def index
-    @user = session[:userinfo]
+    @user = current_user
   end
 end

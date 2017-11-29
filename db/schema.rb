@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128030734) do
+ActiveRecord::Schema.define(version: 20171129000612) do
 
   create_table "impressions", force: :cascade do |t|
     t.string   "impressionable_type"
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 20171128030734) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+
+  create_table "users", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "wallpapers", force: :cascade do |t|
     t.string   "title"
