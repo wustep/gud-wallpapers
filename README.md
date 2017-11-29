@@ -9,7 +9,7 @@ Gud Wallpapers : wallpaper aggregator and sharing service
 * Documentation: Nishad
 
 ### Contributions
-* Database Creation: Stephen
+* Database Planning: Stephen
 * Login/Authorization: Stephen
 * Reddit Scraping: Ben
 * Image Favoriting/View Count: Ben

@@ -7,8 +7,6 @@ class UsersController < ApplicationController
   #include Secured
   # GET /user/:id
   def show
-    @favorites = @user.favorite_wallpapers
-
     @user = User.find(params[:id])
     #Make sure the user passed in through the parameters matches that from the current user method
     if @user == current_user

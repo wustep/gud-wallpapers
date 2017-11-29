@@ -12,7 +12,6 @@ class WallpapersController < ApplicationController
   # GET /wallpapers
   # GET /wallpapers.json
   def index
-
     # Check if we are searching something
     if params[:search]
       @wallpapers = Wallpaper.search(params[:search])
