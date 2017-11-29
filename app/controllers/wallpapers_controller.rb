@@ -56,6 +56,7 @@ class WallpapersController < ApplicationController
   def create
     @wallpaper = Wallpaper.new(wallpaper_params)
     @wallpaper.priority = @wallpaper.get_priority
+    @wallpaper.uploader = current_user
     respond_to do |format|
       if @wallpaper.save
         format.html { redirect_to @wallpaper, notice: 'Wallpaper was successfully created.' }

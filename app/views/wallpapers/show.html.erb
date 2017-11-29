@@ -9,6 +9,9 @@ Author:: Nishad
 </div>
 <div class="wallpaper-info">
   <h2><%=@wallpaper.title %></h2>
+  <% if @wallpaper.uploader %>
+    <h4>Uploaded by <%= @wallpaper.uploader.nickname %></h4>
+    <% end %>
   <!-- List tags -->
   <div class="taglist">
     <% @wallpaper.tag_list.each do |tag| %>

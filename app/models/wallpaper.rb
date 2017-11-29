@@ -3,6 +3,9 @@
 # Author:: Nishad
 
 class Wallpaper < ActiveRecord::Base
+  has_many :favorited_by, :through => :favorites, :source => :user
+  has_many :favorites
+  belongs_to :uploader, :class_name => "User", :foreign_key => "uploader_id"
   # Only pull 28 wallpapers per page
   paginates_per 28
   # Allow wallpapers to be tagged
@@ -31,7 +34,7 @@ class Wallpaper < ActiveRecord::Base
   # Finds wallpapers search term in their titles
   # Author: Martin
   def self.search(search)
-    where("title LIKE ?", "%#{search}%") 
+    where("title LIKE ?", "%#{search}%")
   end
 
   # Gets the priority of the image

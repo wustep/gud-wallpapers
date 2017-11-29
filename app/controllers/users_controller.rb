@@ -5,8 +5,8 @@
 
 class UsersController < ApplicationController
   include Secured
-  # GET /user
-  def index
-    @user = current_user
+  # GET /user/:id
+  def show
+
   end
 end

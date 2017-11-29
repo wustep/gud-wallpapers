@@ -9,7 +9,7 @@ class Auth0Controller < ApplicationController
     @user = User.find_or_create_from_auth(request.env['omniauth.auth'])
     if @user
       set_current_user @user
-      redirect_to users_path
+      redirect_to user_path(@user)
     else
       redirect_to root_path
     end

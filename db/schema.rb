@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129000612) do
+ActiveRecord::Schema.define(version: 20171129012134) do
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "wallpaper_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
+  add_index "favorites", ["wallpaper_id"], name: "index_favorites_on_wallpaper_id"
 
   create_table "impressions", force: :cascade do |t|
     t.string   "impressionable_type"
@@ -87,6 +97,7 @@ ActiveRecord::Schema.define(version: 20171129000612) do
     t.datetime "updated_at",         null: false
     t.integer  "impressions_count"
     t.float    "priority"
+    t.integer  "uploader_id"
   end
 
 end
