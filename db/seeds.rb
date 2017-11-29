@@ -2,16 +2,23 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 # Author(11/11/17):: Ben
+# Update(11/29/17):: [Stephen] Revised to use secrets.yml instead of hard-coded values
 
 require 'redd'
 require 'open-uri'
 
+print Rails.application.secrets.reddit_user_agent
+print Rails.application.secrets.reddit_client_id
+print Rails.application.secrets.reddit_client_secret
+print Rails.application.secrets.reddit_username
+print Rails.application.secrets.reddit_password
+
 session = Redd.it(
-  user_agent: 'Redd:GudWallpapers:v1.0 (by /u/GudWallpapers)',
-  client_id:  'uT7FKbPTbho2aw',
-  secret:     'zA91Jzp3FCbxOCu3NUeLlP7oW80',
-  username:   'GudWallpapers',
-  password:   '#fuckOUAB'
+  user_agent: Rails.application.secrets.reddit_user_agent,
+  client_id:  Rails.application.secrets.reddit_client_id,
+  secret:     Rails.application.secrets.reddit_client_secret,
+  username:   Rails.application.secrets.reddit_username,
+  password:   Rails.application.secrets.reddit_password
 )
 
 # Characters to trim from image names
@@ -36,11 +43,12 @@ def isValid?(post)
   true
 end
 i = 0
-
+reddit = User.find_or_create_by(id: 1)
+reddit.nickname = "Reddit"
+reddit.save
 session.my_subreddits('subscriber').each do |subreddit|
   # Iterate through top posts of the week on the account's front page
   subreddit.top(:time => :day, :limit => 10).each do |post|
-
     title = post.title
     puts i.to_s + ". " + title
     i = i + 1
@@ -48,18 +56,14 @@ session.my_subreddits('subscriber').each do |subreddit|
     title.tr!(@garbage_chars, '')
     # Try to get the image if the post is valid
     if isValid? post
-      begin
         puts post.url
         # Open and download the image
         wp = Wallpaper.new
         wp.title = post.title
         wp.image = post.url
+        wp.set_owner_tag_list_on(reddit, :tags, subreddit.title)
         wp.save
       # Catch page loading errors
-      rescue
-        @error_message = "Unable to get file: " + title
-        puts @error_message
-      end
     end
   end
 end

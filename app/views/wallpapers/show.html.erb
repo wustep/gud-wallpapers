@@ -13,20 +13,17 @@ Author:: Nishad
     <h4>Uploaded by <%= @wallpaper.uploader.nickname %></h4>
     <% end %>
   <!-- List tags -->
-  <div class="taglist">
-    <h4 style="display:inline"> Popular Tags: </h4>
-    <% @wallpaper.all_tags_list.each do |tag| %>
-      <span class="wallpaper-tag"><a href="<%= root_url %>tags/<%= tag %>"><%= tag %></a></span>
-    <% end %>
+  <div class="taglist" id="popular-tags">
+    <%= render partial: 'partials/taglist', locals: {list_title: "Popular Tags", tag_list: @wallpaper.all_tags_list} %>
   </div>
   <% if signed_in? %>
     <div class="taglist">
-      <h4 style="display:inline"> Your Tags: </h4>
       <div id="user-tags" style="display:inline">
-        <% @wallpaper.owner_tags_on(current_user, :tags).each do |tag| %>
-          <span class="wallpaper-tag"><a href="<%= root_url %>tags/<%= tag %>"><%= tag %></a></span>
-        <% end %>
-          <span class="wallpaper-tag" id="plus"><strong>+</strong></span>
+        <%= render partial: 'partials/taglist', locals: {list_title: "Your Tags", tag_list: @wallpaper.owner_tags_on(current_user, :tags)} %>
+      </div>
+      <span class="wallpaper-tag" id="plus"><strong>+</strong></span>
+      <div id="user-tags-input-container" style="display:none">
+        <input type="text" value="<%= (@wallpaper.owner_tags_on(current_user, :tags).map {|tag| tag.name}).join(",") %>" data-role="tagsinput" id="user-tags-input" />
       </div>
     </div>
   <%end%>

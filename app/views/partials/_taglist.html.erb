@@ -1,0 +1,4 @@
+<h4 style="display:inline"> <%= list_title %>: </h4>
+<% tag_list.each do |tag| %>
+  <span class="wallpaper-tag"><a href="<%= root_url %>tags/<%= tag %>"><%= tag %></a></span>
+<% end %>

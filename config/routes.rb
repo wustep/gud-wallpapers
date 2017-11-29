@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   # User routed
   resources :users
+  get '/users/:id/:gallery', to: 'users#show'
 
   # In wallpapers, allow for different sort orders in first param of URL
   resources :wallpapers
@@ -23,6 +24,8 @@ Rails.application.routes.draw do
 
   match 'favorite', to: 'wallpapers#favorite', via: :post
   match 'unfavorite', to: 'wallpapers#unfavorite', via: :delete
+
+  put '/wallpapers/:id/updatetags', to: 'wallpapers#update_tags'
 
 
 

@@ -5,7 +5,7 @@
 # Update(11/28/17):: [Martin] Added basic title search logic
 
 class WallpapersController < ApplicationController
-  before_action :set_wallpaper, only: [:show, :edit, :update, :destroy]
+  before_action :set_wallpaper, only: [:show, :edit, :update, :destroy, :update_tags]
   before_filter :authorize!, :only => [:new]
   impressionist :actions=>[:show]
 
@@ -54,7 +54,6 @@ class WallpapersController < ApplicationController
   # GET /wallpapers/1.json
   def show
     @wallpaper = Wallpaper.find(params[:id])
-    @tag_list = @wallpaper.tag_list
     @view_count = @wallpaper.impressionist_count
     @favorites = @wallpaper.favorites
     @favorited_by = @wallpaper.favorited_by
@@ -106,6 +105,17 @@ class WallpapersController < ApplicationController
     end
   end
 
+  # PATCH/PUT /wallpapers/1/updatetags
+  def update_tags
+    respond_to do |format|
+      current_user.tag(@wallpaper, :with => params[:taglist], :on => :tags)
+      if @wallpaper.save
+        format.js { render 'partials/update_tags', status: :ok}
+      else
+        format.js { render json: @wallpaper.errors, status: :unprocessable_entity}
+      end
+    end
+  end
   # DELETE /wallpapers/1
   # DELETE /wallpapers/1.json
   def destroy
