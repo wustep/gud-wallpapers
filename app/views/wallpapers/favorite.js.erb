@@ -1,2 +1,7 @@
+/*
+  Using JQuery, update the page when favorited
+
+  Author:: Ben
+*/
 $('#favorite-button-container').html('<%= j render partial: "favorite_button", locals: {wallpaper: @wallpaper} %>');
 $('#favorite-label').html('Favorites: <%= j @wallpaper.favorited_by.size.to_s %>');
