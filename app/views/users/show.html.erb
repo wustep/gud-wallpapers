@@ -6,7 +6,14 @@ Help:: https://auth0.com/docs/quickstart/webapp/rails/03-user-profile
 #%>
 
 <section id="content" class="container">
-  
+  <section id="buttons" class="row">
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <a href="<%= "/users/" + params[:id] + "/uploaded"%>" class="btn btn-default">Uploaded</a>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <a href="<%= "/users/" + params[:id] + "/favorited"%>" class="btn btn-default">Favorited</a>
+    </div>
+  </section>
   <section id="wallpapers">
     <%= render "/partials/images" %>
   </section>
