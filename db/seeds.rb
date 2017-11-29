@@ -36,11 +36,12 @@ def isValid?(post)
   true
 end
 i = 0
-
+reddit = User.find_or_create_by(id: 1)
+reddit.nickname = "Reddit"
+reddit.save
 session.my_subreddits('subscriber').each do |subreddit|
   # Iterate through top posts of the week on the account's front page
   subreddit.top(:time => :day, :limit => 10).each do |post|
-
     title = post.title
     puts i.to_s + ". " + title
     i = i + 1
@@ -48,18 +49,14 @@ session.my_subreddits('subscriber').each do |subreddit|
     title.tr!(@garbage_chars, '')
     # Try to get the image if the post is valid
     if isValid? post
-      begin
         puts post.url
         # Open and download the image
         wp = Wallpaper.new
         wp.title = post.title
         wp.image = post.url
+        wp.set_owner_tag_list_on(reddit, :tags, subreddit.title)
         wp.save
       # Catch page loading errors
-      rescue
-        @error_message = "Unable to get file: " + title
-        puts @error_message
-      end
     end
   end
 end

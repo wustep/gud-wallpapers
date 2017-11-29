@@ -4,7 +4,7 @@
 # Implementer(11/27/17):: Stephen
 
 module LogoutHelper
-  def logout_url
+  def self.logout_url(root_url)
     domain = Rails.application.secrets.auth0_domain
     client_id = Rails.application.secrets.auth0_client_id
     request_params = {

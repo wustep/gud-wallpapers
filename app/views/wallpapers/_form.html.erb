@@ -26,19 +26,19 @@ Author:: Nishad
             </div>
           <% end %>
 
-          <div class="field">
+          <div class="form-group">
             <%= f.label :title %><br>
-            <%= f.text_field :title %>
+            <%= f.text_field :title, class: "form-control" %>
           </div>
-          <div class="field">
+          <div class="form-group">
             <%= f.label :image %><br>
-            <%= f.file_field :image %>
+            <%= f.file_field :image, class: "form-control-file" %>
           </div>
           <div class="field">
             <%= f.label "Tags" %><br>
             <%= f.text_field :tag_list, 'data-role' =>'tagsinput', id: "testID"%>
           <div class="actions">
-            <%= f.submit "Upload" %>
+            <%= f.submit "Upload", class: "btn btn-primary" %>
           </div>
         <% end %>
       </div>

@@ -54,7 +54,6 @@ class WallpapersController < ApplicationController
   # GET /wallpapers/1.json
   def show
     @wallpaper = Wallpaper.find(params[:id])
-    @tag_list = @wallpaper.tag_list
     @view_count = @wallpaper.impressionist_count
     @wallpaper.update_column(:priority, @wallpaper.get_priority)
   end
