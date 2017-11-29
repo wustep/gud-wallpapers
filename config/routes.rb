@@ -15,11 +15,13 @@ Rails.application.routes.draw do
 
   # User routed
   resources :users
+  get '/users/:id/:gallery', to: 'users#show'
 
   # In wallpapers, allow for different sort orders in first param of URL
   resources :wallpapers
   get '/:sortOrder', to: 'wallpapers#index'
   get '/tags/:tag', to: 'wallpapers#tags'
+  put '/wallpapers/:id/updatetags', to: 'wallpapers#update_tags'
 
 
 

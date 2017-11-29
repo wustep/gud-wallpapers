@@ -1,0 +1,2 @@
+$('#popular-tags').html('<%= j render partial: 'partials/taglist', locals: {list_title: "Popular Tags", tag_list: @wallpaper.all_tags_list} %>');
+$('#user-tags').html('<%= j render partial: 'partials/taglist', locals: {list_title: "Your Tags", tag_list: @wallpaper.owner_tags_on(current_user, :tags)} %>');
