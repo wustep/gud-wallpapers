@@ -7,6 +7,6 @@ class UsersController < ApplicationController
   include Secured
   # GET /user/:id
   def show
-
+    @favorites = @user.favorite_wallpapers
   end
 end

@@ -56,6 +56,8 @@ class WallpapersController < ApplicationController
     @wallpaper = Wallpaper.find(params[:id])
     @tag_list = @wallpaper.tag_list
     @view_count = @wallpaper.impressionist_count
+    @favorites = @wallpaper.favorites
+    @favorited_by = @wallpaper.favorited_by
     @wallpaper.update_column(:priority, @wallpaper.get_priority)
   end
 
@@ -111,6 +113,25 @@ class WallpapersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to wallpapers_url, notice: 'Wallpaper was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def favorite
+    @user = current_user
+    @wallpaper = Wallpaper.find(params[:wallpaper_id])
+    @user.favorite!(@wallpaper)
+    respond_to do |format|
+      format.js { render 'favorite'}
+    end
+  end
+
+  def unfavorite
+    @user = current_user
+    @favorite = @user.favorites.find_by_wallpaper_id(params[:wallpaper_id])
+    @wallpaper = Wallpaper.find(params[:wallpaper_id])
+    @favorite.destroy!
+    respond_to do |format|
+      format.js { render 'unfavorite'}
     end
   end
 

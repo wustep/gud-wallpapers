@@ -1,0 +1,7 @@
+<% if signed_in? %>
+  <% if current_user.favorited?(wallpaper) %>
+    <%= button_to "Unfavorite", unfavorite_path(wallpaper_id: wallpaper.id), remote: true, method: :delete  %>
+  <% else %>
+    <%= button_to "Favorite", favorite_path(wallpaper_id: wallpaper.id), remote: true  %>
+  <% end %>
+<% end %>

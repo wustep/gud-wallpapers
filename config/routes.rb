@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get '/:sortOrder', to: 'wallpapers#index'
   get '/tags/:tag', to: 'wallpapers#tags'
 
+  match 'favorite', to: 'wallpapers#favorite', via: :post
+  match 'unfavorite', to: 'wallpapers#unfavorite', via: :delete
 
 
 
