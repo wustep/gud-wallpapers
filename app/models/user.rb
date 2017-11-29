@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   # Association for favorites
-  has_many :favorite_wallpapers, :through => :favorites, :source => :favorited, source_type: 'Wallpaper'
+  has_many :favorite_wallpapers, :through => :favorites, :source => :wallpaper
   has_many :favorites
   #association for uploads
   has_many :uploads, :class_name => "Wallpaper", :foreign_key => "uploader_id"
