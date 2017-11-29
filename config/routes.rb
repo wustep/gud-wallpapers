@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   # In wallpapers, allow for different sort orders in first param of URL
   resources :wallpapers
   get '/:sortOrder', to: 'wallpapers#index'
+  get '/tags/:tag', to: 'wallpapers#tags'
 
 
 

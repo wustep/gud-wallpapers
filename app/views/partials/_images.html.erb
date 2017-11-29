@@ -8,6 +8,8 @@ Update(11/28/17):: [Martin] Added a message for when search returns no wallpaper
     <h4>Sorry! There are no wallpapers containing the term <%= params[:search] %>.</h4>
 <% elsif params[:search] %>
   <h4>Results for "<%= params[:search] %>" (Count: <%= @wallpapers.length %>)</h4>
+<% elsif params[:tag] %>
+  <h4>Wallpapers tagged "<%= params[:tag] %>" (Count: <%= @wallpapers.length %>)</h4>
 <% end %>
 <% @wallpapers.each_slice(4) do |slice| %>
   <div class="image-row">

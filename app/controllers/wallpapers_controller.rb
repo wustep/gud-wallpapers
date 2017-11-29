@@ -12,19 +12,30 @@ class WallpapersController < ApplicationController
   # GET /wallpapers
   # GET /wallpapers.json
   def index
-    @wallpapers = Wallpaper.page params[:page]
 
+    # Check if we are searching something
     if params[:search]
-      @wallpapers = Wallpaper.search(params[:search]).page(params[:page])
-    end
-
-    @sortOrder = params[:sortOrder]
-    if @sortOrder == 'latest'
-      @wallpapers = @wallpapers.order(created_at: :desc)
-    elsif @sortOrder == 'top'
-      @wallpapers = @wallpapers.order(impressions_count: :desc)
+      @wallpapers = Wallpaper.search(params[:search])
+      # We can't call page on an array, so special check here
+      if @wallpapers.class == Array
+        @wallpapers = Kaminari.paginate_array(@wallpapers).page(params[:page]).per(28)
+      else
+        @wallpapers = @wallpapers.page params[:page]
+      end
     else
-      @wallpapers = @wallpapers.order(priority: :desc)
+      #If not searching, then choose sorting order
+      @wallpapers = Wallpaper.all
+      @sortOrder = params[:sortOrder]
+      if @sortOrder == 'latest'
+        @wallpapers = @wallpapers.order(created_at: :desc)
+      elsif @sortOrder == 'top'
+        @wallpapers = @wallpapers.order(impressions_count: :desc)
+      else
+        # Default is priority, which factors in view count as well as time created
+        @wallpapers = @wallpapers.order(priority: :desc)
+      end
+      # Paginate the results
+      @wallpapers = @wallpapers.page params[:page]
     end
     respond_to do |format|
       format.html
@@ -32,6 +43,13 @@ class WallpapersController < ApplicationController
     end
   end
 
+  def tags
+    @wallpapers = Wallpaper.tagged_with(params[:tag])
+    @wallpapers = @wallpapers.order(priority: :desc)
+    @wallpapers = @wallpapers.page params[:page]
+    render :index
+
+  end
   # GET /wallpapers/1
   # GET /wallpapers/1.json
   def show
@@ -57,6 +75,8 @@ class WallpapersController < ApplicationController
     @wallpaper = Wallpaper.new(wallpaper_params)
     @wallpaper.priority = @wallpaper.get_priority
     @wallpaper.uploader = current_user
+    @wallpaper.set_owner_tag_list_on(current_user, :tags, @wallpaper.tag_list)
+    @wallpaper.tag_list.clear
     respond_to do |format|
       if @wallpaper.save
         format.html { redirect_to @wallpaper, notice: 'Wallpaper was successfully created.' }

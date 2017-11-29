@@ -14,11 +14,23 @@ Author:: Nishad
     <% end %>
   <!-- List tags -->
   <div class="taglist">
-    <% @wallpaper.tag_list.each do |tag| %>
-      <span class="wallpaper-tag"><%= tag %></span>
+    <h4 style="display:inline"> Popular Tags: </h4>
+    <% @wallpaper.all_tags_list.each do |tag| %>
+      <span class="wallpaper-tag"><a href="<%= root_url %>tags/<%= tag %>"><%= tag %></a></span>
     <% end %>
   </div>
-  <%= @view_count %>
+  <% if signed_in? %>
+    <div class="taglist">
+      <h4 style="display:inline"> Your Tags: </h4>
+      <div id="user-tags" style="display:inline">
+        <% @wallpaper.owner_tags_on(current_user, :tags).each do |tag| %>
+          <span class="wallpaper-tag"><a href="<%= root_url %>tags/<%= tag %>"><%= tag %></a></span>
+        <% end %>
+          <span class="wallpaper-tag" id="plus"><strong>+</strong></span>
+      </div>
+    </div>
+  <%end%>
+  <h4 > Views: <%= @view_count %> </h4>
 
   <%= link_to 'Back', root_url %>
 </div>

@@ -52,6 +52,9 @@ Author:: Nishad
       border-style: solid;
       border-radius: 0;
       transition: all .15s ease-in-out;
+      &:hover {
+        background-color: #a9c9df;
+      }
     }
   }
 }

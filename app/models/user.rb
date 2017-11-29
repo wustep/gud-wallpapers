@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   #association for uploads
   has_many :uploads, :class_name => "Wallpaper", :foreign_key => "uploader_id"
 
+  #User can tag photos
+  acts_as_tagger
+
   # Using omniauth, either finds a user, or, if none found, creates one.
   def self.find_or_create_from_auth(auth)
     user = User.find_or_create_by(provider: auth['provider'], uid: auth['uid'])

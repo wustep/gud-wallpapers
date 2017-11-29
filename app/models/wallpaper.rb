@@ -31,16 +31,19 @@ class Wallpaper < ActiveRecord::Base
     Digest::MD5.hexdigest(attachment.instance.title)[0..6]
   end
 
-  # Finds wallpapers search term in their titles
+  # Finds wallpapers search term in their titles and tags
   # Author: Martin
   def self.search(search)
-    where("title LIKE ?", "%#{search}%")
+    where("title LIKE ?", "%#{search}%") | tagged_with(search, wild:true, any:true)
   end
-
   # Gets the priority of the image
   def get_priority
     views = self.impressionist_count
     seconds = self.created_at.to_f - 1511147177
     return (views + (seconds / 4500)).round(10)
+  end
+
+  def get_aws_name
+    self.image.path.split("/").last
   end
 end
