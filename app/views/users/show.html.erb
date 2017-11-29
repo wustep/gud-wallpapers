@@ -15,7 +15,7 @@ Help:: https://auth0.com/docs/quickstart/webapp/rails/03-user-profile
     </div>
   </section>
   <section id="page-header-section">
-    <h2 id="page-header"><%= params[:gallery] == "favorites" ? "Your Favorites" : "Your Uploads" %></h2>
+    <h2 id="page-header"><%= params[:gallery] == "favorites" ? "Your Favorites(#{@wallpapers.length})" : "Your Uploads(#{@wallpapers.length})" %></h2>
   </section>
   <section id="wallpapers">
     <%= render "/partials/images" %>
