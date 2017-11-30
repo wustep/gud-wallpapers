@@ -3,12 +3,8 @@ Wallpaper index page -- show many loaded wallpapers
 
 Author:: Nishad
 #%>
-
-
-
-
 <section id="content" class="container" width="100%">
-  <% if params[:search].nil? %>
+  <% if params[:search].nil? && params[:title].nil? && params[:tags].nil?%>
     <section id="buttons" class="row">
       <div class="col-lg-4 col-md-4 col-sm-12">
         <a href="/popular" class="btn btn-default">Popular</a>

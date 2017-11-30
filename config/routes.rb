@@ -4,6 +4,7 @@
 # Update(11/27/17):: [Stephen] Added omni auth callback & failure
 # Update(11/27/17):: [Ben] Added sort order route
 # Update(11/28/17):: [Jason] Added show user gallery route
+# Update(11/29/17):: [Martin] Added advanced search route
 
 Rails.application.routes.draw do
   # Root: show list of wallpapers
@@ -23,14 +24,16 @@ Rails.application.routes.draw do
   get '/:sortOrder', to: 'wallpapers#index'
   get '/tags/:tag', to: 'wallpapers#tags'
 
+
+  resources :search
+  post '/advsearch', to: 'search#adv_search'
+
   # Routes for favoriting and unfavoriting
   match 'favorite', to: 'wallpapers#favorite', via: :post
   match 'unfavorite', to: 'wallpapers#unfavorite', via: :delete
 
   # Route to obtain tags
   put '/wallpapers/:id/updatetags', to: 'wallpapers#update_tags'
-
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -3,7 +3,6 @@ Wallpaper controller styling
 
 Author:: Nishad
 */
-
 #content {
   width: 100%;
   #buttons {
@@ -84,4 +83,18 @@ Author:: Nishad
 }
 #infinite-scrolling {
   visibility: hidden;
+}
+
+/*
+Wallpaper button styling
+
+Author:: Stephen
+*/
+#wallpaper-button-container {
+  form {
+    display: inline-block;
+  }
+  button, a {
+    color: white;
+  }
 }

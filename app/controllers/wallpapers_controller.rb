@@ -2,7 +2,6 @@
 #
 # Author:: Nishad
 # Update(11/27/17):: [Ben] Added sort order logic
-# Update(11/28/17):: [Martin] Added basic title search logic
 
 class WallpapersController < ApplicationController
   before_action :set_wallpaper, only: [:show, :edit, :update, :destroy, :update_tags]
@@ -49,6 +48,7 @@ class WallpapersController < ApplicationController
     render :index
 
   end
+
   # GET /wallpapers/1
   # GET /wallpapers/1.json
   def show
@@ -143,6 +143,7 @@ class WallpapersController < ApplicationController
       format.js { render 'unfavorite'}
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -2,36 +2,51 @@
 View individual wallpaper pages
 
 Author:: Nishad
+Update(11/29/17):: [Ben] ADded faovirte button
+Update(11/29/17):: [Stephen] Improved styling, added download button
 #%>
 
 <div class="single-wallpaper">
+  <!-- Wallpaper image -->
   <%= image_tag @wallpaper.image.url(:original) %>
 </div>
-<div class="wallpaper-info">
-  <h2><%=@wallpaper.title %></h2>
-  <% if @wallpaper.uploader %>
-    <h4>Uploaded by <%= @wallpaper.uploader.nickname %></h4>
-    <% end %>
-  <!-- List tags -->
-  <div class="taglist" id="popular-tags">
-    <%= render partial: 'partials/taglist', locals: {list_title: "Popular Tags", tag_list: @wallpaper.all_tags_list} %>
-  </div>
-  <% if signed_in? %>
-    <div class="taglist">
-      <div id="user-tags" style="display:inline">
-        <%= render partial: 'partials/taglist', locals: {list_title: "Your Tags", tag_list: @wallpaper.owner_tags_on(current_user, :tags)} %>
-      </div>
-      <span class="wallpaper-tag" id="plus"><strong>+</strong></span>
-      <div id="user-tags-input-container" style="display:none">
-        <input type="text" value="<%= (@wallpaper.owner_tags_on(current_user, :tags).map {|tag| tag.name}).join(",") %>" data-role="tagsinput" id="user-tags-input" />
-      </div>
-    </div>
-  <%end%>
-  <h4 > Views: <%= @view_count %> </h4>
-  <div id="favorite-button-container">
-    <%= render partial: "favorite_button", locals: { wallpaper: @wallpaper } %>
-  </div>
-  <h4 id="favorite-label"> Favorites: <%= @wallpaper.favorited_by.size %> </h4>
+<div class="row wallpaper-info">
+  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+    <!-- Wallpaper info -->
+    <h2><%=@wallpaper.title %></h2>
+    <% if @wallpaper.uploader %>
+      <h4>Uploaded by <%= @wallpaper.uploader.nickname %></h4>
+      <% end %>
 
-  <%= link_to 'Back', root_url %>
+    <!-- Popular tag list -->
+    <div class="taglist" id="popular-tags">
+      <%= render partial: 'partials/taglist', locals: {list_title: "Popular Tags", tag_list: @wallpaper.all_tags_list} %>
+    </div>
+
+    <% if signed_in? %>
+    <!-- Personal tag list -->
+      <div class="taglist">
+        <div id="user-tags" style="display:inline">
+          <%= render partial: 'partials/taglist', locals: {list_title: "Your Tags", tag_list: @wallpaper.owner_tags_on(current_user, :tags)} %>
+        </div>
+        <span class="wallpaper-tag" id="plus"><strong>+</strong></span>
+        <div id="user-tags-input-container" style="display:none">
+          <input type="text" value="<%= (@wallpaper.owner_tags_on(current_user, :tags).map {|tag| tag.name}).join(",") %>" data-role="tagsinput" id="user-tags-input" />
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Views and favorite count -->
+    <h4> Views: <%= @view_count %><br>
+         Favorites: <%= @wallpaper.favorited_by.size %> </h4>
+
+    <div id="wallpaper-button-container">
+      <!-- Favorite button -->
+      <%= render partial: "favorite_button", locals: { wallpaper: @wallpaper } %>
+      <!-- Download button -->
+      <a href="<%= @wallpaper.image.url(:original)%>" class="btn btn-primary btn-small" download>Download</a>
+      <!-- Home button -->
+      <%= link_to 'Home', root_url, :class => "btn btn-info" %>
+    </div>
+  </div>
 </div>

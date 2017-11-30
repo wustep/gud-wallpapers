@@ -1,6 +1,7 @@
 # Wallpaper model
 #
 # Author:: Nishad
+# Update(11/29/17):: [Martin] Added advanced search method
 
 class Wallpaper < ActiveRecord::Base
   # Association for favorites
@@ -34,12 +35,29 @@ class Wallpaper < ActiveRecord::Base
   end
 
   # Finds wallpapers search term in their titles and tags
-  # Author: Martin
+  #
+  # Author:: Martin
   def self.search(search)
     where("title LIKE ?", "%#{search}%") | tagged_with(search, wild:true, any:true)
   end
 
+  # Searches using multiple search terms
+  #
+  # Author:: Martin
+  def self.adv_search(title, tags = nil)
+
+    if !title.nil?
+      results = where("title LIKE ?", "%#{title}%")
+    end
+    if !tags.nil? && !tags.empty?
+      results = results & tagged_with(tags, wild:true)
+    end
+    results
+  end
+
   # Gets the priority of the image
+  #
+  # Author:: Nishad
   def get_priority
     views = self.impressionist_count
     seconds = self.created_at.to_f - 1511147177
@@ -47,6 +65,8 @@ class Wallpaper < ActiveRecord::Base
   end
 
   #Get name for AWS from path
+  #
+  # Author:: Nishad
   def get_aws_name
     self.image.path.split("/").last
   end
