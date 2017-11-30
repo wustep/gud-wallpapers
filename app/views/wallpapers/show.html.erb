@@ -38,11 +38,13 @@ Update(11/29/17):: [Stephen] Improved styling, added download button
 
     <!-- Views and favorite count -->
     <h4> Views: <%= @view_count %><br>
-         Favorites: <%= @wallpaper.favorited_by.size %> </h4>
+         <span id="favorite-label"> Favorites: <%= @wallpaper.favorited_by.size %> </span> </h4>
 
     <div id="wallpaper-button-container">
-      <!-- Favorite button -->
-      <%= render partial: "favorite_button", locals: { wallpaper: @wallpaper } %>
+      <div id="favorite-button-container" style="display:inline">
+        <!-- Favorite button -->
+        <%= render partial: "favorite_button", locals: { wallpaper: @wallpaper } %>
+      </div>
       <!-- Download button -->
       <a href="<%= @wallpaper.image.url(:original)%>" class="btn btn-primary btn-small" download>Download</a>
       <!-- Home button -->
