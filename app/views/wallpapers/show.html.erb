@@ -20,7 +20,7 @@ Update(11/29/17):: [Stephen] Improved styling, added download button
 
     <!-- Popular tag list -->
     <div class="taglist" id="popular-tags">
-      <%= render partial: 'partials/taglist', locals: {list_title: "Popular Tags", tag_list: @wallpaper.all_tags_list} %>
+      <%= render partial: 'partials/taglist', locals: {list_title: "Popular Tags", tag_list: @wallpaper.most_popular_tags.map {|tag| tag.name }} %>
     </div>
 
     <% if signed_in? %>
@@ -32,6 +32,7 @@ Update(11/29/17):: [Stephen] Improved styling, added download button
         <span class="wallpaper-tag" id="plus"><strong>+</strong></span>
         <div id="user-tags-input-container" style="display:none">
           <input type="text" value="<%= (@wallpaper.owner_tags_on(current_user, :tags).map {|tag| tag.name}).join(",") %>" data-role="tagsinput" id="user-tags-input" />
+          <span class="wallpaper-tag" id="done"><strong>Done</strong></span>
         </div>
       </div>
     <% end %>
