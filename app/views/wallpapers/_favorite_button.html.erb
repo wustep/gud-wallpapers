@@ -2,11 +2,12 @@
 Partial to conditionally display favorite/unfavorite button
 
 Author:: Ben
+Update(11/29/17):: [Stephen] Added Bootstrap styling
 #%>
 <% if signed_in? %>
   <% if current_user.favorited?(wallpaper) %>
-    <%= button_to "Unfavorite", unfavorite_path(wallpaper_id: wallpaper.id), remote: true, method: :delete  %>
+    <%= button_to "Unfavorite", unfavorite_path(wallpaper_id: wallpaper.id), :remote => true, :method => :delete, :class => 'btn btn-primary btn-small'  %>
   <% else %>
-    <%= button_to "Favorite", favorite_path(wallpaper_id: wallpaper.id), remote: true  %>
+    <%= button_to "Favorite", favorite_path(wallpaper_id: wallpaper.id), :remote => true, :class => 'btn btn-primary btn-small'  %>
   <% end %>
 <% end %>
