@@ -7,9 +7,9 @@ class UsersController < ApplicationController
   #include Secured
   # GET /user/:id
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id])
     #Make sure the user passed in through the parameters matches that from the current user method
-    if @user == current_user
+    if !@user.nil? && !current_user.nil? && @user == current_user
       #Find out which gallery should be displayed
       if params[:gallery] == 'favorites'
         @wallpapers = @user.favorite_wallpapers

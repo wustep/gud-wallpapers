@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   get '/logout', to: 'auth0#destroy'
 
   # User routed
-  resources :users
   get '/users/:id/:gallery', to: 'users#show'
+  get '/users/:id/', to: 'users#show', :as => :user
 
   # In wallpapers, allow for different sort orders in first param of URL
   resources :wallpapers

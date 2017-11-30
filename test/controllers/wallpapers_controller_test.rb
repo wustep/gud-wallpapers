@@ -3,6 +3,8 @@ require 'test_helper'
 class WallpapersControllerTest < ActionController::TestCase
   setup do
     @wallpaper = wallpapers(:one)
+    @current_user = User.last
+    session[:user_id] = @current_user.nil? ? nil : @current_user.uid
   end
 
   test "should get index" do
@@ -11,14 +13,21 @@ class WallpapersControllerTest < ActionController::TestCase
     assert_not_nil assigns(:wallpapers)
   end
 
-  test "should get new" do
+  test "upload should redirect to auth when not logged in" do
+    @current_user = nil
+    session[:user_id] = nil
+    get :new
+    assert_redirected_to "/auth/auth0"
+  end
+
+  test "get new successful when logged in" do
     get :new
     assert_response :success
   end
 
   test "should create wallpaper" do
     assert_difference('Wallpaper.count') do
-      post :create, wallpaper: { image: @wallpaper.image, title: @wallpaper.title }
+      post :create, wallpaper: { image: fixture_file_upload("files/index.png", "image.png"), title: @wallpaper.title, tag_list: "test1,test2" }
     end
 
     assert_redirected_to wallpaper_path(assigns(:wallpaper))
@@ -35,7 +44,7 @@ class WallpapersControllerTest < ActionController::TestCase
   end
 
   test "should update wallpaper" do
-    patch :update, id: @wallpaper, wallpaper: { image: @wallpaper.image, title: @wallpaper.title }
+    patch :update, id: @wallpaper, wallpaper: { image: fixture_file_upload("files/index.png", "image.png"), title: @wallpaper.title, tag_list: "test1,test2" }
     assert_redirected_to wallpaper_path(assigns(:wallpaper))
   end
 

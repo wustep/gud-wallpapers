@@ -6,10 +6,14 @@
 class Auth0Controller < ApplicationController
   #Called after successful auth
   def callback
-    @user = User.find_or_create_from_auth(request.env['omniauth.auth'])
-    if @user
-      set_current_user @user
-      redirect_to user_path(@user)
+    if request.env['omniauth.auth']
+      @user = User.find_or_create_from_auth(request.env['omniauth.auth'])
+      if @user
+        set_current_user @user
+        redirect_to user_path(@user)
+      else
+        redirect_to root_path
+      end
     else
       redirect_to root_path
     end
@@ -24,5 +28,6 @@ class Auth0Controller < ApplicationController
   def failure
     # show a failure page or redirect to an error page
     @error_msg = request.params['message']
+    redirect_to root_path
   end
 end
