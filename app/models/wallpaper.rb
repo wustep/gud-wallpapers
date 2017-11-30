@@ -88,6 +88,9 @@ class Wallpaper < ActiveRecord::Base
     self.image_height = geo.height
   end
 
+  # Gets the top 5 most popular tags for a wallpaper
+  #
+  # Author:: Nishad
   def most_popular_tags
     ActsAsTaggableOn::Tagging.joins(:tag).where(taggable_id: self.id)
     .select("COUNT(taggings.tag_id) as total, tags.name")

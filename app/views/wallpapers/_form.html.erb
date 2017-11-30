@@ -49,8 +49,10 @@ Author:: Nishad
 </div>
 
 <script>
+    //Client side validation for the form
     $("#new_wallpaper").validate({
 
+      //Set up the rules for the fields
       rules: {
         "wallpaper[title]": "required",
         "wallpaper[image]": {
@@ -59,6 +61,7 @@ Author:: Nishad
         }
       },
 
+      //Error messages
       messages: {
         "wallpaper[title]": "Please enter a title",
         "wallpaper[image]": {
@@ -67,6 +70,7 @@ Author:: Nishad
         }
       },
 
+      //Called when validation is successful
       submitHandler: function(form) {
         $("#new_wallpaper").submit();
       }

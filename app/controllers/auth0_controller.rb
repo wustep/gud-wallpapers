@@ -4,9 +4,15 @@
 # Implementer(11/27/17):: Stephen
 
 class Auth0Controller < ApplicationController
-  #Called after successful auth
+  #Controller action that is called after a successful authentication.
+  #Sets the current user to the one that just logged in and redirects to their profile.
+  # GET /auth/oauth2/callback
+  #
+  # Author: Stephen
   def callback
+    # Check if we recieved a hash variable from omniauth. If not, redirect to index.
     if request.env['omniauth.auth']
+      # Use the omniauth values to either find or create a user
       @user = User.find_or_create_from_auth(request.env['omniauth.auth'])
       if @user
         set_current_user @user
@@ -19,7 +25,10 @@ class Auth0Controller < ApplicationController
     end
   end
 
-  #Logout
+  #Controller action that is called after the user clicks the logout button
+  # GET /logout
+  #
+  # Author: Nishad
   def destroy
     current_user = nil
     session.delete(:user_id)

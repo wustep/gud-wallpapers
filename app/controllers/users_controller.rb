@@ -5,7 +5,10 @@
 
 class UsersController < ApplicationController
   #include Secured
+  # Controller action that gets the current users profile page
   # GET /user/:id
+  #
+  # Author: Jason
   def show
     @user = User.find_by_id(params[:id])
     #Make sure the user passed in through the parameters matches that from the current user method
@@ -17,7 +20,6 @@ class UsersController < ApplicationController
       else
         @wallpapers = @user.uploads
       end
-      #@wallpapers = Wallpaper.all
     #Redirect to index if not
     else
       redirect_to :controller=>"wallpapers", :action =>"index"

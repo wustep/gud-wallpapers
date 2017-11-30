@@ -8,14 +8,19 @@ class WallpapersController < ApplicationController
   before_filter :authorize!, :only => [:new]
   impressionist :actions=>[:show]
 
-  # GET /wallpapers
-  # GET /wallpapers.json
+  # Action to get all wallpapers
+  # GET /wallpapers?search=:search
+  # GET /wallpapers/top
+  # GET /wallpapers/latest
+  # GET /wallpapers/popular
+  #
+  #Authors: Nishad, Ben, Martin
   def index
 
     # Check if we are searching something
     if params[:search]
       @wallpapers = Wallpaper.search(params[:search])
-      # We can't call page on an array, so special check here
+      # We can't call page on an array, which is returned from the tag search method, so special check here
       if @wallpapers.class == Array
         @wallpapers = Kaminari.paginate_array(@wallpapers).page(params[:page]).per(28)
       else
@@ -24,7 +29,9 @@ class WallpapersController < ApplicationController
     else
       #If not searching, then choose sorting order
       @wallpapers = Wallpaper.all
+      # Get nishad's picks
       @nishad = @wallpapers.sample 4
+
       @sortOrder = params[:sortOrder]
       if @sortOrder == 'latest'
         @wallpapers = @wallpapers.order(created_at: :desc)
@@ -39,10 +46,15 @@ class WallpapersController < ApplicationController
     end
     respond_to do |format|
       format.html
+      # Render javascript to add more wallpapers via the load more button
       format.js { render 'partials/wallpaper_page'}
     end
   end
 
+  # Action to get all wallpapers with a tag
+  # GET /tags/:tag
+  #
+  # Authors: Nishad
   def tags
     @wallpapers = Wallpaper.tagged_with(params[:tag])
     @wallpapers = @wallpapers.order(priority: :desc)
@@ -50,8 +62,11 @@ class WallpapersController < ApplicationController
     render :index
   end
 
+  # Action to show a wallpaper
   # GET /wallpapers/1
   # GET /wallpapers/1.json
+  #
+  # AUthor: Nishad, Ben
   def show
     @user = current_user
     @wallpaper = Wallpaper.find(params[:id])
@@ -61,18 +76,19 @@ class WallpapersController < ApplicationController
     @wallpaper.update_column(:priority, @wallpaper.get_priority)
   end
 
+  # Action to get new wallpaper form
   # GET /wallpapers/new
+  #
+  # Author: Rails
   def new
     @wallpaper = Wallpaper.new
   end
 
-  # GET /wallpapers/1/edit
-  def edit
-  end
 
-
+  # Action to create new wallpaper
   # POST /wallpapers
-  # POST /wallpapers.json
+  #
+  # Author: Nishad, Ben
   def create
     @wallpaper = Wallpaper.new(wallpaper_params)
     @wallpaper.priority = @wallpaper.get_priority
@@ -85,14 +101,17 @@ class WallpapersController < ApplicationController
         format.js { redirect_to @wallpaper}
         format.json { render :show, status: :created, location: @wallpaper }
       else
+        # Render create modal with errors
         format.js {render 'create' }
         format.json { render json: @wallpaper.errors, status: :unprocessable_entity }
       end
     end
   end
 
+  # Action to update wallpaper
   # PATCH/PUT /wallpapers/1
-  # PATCH/PUT /wallpapers/1.json
+  #
+  # Author: Rails
   def update
     respond_to do |format|
       if @wallpaper.update(wallpaper_params)
@@ -104,12 +123,15 @@ class WallpapersController < ApplicationController
       end
     end
   end
-
+  # Action to update tags on a wallpaper
   # PATCH/PUT /wallpapers/1/updatetags
+  #
+  # Author: NIshad
   def update_tags
     respond_to do |format|
       current_user.tag(@wallpaper, :with => params[:taglist], :on => :tags)
       if @wallpaper.save
+        # Render JS to dynamically updae tags
         format.js { render 'partials/update_tags', status: :ok}
       else
         puts @wallpaper.errors.inspect
@@ -117,10 +139,14 @@ class WallpapersController < ApplicationController
       end
     end
   end
+  #Action to destroy a wallpaper
   # DELETE /wallpapers/1
   # DELETE /wallpapers/1.json
+  #
+  # Author: Jason
   def destroy
     respond_to do |format|
+      # to delete either the user must be a moderator or the user had to have uploaded the wallpaper
       if !signed_in? || (current_user != @wallpaper.uploader && current_user.user_rank == 1)
         format.json { redirect_to @wallpaper, status: :error }
         format.html { redirect_to @wallpaper, status: :error }
@@ -132,6 +158,10 @@ class WallpapersController < ApplicationController
     end
   end
 
+  #Action to favorite a wallpaper
+  # POST /favorite
+  #
+  # Author: Ben
   def favorite
     @user = current_user
     @wallpaper = Wallpaper.find(params[:wallpaper_id])
@@ -141,6 +171,10 @@ class WallpapersController < ApplicationController
     end
   end
 
+  #Action to unfavorite a wallpaper
+  # POST /favorite
+  #
+  # Author: Ben
   def unfavorite
     @user = current_user
     @favorite = @user.favorites.find_by_wallpaper_id(params[:wallpaper_id])

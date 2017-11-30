@@ -1,5 +1,9 @@
 require 'test_helper'
+# Test cases for the user controller
+#
+# Author(11/30/17):: Nishad
 
+require 'test_helper'
 class UserControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true

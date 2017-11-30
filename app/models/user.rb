@@ -13,26 +13,35 @@ class User < ActiveRecord::Base
   # User can tag photos
   acts_as_tagger
 
+  # Makes sure the the provider and uid from Omniauth is present
   validates :provider, presence: true
   validates :uid, presence: true
 
-  # Create a new favorite row with post_id and user_id
+  # Favorites a wallpaper
+  #
+  # Author:: Ben
   def favorite!(wallpaper)
     self.favorites.create!(wallpaper_id: wallpaper.id)
   end
 
-  # Destroy a favorite with matching wallpaper_id and user_id
+  # Unfavorites a wallpaper
+  #
+  # Author:: Ben
   def unfavorite!(wallpaper)
     favorite = self.favorites.find_by_wallpaper_id(wallpaper.id)
     favorite.destroy!
   end
 
-  # Return true of false if a wallpaper is favorited by user
+  # Checks if a wallpaper is favorited.
+  #
+  # Author:: Ben
   def favorited?(wallpaper)
     self.favorites.find_by_wallpaper_id(wallpaper.id)
   end
 
-  # Using omniauth, either finds a user, or, if none found, creates one.
+  # Finds or creates a user useing Omniauth
+  #
+  # Author:: Stephen
   def self.find_or_create_from_auth(auth)
     user = User.find_or_create_by(provider: auth['provider'], uid: auth['uid'])
     user.nickname = auth['info']['nickname']

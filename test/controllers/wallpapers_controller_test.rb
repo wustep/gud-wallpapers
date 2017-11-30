@@ -1,5 +1,9 @@
 require 'test_helper'
-
+#
+#Wallpaper controller tests
+#
+#Author:: Nishad
+#
 class WallpapersControllerTest < ActionController::TestCase
   setup do
     @wallpaper = wallpapers(:one)

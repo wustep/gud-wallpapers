@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/users/:id/', to: 'users#show', :as => :user
 
   # In wallpapers, allow for different sort orders in first param of URL
-  resources :wallpapers
+  resources :wallpapers, except: [:edit]
   get '/:sortOrder', to: 'wallpapers#index'
   get '/tags/:tag', to: 'wallpapers#tags'
 
