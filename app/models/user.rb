@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
     user = User.find_or_create_by(provider: auth['provider'], uid: auth['uid'])
     user.nickname = auth['info']['nickname']
     user.email = auth['info']['name']
+    user.user_rank = 1; # Default rank is 1
     user.save
     user
   end
