@@ -24,7 +24,7 @@ class Wallpaper < ActiveRecord::Base
     index: "600x600"
   },
   # Path on amazon webserver
-  :path => "images/:class/nishad/:style/:id:title.:extension"
+  :path => "images/:class/:style/:id:title.:extension"
   after_post_process :save_image_dimensions
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
   validates_attachment_presence :image
@@ -46,7 +46,7 @@ class Wallpaper < ActiveRecord::Base
   # Author:: Martin
   def self.adv_search(title, tags = nil, image_height = nil, image_width = nil)
     results = Wallpaper.all
-  
+
     if !title.empty?
       results = results.where("title LIKE ?", "%#{title}%")
     end

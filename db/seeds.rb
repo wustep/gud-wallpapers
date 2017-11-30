@@ -23,8 +23,6 @@ session = Redd.it(
 # Image file types
 @image_types = [".jpg", "jpeg", ".gif", ".png", ".tif", ".tiff"]
 
-
-
 # Scrape wallpapers
 # Author:: Ben(11/12/17)
 # Update(11/29/17):: [Nishad] Added tags to database
