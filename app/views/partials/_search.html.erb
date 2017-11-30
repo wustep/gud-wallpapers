@@ -18,16 +18,18 @@ Author:: Martin
             <%= label_tag :title %><br>
             <%= text_field_tag :title, nil, class: "form-control" %>
           </div>
-          <div class="form-group">
+          <div class="form-field">
             <%= label_tag :tags %><br>
             <%= text_field_tag :tags, nil, class: "form-control" %>
           </div>
-          <div class="field">
-            <%= label_tag :image_height %><br>
-            <%= text_field_tag :image_height, nil, class: "form-control"%>
-          <div class="field">
+          <div class="form-field">
             <%= label_tag :image_width %><br>
             <%= text_field_tag :image_width, nil, class: "form-control"%>
+          </div>
+          <div class="form-field">
+            <%= label_tag :image_height %><br>
+            <%= text_field_tag :image_height, nil, class: "form-control"%>
+          </div>
           <div class="actions">
             <%= submit_tag "Search", class: "btn btn-primary" %>
           </div>

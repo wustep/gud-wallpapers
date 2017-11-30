@@ -45,18 +45,19 @@ class Wallpaper < ActiveRecord::Base
   #
   # Author:: Martin
   def self.adv_search(title, tags = nil, image_height = nil, image_width = nil)
-
-    if !title.nil?
-      results = where("title LIKE ?", "%#{title}%")
+    results = Wallpaper.all
+  
+    if !title.empty?
+      results = results.where("title LIKE ?", "%#{title}%")
     end
-    if !tags.nil? && !tags.empty?
-      results = results & tagged_with(tags, wild:true)
+    if !tags.empty?
+      results = results.tagged_with(tags, wild:true)
     end
-    if !image_height.nil? && !image_height.empty?
-      results = results & where("image_height IS ?", "%#{image_height}")
+    if !image_height.empty?
+      results = results.where(image_height: image_height)
     end
-    if !image_width.nil? && !image_width.empty?
-      results = results & where("image_width IS ?", "%#{image_width}")
+    if !image_width.empty?
+      results = results.where(image_width: image_width)
     end
     results
   end
