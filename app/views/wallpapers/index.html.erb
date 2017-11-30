@@ -6,13 +6,9 @@ Author:: Nishad
 <section id="content" class="container" width="100%">
   <% if params[:search].nil? && params[:title].nil? && params[:tags].nil?%>
     <section id="buttons" class="row">
-      <div class="col-lg-4 col-md-4 col-sm-12">
+      <div class="btn-group">
         <a href="/popular" class="btn btn-default">Popular</a>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-12">
         <a href="/top" class="btn btn-default">Top</a>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-12">
         <a href="/latest" class="btn btn-default">Latest</a>
       </div>
     </section>
