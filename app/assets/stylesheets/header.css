@@ -31,3 +31,9 @@ body {
     display: none;
   }
 }
+/* Adding another breakpoint for container */
+@media (min-width: 1200px) {
+  header .container {
+      width: 93% !important;
+  }
+}
