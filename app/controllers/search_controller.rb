@@ -9,7 +9,8 @@ class SearchController < ApplicationController
       else
         @wallpapers = @wallpapers.page params[:page]
       end
-      render 'wallpapers/index' 
+      @search = true
+      render 'wallpapers/index'
     end
 
     def new
