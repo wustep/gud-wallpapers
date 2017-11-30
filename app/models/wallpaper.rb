@@ -40,8 +40,16 @@ class Wallpaper < ActiveRecord::Base
   end
 
   # Searches using multiple search terms
-  def self.adv_search(title, tags)
-    where("title LIKE ?", "%#{title}%") & tagged_with(tags, wild:true)
+  # Author: Martin
+  def self.adv_search(title, tags = nil)
+
+    if !title.nil?
+      results = where("title LIKE ?", "%#{title}%")
+    end
+    if !tags.nil? && !tags.empty?
+      results = results & tagged_with(tags, wild:true)
+    end
+    results
   end
 
   # Gets the priority of the image
