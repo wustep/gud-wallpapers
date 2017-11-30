@@ -1,0 +1,19 @@
+/*
+Header controller styling
+Author:: Stephen
+*/
+.navbar-brand {
+  color: white !important;
+}
+
+.navbar-form {
+  display: inline-block;
+}
+
+.input-group {
+  margin: 0 10px;
+}
+
+.search {
+  width: 100%;
+}
