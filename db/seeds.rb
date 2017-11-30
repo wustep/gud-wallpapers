@@ -56,6 +56,7 @@ session.my_subreddits('subscriber').each do |subreddit|
           wp.title = post.title
           wp.image = url
           wp.set_owner_tag_list_on(reddit, :tags, subreddit.display_name)
+          puts wp.image_width/wp.image_height
           wp.save
           puts post.url + " - added from " + subreddit.display_name
       end

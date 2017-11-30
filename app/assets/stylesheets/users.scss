@@ -3,29 +3,3 @@ Users controller styling
 
 Author:: Nishad
 */
-#content {
-  width: 100%;
-  #buttons {
-    text-align: center;
-    width: 20%;
-    margin: auto;
-  }
-  #wallpapers {
-    .image-row {
-      overflow: hidden;
-      padding: 5px 0;
-      .wallpaper {
-        display: block;
-        border: 0;
-        text-decoration: none;
-        float: left;
-        margin: 10px 0px 10px 0px;
-        height: 250px;
-        background-size: cover;
-        background-position: center center;
-        overflow: hidden;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-      }
-    }
-  }
-}

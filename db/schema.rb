@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129012134) do
+ActiveRecord::Schema.define(version: 20171130014958) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20171129012134) do
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_rank"
   end
 
   create_table "wallpapers", force: :cascade do |t|
@@ -98,6 +99,8 @@ ActiveRecord::Schema.define(version: 20171129012134) do
     t.integer  "impressions_count"
     t.float    "priority"
     t.integer  "uploader_id"
+    t.float    "image_height"
+    t.float    "image_width"
   end
 
 end
