@@ -48,7 +48,6 @@ class WallpapersController < ApplicationController
     @wallpapers = @wallpapers.order(priority: :desc)
     @wallpapers = @wallpapers.page params[:page]
     render :index
-
   end
 
   # GET /wallpapers/1
@@ -86,7 +85,7 @@ class WallpapersController < ApplicationController
         format.js { redirect_to @wallpaper}
         format.json { render :show, status: :created, location: @wallpaper }
       else
-        format.html { render :new }
+        format.html { render :new, status: :unprocessable_entity }
         format.js {render 'create' }
         format.json { render json: @wallpaper.errors, status: :unprocessable_entity }
       end
@@ -114,6 +113,7 @@ class WallpapersController < ApplicationController
       if @wallpaper.save
         format.js { render 'partials/update_tags', status: :ok}
       else
+        puts @wallpaper.errors.inspect
         format.js { render json: @wallpaper.errors, status: :unprocessable_entity}
       end
     end

@@ -47,16 +47,16 @@ class Wallpaper < ActiveRecord::Base
   def self.adv_search(title, tags = nil, image_height = nil, image_width = nil)
     results = Wallpaper.all
 
-    if !title.empty?
+    if !title.nil? && !title.empty?
       results = results.where("title LIKE ?", "%#{title}%")
     end
-    if !tags.empty?
+    if !tags.nil? && !tags.empty?
       results = results.tagged_with(tags, any:true)
     end
-    if !image_height.empty?
+    if !image_height.nil? && !image_height.empty?
       results = results.where(image_height: image_height)
     end
-    if !image_width.empty?
+    if !image_width.nil? && !image_width.empty?
       results = results.where(image_width: image_width)
     end
     results

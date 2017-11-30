@@ -35,6 +35,9 @@ Rails.application.routes.draw do
   # Route to obtain tags
   put '/wallpapers/:id/updatetags', to: 'wallpapers#update_tags'
 
+  #catch-all for unmatched routes
+  get '*unmatched_route', to: 'wallpapers#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

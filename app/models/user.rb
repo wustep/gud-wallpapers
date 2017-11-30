@@ -7,10 +7,14 @@ class User < ActiveRecord::Base
   # Association for favorites
   has_many :favorite_wallpapers, :through => :favorites, :source => :wallpaper
   has_many :favorites
+
   # Association for uploads
   has_many :uploads, :class_name => "Wallpaper", :foreign_key => "uploader_id"
   # User can tag photos
   acts_as_tagger
+
+  validates :provider, presence: true
+  validates :uid, presence: true
 
   # Create a new favorite row with post_id and user_id
   def favorite!(wallpaper)
