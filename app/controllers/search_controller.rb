@@ -1,4 +1,6 @@
 # Controller for the advanced search feature.
+# Searches the database for wallpapers matching keywords in the title or tag list
+# as well as image height and width. Each search field is optional.
 #
 # Author(11/29/17): Martin
 class SearchController < ApplicationController

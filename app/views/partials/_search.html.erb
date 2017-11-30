@@ -12,7 +12,8 @@ Author:: Martin
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Advanced Search</h4>
       </div>
-      <div class="modal-body">       
+      <div class="modal-body">
+          <!-- Form fields for each search parameter -->       
           <%= form_tag('/advsearch', :method => "post", id: "search-form", class: "navbar-form", role: "search") do %>
             <div class="form-group">
             <%= label_tag :title %><br>

@@ -34,7 +34,7 @@ class Wallpaper < ActiveRecord::Base
     Digest::MD5.hexdigest(attachment.instance.title)[0..6]
   end
 
-  # Finds wallpapers search term in their titles and tags
+  # Finds wallpapers matching the search term in their titles and tags.
   #
   # Author:: Martin
   def self.search(search)
@@ -71,18 +71,20 @@ class Wallpaper < ActiveRecord::Base
     return (views + (seconds / 4500)).round(10)
   end
 
-  #Get name for AWS from path
+  # Get name for AWS from path
   #
   # Author:: Nishad
   def get_aws_name
     self.image.path.split("/").last
   end
 
+  # Adds an image's width and height to its properties.
+  #
+  # Author:: Nishad
   def save_image_dimensions
     geo = Paperclip::Geometry.from_file(image.queued_for_write[:original])
     self.image_width = geo.width
     puts self.image_height
     self.image_height = geo.height
   end
-
 end
