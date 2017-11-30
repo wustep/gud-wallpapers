@@ -6,44 +6,50 @@ Update(11/27/17):: [Stephen] Added Login button
 Update(11/28/17):: [Martin] Added basic search bar
 %>
 <header>
-  <nav class="navbar navbar-inverse navbar-fixed-top" id="navbar">
-    <div class="container-fluid">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <%= link_to 'GudWallpapers', root_url, class: "navbar-brand" %>
-        </div>
+        <%= link_to 'GudWallpapers', root_url, class: "navbar-brand" %>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-            <li><%= link_to 'Upload', new_wallpaper_path, remote: true%></li>
-            <% if signed_in? %>
-            <li><%= link_to current_user.nickname, user_path(current_user)%></li>
-            <% end %>
-        </ul>
-        <div class="col-sm-3 col-md-3">
+          <% if signed_in? %>
+          <li><%= link_to current_user.nickname, user_path(current_user)%></li>
+          <% end %>
+          <li><%= link_to 'Upload', new_wallpaper_path, remote: true%></li>
+          <li><%= link_to 'Advanced Search', new_search_path, remote: true, id: "advanced-search-btn"%><span id="advanced-search-alt"></span></li>
+          <li>
           <%= form_tag(wallpapers_path, :method => "get", id: "search-form", class: "navbar-form", role: "search") do %>
             <div class="input-group">
-                <%= text_field_tag :search, params[:search], placeholder: "Search Wallpapers", class: "form-control" %>
-                <div class="input-group-btn">
-                  <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
-                </div>
+              <%= text_field_tag :search, params[:search], placeholder: "Search Wallpapers", class: "form-control" %>
+              <div class="input-group-btn">
+                <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+              </div>
             </div>
           <% end %>
-        </div>
-        <ul class="nav navbar-nav">
-          <li><%= link_to 'Advanced Search', new_search_path, remote: true%></li>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li>
-                <% if signed_in? %>
-                  <a href="/logout">
-                    <span class="glyphicon glyphicon-log-out"></span> Logout
-                  </a>
-                <% else %>
-                  <a href="/auth/auth0">
-                    <span class="glyphicon glyphicon-log-in"></span> Login
-                  </a>
-                <% end %>
-            </li>
+          <li>
+            <% if signed_in? %>
+            <a href="/logout">
+              <span class="glyphicon glyphicon-log-out"></span> Logout
+            </a>
+            <% else %>
+            <a href="/auth/auth0">
+              <span class="glyphicon glyphicon-log-in"></span> Login
+            </a>
+            <% end %>
+          </li>
         </ul>
-    </div>
+      </div>
+  </div>
   </nav>
 </header>
