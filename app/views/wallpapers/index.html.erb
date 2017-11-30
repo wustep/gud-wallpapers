@@ -13,7 +13,7 @@ Author:: Nishad
       </div>
     </section>
   <% end %>
-  <% if !params[:search] && !@search%>
+  <% if !params[:search] && !params[:tag] && !@search%>
     <section id="nishads-picks">
       <%= render "nishad" %>
     </section>
