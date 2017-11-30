@@ -11,6 +11,7 @@ class WallpapersController < ApplicationController
   # GET /wallpapers
   # GET /wallpapers.json
   def index
+
     # Check if we are searching something
     if params[:search]
       @wallpapers = Wallpaper.search(params[:search])
@@ -23,6 +24,7 @@ class WallpapersController < ApplicationController
     else
       #If not searching, then choose sorting order
       @wallpapers = Wallpaper.all
+      @nishad = @wallpapers.sample 4
       @sortOrder = params[:sortOrder]
       if @sortOrder == 'latest'
         @wallpapers = @wallpapers.order(created_at: :desc)

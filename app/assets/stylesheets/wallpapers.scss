@@ -7,6 +7,7 @@ Author:: Nishad
   width: 100%;
   #buttons {
     text-align: center;
+    width: 20%;
     margin: auto;
   }
   hr {
@@ -18,8 +19,10 @@ Author:: Nishad
     border-style: inset;
     border-width: 5px;
   }
-  #image {
-    float:left
+  #nishad-image {
+    height: 76;
+    width: 67;
+    float: left;
   }
   #wallpapers, #nishads-picks {
     .image-row {

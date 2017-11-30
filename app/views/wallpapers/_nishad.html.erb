@@ -4,12 +4,8 @@
   </div>
   <h3> Nishad's Picks: </h3>
   <h4> <i> "These are some of my favorites" -Nishad </i> </h4>
-  <% @picks = [] %>
-  <% 4.times do %>
-    <% @picks.push @wallpapers.sample %>
-  <% end %>
   <div class="image-row">
-    <% @picks.each do |wallpaper| %>
+    <% @nishad.each do |wallpaper| %>
       <div class="col-lg-auto col-md-3 col-sm-6 col-xs-12">
         <a class="wallpaper img-thumbnail img-responsive" href="<%= wallpaper_path(wallpaper) %>" style="width:100%; background-image: url(<%=wallpaper.image.url(:index) %>)"></a>
       </div>
