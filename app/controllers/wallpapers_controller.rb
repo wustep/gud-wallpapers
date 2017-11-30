@@ -85,7 +85,6 @@ class WallpapersController < ApplicationController
         format.js { redirect_to @wallpaper}
         format.json { render :show, status: :created, location: @wallpaper }
       else
-        format.html { render :new, status: :unprocessable_entity }
         format.js {render 'create' }
         format.json { render json: @wallpaper.errors, status: :unprocessable_entity }
       end

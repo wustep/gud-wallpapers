@@ -31,6 +31,8 @@ gem 'kaminari'
 gem 'acts-as-taggable-on', '~> 4.0'
 # impressionist gem for counting page views
 gem 'impressionist'
+# Easy JQuery validation
+gem 'jquery-validation-rails'
 # omniauth and auth0 gem is used for the authentication service
 gem 'omniauth', '~> 1.6.1'
 gem 'omniauth-auth0', '~> 2.0.0'

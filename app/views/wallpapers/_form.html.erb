@@ -47,3 +47,28 @@ Author:: Nishad
     </div>
   </div>
 </div>
+
+<script>
+    $("#new_wallpaper").validate({
+
+      rules: {
+        "wallpaper[title]": "required",
+        "wallpaper[image]": {
+          required: true,
+          extension: "jpg|jpeg|png|gif"
+        }
+      },
+
+      messages: {
+        "wallpaper[title]": "Please enter a title",
+        "wallpaper[image]": {
+          required: "Please select an image",
+          extension: "Your file must be one of these types: .jpg, .jpeg, .png, .gif"
+        }
+      },
+
+      submitHandler: function(form) {
+        $("#new_wallpaper").submit();
+      }
+    });
+</script>

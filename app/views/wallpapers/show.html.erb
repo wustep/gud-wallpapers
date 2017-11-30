@@ -38,8 +38,9 @@ Update(11/29/17):: [Stephen] Improved styling, added download button
     <% end %>
 
     <!-- Views and favorite count -->
-    <h4> Views: <%= @view_count %><br>
-         <span id="favorite-label"> Favorites: <%= @wallpaper.favorited_by.size %> </span> </h4>
+    <h4> Resolution: <%= @wallpaper.image_width.round %>x<%= @wallpaper.image_height.round %><br>
+         Views: <%= @view_count %><br>
+         <span id="favorite-label"> Favorites: <%= @wallpaper.favorited_by.size %> </span></h4>
 
     <div id="wallpaper-buttons">
       <div id="favorite-button" style="display:inline">
