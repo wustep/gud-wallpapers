@@ -1,62 +1,58 @@
 /*
 Wallpaper controller styling
 
-Author:: Nishad
+Author:: Nishad, Stephen
 */
 #content {
   width: 100%;
-  #buttons {
-    text-align: center;
-    width: 20%;
-    margin: auto;
-  }
-  hr {
-    display: block;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    margin-left: auto;
-    margin-right: auto;
-    border-style: inset;
-    border-width: 5px;
-  }
-  #nishads-picks {
-    border: 2px solid #a1c7ec;
-    padding: 10px;
-    border-radius: 3px;
-    margin-top: 15px;
-    background-color: #eff0f1;
-  }
-  #nishad-quote h3 {
-    margin-top: 2px;
-    display: inline-block;
-  }
-  #nishad-image {
-    float: left;
-    border-radius: 10px;
-    border: 1px solid black;
-    height: 65px;
-    margin: 0 5px 0 25px;
-  }
-  #wallpapers, #nishads-picks {
-    .image-row {
+}
+
+#gallery-buttons, #sort-buttons {
+  text-align: center;
+  margin: auto;
+}
+
+/* Nishad's Picks Section
+Author:: Stephen */
+#nishads-picks {
+  border: 2px solid #a1c7ec;
+  padding: 10px;
+  border-radius: 3px;
+  margin-top: 15px;
+  background-color: #eff0f1;
+}
+#nishad-quote h3 {
+  margin-top: 2px;
+  display: inline-block;
+}
+#nishad-image {
+  float: left;
+  border-radius: 10px;
+  border: 1px solid black;
+  height: 65px;
+  margin: 0 5px 0 25px;
+}
+/* Wallpaper listing
+Author:: Nishad
+*/
+#wallpapers, #nishads-picks {
+  .image-row {
+    overflow: hidden;
+    padding: 5px 0;
+    .wallpaper {
+      display: block;
+      border: 0;
+      text-decoration: none;
+      float: left;
+      margin: 10px 0px 10px 0px;
+      height: 250px;
+      background-size: cover;
+      background-position: center center;
       overflow: hidden;
-      padding: 5px 0;
-      .wallpaper {
-        display: block;
-        border: 0;
-        text-decoration: none;
-        float: left;
-        margin: 10px 0px 10px 0px;
-        height: 250px;
-        background-size: cover;
-        background-position: center center;
-        overflow: hidden;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-      }
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
     }
   }
 }
-
 .wallpaper-info {
   .taglist {
     margin-bottom: 10px;
@@ -117,7 +113,7 @@ Wallpaper button styling
 
 Author:: Stephen
 */
-#wallpaper-button-container {
+#wallpaper-buttons {
   form {
     display: inline-block;
   }
