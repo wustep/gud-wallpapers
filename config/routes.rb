@@ -4,6 +4,7 @@
 # Update(11/27/17):: [Stephen] Added omni auth callback & failure
 # Update(11/27/17):: [Ben] Added sort order route
 # Update(11/28/17):: [Jason] Added show user gallery route
+# Update(11/29/17):: [Martin] Added advanced search route
 
 Rails.application.routes.draw do
   # Root: show list of wallpapers

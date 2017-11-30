@@ -1,6 +1,6 @@
 # Controller for the advanced search feature.
 #
-# Author: Martin
+# Author(11/29/17): Martin
 class SearchController < ApplicationController
     def adv_search
       @wallpapers = Wallpaper.adv_search(params[:title], params[:tags])
