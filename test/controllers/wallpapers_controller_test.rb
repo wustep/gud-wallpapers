@@ -48,11 +48,35 @@ class WallpapersControllerTest < ActionController::TestCase
     assert_redirected_to wallpaper_path(assigns(:wallpaper))
   end
 
-  test "should destroy wallpaper" do
+  test "should not destroy wallpaper if not uploader and not mod" do
+    @current_user = users(:normal_user)
+    session[:user_id] = @current_user.nil? ? nil : @current_user.uid
+    assert_difference('Wallpaper.count', 0) do
+      delete :destroy, id: @wallpaper
+    end
+
+    assert_response :error
+  end
+
+  test "should  destroy wallpaper if uploader" do
+    @current_user = users(:uploader)
+    @wallpaper = wallpapers(:uploaded)
+    session[:user_id] = @current_user.nil? ? nil : @current_user.uid
     assert_difference('Wallpaper.count', -1) do
       delete :destroy, id: @wallpaper
     end
 
-    assert_redirected_to wallpapers_path
+    assert_redirected_to wallpapers_url
+  end
+
+  test "should  destroy wallpaper if mod" do
+    @current_user = users(:mod)
+    @wallpaper = wallpapers(:uploaded)
+    session[:user_id] = @current_user.nil? ? nil : @current_user.uid
+    assert_difference('Wallpaper.count', -1) do
+      delete :destroy, id: @wallpaper
+    end
+
+    assert_redirected_to wallpapers_url
   end
 end

@@ -121,10 +121,15 @@ class WallpapersController < ApplicationController
   # DELETE /wallpapers/1
   # DELETE /wallpapers/1.json
   def destroy
-    @wallpaper.destroy
     respond_to do |format|
-      format.html { redirect_to wallpapers_url, notice: 'Wallpaper was successfully destroyed.' }
-      format.json { head :no_content }
+      if !signed_in? || (current_user != @wallpaper.uploader && current_user.user_rank == 1)
+        format.json { redirect_to @wallpaper, status: :error }
+        format.html { redirect_to @wallpaper, status: :error }
+      else
+        @wallpaper.destroy!
+        format.html { redirect_to wallpapers_url, notice: 'Wallpaper was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

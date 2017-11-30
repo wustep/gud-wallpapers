@@ -1,15 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  provider: MyString
-  uid: MyString
-  name: MyString
-  nickname: MyString
-  email: MyString
+normal_user:
+  provider: testProvider
+  uid: testUid
+  name: testName
+  nickname: testNick
+  email: testEmail
+  user_rank: 1
 
-two:
-  provider: MyString
-  uid: MyString
-  name: MyString
-  nickname: MyString
-  email: MyString
+mod:
+  provider: testProvider2
+  uid: testUid2
+  name: testName2
+  nickname: testNick2
+  email: testEmail2
+  user_rank: 2
+
+uploader:
+  provider: testProvider3
+  uid: testUid3
+  name: testName3
+  nickname: testNick3
+  email: testEmail3
+  user_rank: 1

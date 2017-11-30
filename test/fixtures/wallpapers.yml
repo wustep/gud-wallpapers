@@ -3,5 +3,10 @@
 one:
   title: Wallpaper1
 
+
 two:
   title: Wallpaper2
+
+uploaded:
+  title: uploaded
+  uploader: uploader
