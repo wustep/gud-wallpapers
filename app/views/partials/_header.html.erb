@@ -12,36 +12,41 @@ Update(11/28/17):: [Martin] Added basic search bar
         <div class="navbar-header">
             <%= link_to 'GudWallpapers', root_url, class: "navbar-brand" %>
         </div>
-          <ul class="nav navbar-nav">
-              <li><%= link_to 'Upload', new_wallpaper_path, remote: true%></li>
-              <% if signed_in? %>
-              <li><%= link_to current_user.nickname, user_path(current_user)%></li>
-              <% end %>
-          </ul>
-          <div class="col-sm-3 col-md-3">
-            <%= form_tag(wallpapers_path, :method => "get", id: "search-form", class: "navbar-form", role: "search") do %>
-              <div class="input-group">
-                  <%= text_field_tag :search, params[:search], placeholder: "Search Wallpapers", class: "form-control" %>
-                  <div class="input-group-btn">
-                    <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
-                  </div>
-              </div>
+        <ul class="nav navbar-nav">
+            <li><%= link_to 'Upload', new_wallpaper_path, remote: true%></li>
+            <% if signed_in? %>
+            <li><%= link_to current_user.nickname, user_path(current_user)%></li>
             <% end %>
-          </div>
+        </ul>
+        <div class="col-sm-3 col-md-3">
+          <%= form_tag(wallpapers_path, :method => "get", id: "search-form", class: "navbar-form", role: "search") do %>
+            <div class="input-group">
+                <%= text_field_tag :search, params[:search], placeholder: "Search Wallpapers", class: "form-control" %>
+                <div class="input-group-btn">
+                  <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+                </div>
+            </div>
+          <% end %>
+        </div>
 
-          <ul class="nav navbar-nav navbar-right">
-              <li>
-                  <% if signed_in? %>
-                    <a href="/logout">
-                      <span class="glyphicon glyphicon-log-out"></span> Logout
-                    </a>
-                  <% else %>
-                    <a href="/auth/auth0">
-                      <span class="glyphicon glyphicon-log-in"></span> Login
-                    </a>
-                  <% end %>
-              </li>
-          </ul>
+        <ul class="nav navbar-nav">
+          <li><%= link_to 'Advanced Search', new_search_path, remote: true%></li>
+        </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <% if signed_in? %>
+                  <a href="/logout">
+                    <span class="glyphicon glyphicon-log-out"></span> Logout
+                  </a>
+                <% else %>
+                  <a href="/auth/auth0">
+                    <span class="glyphicon glyphicon-log-in"></span> Login
+                  </a>
+                <% end %>
+            </li>
+        </ul>
     </div>
   </nav>
 </header>

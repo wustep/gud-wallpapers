@@ -36,6 +36,12 @@ class Wallpaper < ActiveRecord::Base
   def self.search(search)
     where("title LIKE ?", "%#{search}%") | tagged_with(search, wild:true, any:true)
   end
+
+  # Searches using multiple search terms
+  def self.adv_search(title, tags)
+    where("title LIKE ?", "%#{title}%") & tagged_with(tags, wild:true)
+  end
+
   # Gets the priority of the image
   def get_priority
     views = self.impressionist_count

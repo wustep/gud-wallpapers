@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get '/tags/:tag', to: 'wallpapers#tags'
   put '/wallpapers/:id/updatetags', to: 'wallpapers#update_tags'
 
+  resources :search
+  post '/advsearch', to: 'search#adv_search'
 
 
 
