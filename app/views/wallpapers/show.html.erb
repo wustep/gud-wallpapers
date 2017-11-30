@@ -48,9 +48,7 @@ Update(11/29/17):: [Stephen] Improved styling, added download button
       <!-- Download button -->
       <a href="<%= @wallpaper.image.url(:original)%>" class="btn btn-primary btn-small" download>Download</a>
       <!-- Delete button -->
-      <div id="delete-button-container">
-        <%= render partial: "delete_button", locals: { wallpaper: @wallpaper } %>
-      </div>
+      <%= render partial: "delete_button", locals: { wallpaper: @wallpaper } %>
       <!-- Home button -->
       <%= link_to 'Home', root_url, :class => "btn btn-info" %>
     </div>
