@@ -8,12 +8,22 @@ Author:: Stephen
 
 .navbar-form {
   display: inline-block;
-}
-
-.input-group {
-  margin: 0 10px;
+  margin: 8px 2px !important;
 }
 
 .search {
   width: 100%;
+}
+
+/* Increased range of collapse to not have double height nav */
+@media (min-width: 768px) and (max-width: 1010px) {
+  .navbar > .container {
+    width: 99%;
+  }
+  .nav > li > a {
+    padding: 15px 5px !important;
+  }
+  span.glyphicon-log-out {
+    display: none;
+  }
 }

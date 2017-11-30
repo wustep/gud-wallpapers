@@ -18,12 +18,14 @@ Update(11/28/17):: [Martin] Added basic search bar
           <span class="icon-bar"></span>
         </button>
       </div>
-      <div id="navbar" class="navbar-collapse collpase">
+      <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li><%= link_to 'Upload', new_wallpaper_path, remote: true%></li>
           <% if signed_in? %>
           <li><%= link_to current_user.nickname, user_path(current_user)%></li>
           <% end %>
+          <li><%= link_to 'Upload', new_wallpaper_path, remote: true%></li>
+          <li><%= link_to 'Advanced Search', new_search_path, remote: true, id: "advanced-search-btn"%><span id="advanced-search-alt"></span></li>
+          <li>
           <%= form_tag(wallpapers_path, :method => "get", id: "search-form", class: "navbar-form", role: "search") do %>
             <div class="input-group">
               <%= text_field_tag :search, params[:search], placeholder: "Search Wallpapers", class: "form-control" %>
@@ -32,7 +34,7 @@ Update(11/28/17):: [Martin] Added basic search bar
               </div>
             </div>
           <% end %>
-          <li><%= link_to 'Advanced Search', new_search_path, remote: true%></li>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
