@@ -9,7 +9,7 @@ Gud Wallpapers : wallpaper aggregator and sharing service
 * Documentation: Nishad
 
 ### Contributions
-* Database Creation: Stephen
+* Database Planning: Stephen
 * Login/Authorization: Stephen
 * Reddit Scraping: Ben
 * Image Favoriting/View Count: Ben
@@ -31,6 +31,34 @@ Gud Wallpapers : wallpaper aggregator and sharing service
 ## secrets.yml Setup
 Paste the following code into /config/secrets.yml and revise the keys accordingly
 ````
+shared: &shared
+  aws_bucket: [aws_bucket]
+  aws_access_key_id: [aws_access_key_id]
+  aws_secret_access_key: [aws_secret_access_key]
+  aws_s3_region: [aws_s3_region]
+  aws_s3_host_alias: [aws_s3_host_alias]
+  auth0_client_domain: [auth0_client_domain]
+  auth0_client_id: [auto0_client_id]
+  auth0_client_secret: [auth0_client_secret]
+  # Reddit scraper agent details
+  reddit_user_agent: [reddit_user_agent]
+  reddit_client_id: [reddit_client_id]
+  reddit_client_secret: [reddit_client_secret]
+  reddit_username: [reddit_username]
+  reddit_password: [reddit_password]
+
+development:
+  <<: *shared
+  secret_key_base: [development: secret_key_base]
+
+test:
+  <<: *shared
+  secret_key_base: [test: secret_key_base]
+
+production:
+  <<: *shared
+  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
+
 # Be sure to restart your server when you modify this file.
 
 # Your secret key is used for verifying the integrity of signed cookies.
@@ -42,25 +70,4 @@ Paste the following code into /config/secrets.yml and revise the keys accordingl
 
 # Make sure the secrets in this file are kept private
 # if you're sharing your code publicly.
-
-shared: &shared
-  aws_bucket: [aws_bucket]
-  aws_access_key_id: [aws_access_key_id]
-  aws_secret_access_key: [aws_secret_access_key]
-  aws_s3_region: [aws_s3_region]
-  aws_s3_host_alias: [aws_s3_host_alias]
-
-development:
-  <<: *shared
-  secret_key_base: [development: secret_key_base]
-
-test:
-  <<: *shared
-  secret_key_base: [test: secret_key_base]
-
-# Do not keep production secrets in the repository,
-# instead read values from the environment.
-production:
-  <<: *shared
-  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
 ````

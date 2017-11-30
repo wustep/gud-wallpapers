@@ -12,7 +12,6 @@ class WallpapersController < ApplicationController
   # GET /wallpapers
   # GET /wallpapers.json
   def index
-
     # Check if we are searching something
     if params[:search]
       @wallpapers = Wallpaper.search(params[:search])
@@ -55,6 +54,8 @@ class WallpapersController < ApplicationController
   def show
     @wallpaper = Wallpaper.find(params[:id])
     @view_count = @wallpaper.impressionist_count
+    @favorites = @wallpaper.favorites
+    @favorited_by = @wallpaper.favorited_by
     @wallpaper.update_column(:priority, @wallpaper.get_priority)
   end
 
@@ -124,9 +125,25 @@ class WallpapersController < ApplicationController
     end
   end
 
-  def search
-
+  def favorite
+    @user = current_user
+    @wallpaper = Wallpaper.find(params[:wallpaper_id])
+    @user.favorite!(@wallpaper)
+    respond_to do |format|
+      format.js { render 'favorite'}
+    end
   end
+
+  def unfavorite
+    @user = current_user
+    @favorite = @user.favorites.find_by_wallpaper_id(params[:wallpaper_id])
+    @wallpaper = Wallpaper.find(params[:wallpaper_id])
+    @favorite.destroy!
+    respond_to do |format|
+      format.js { render 'unfavorite'}
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
