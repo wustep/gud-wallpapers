@@ -13,9 +13,11 @@ Author:: Nishad
       </div>
     </section>
   <% end %>
-  <section id="nishads-picks">
-    <%= render "nishad" %>
-  </section>
+  <% if !params[:search] && !@search%>
+    <section id="nishads-picks">
+      <%= render "nishad" %>
+    </section>
+  <% end %>
   <section id="wallpapers">
     <%= render "/partials/images" %>
   </section>
