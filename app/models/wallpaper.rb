@@ -25,7 +25,7 @@ class Wallpaper < ActiveRecord::Base
   },
   # Path on amazon webserver
   :path => "images/:class/nishad/:style/:id:title.:extension"
-
+  after_post_process :save_image_dimensions
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
   validates_attachment_presence :image
 
@@ -44,13 +44,19 @@ class Wallpaper < ActiveRecord::Base
   # Searches using multiple search terms
   #
   # Author:: Martin
-  def self.adv_search(title, tags = nil)
+  def self.adv_search(title, tags = nil, image_height = nil, image_width = nil)
 
     if !title.nil?
       results = where("title LIKE ?", "%#{title}%")
     end
     if !tags.nil? && !tags.empty?
       results = results & tagged_with(tags, wild:true)
+    end
+    if !image_height.nil? && !image_height.empty?
+      results = results & where("image_height IS ?", "%#{image_height}")
+    end
+    if !image_width.nil? && !image_width.empty?
+      results = results & where("image_width IS ?", "%#{image_width}")
     end
     results
   end
@@ -70,4 +76,12 @@ class Wallpaper < ActiveRecord::Base
   def get_aws_name
     self.image.path.split("/").last
   end
+
+  def save_image_dimensions
+    geo = Paperclip::Geometry.from_file(image.queued_for_write[:original])
+    self.image_width = geo.width
+    puts self.image_height
+    self.image_height = geo.height
+  end
+
 end
