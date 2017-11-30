@@ -3,6 +3,6 @@ Partial to conditionally display delete button
 
 Author (11/29/17):: Jason
 #%>
-<% if @user.user_rank == 2 || wallpaper.uploader == @user %>
+<% if signed_in? && (@user.user_rank == 2 || wallpaper.uploader == @user) %>
   <%= button_to "Delete", wallpaper_path(wallpaper), method: :delete  %>
 <% end %>
