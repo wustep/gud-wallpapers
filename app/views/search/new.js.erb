@@ -1,4 +1,4 @@
-//JS called that creates upload form modal
+//JS called that creates advanced search form modal
 $('<%= j render "partials/search" %>').on('shown.bs.modal', function(e) {
   $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
 }).on('hidden.bs.modal', function() {

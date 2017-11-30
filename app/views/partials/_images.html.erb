@@ -1,15 +1,21 @@
 <%#
-Insert a row of 4 wallpapers until we are out of wallpapers
+Insert a row of 4 wallpapers until we are out of wallpapers.
 
 Author:: Nishad
-Update(11/28/17):: [Martin] Added a message for when search returns no wallpapers
+Update(11/28/17):: [Martin] Added a message for when search returns no wallpapers.
+Update(11/30/17):: [Martin] Added display messages for advanced search.
 #%>
 <% if @wallpapers.blank? && params[:search]%>
     <h4>Sorry! There are no wallpapers containing the term <%= params[:search] %>.</h4>
+<% elsif @wallpapers.blank?%>
+    <h4>Sorry! No wallpapers matching your search were found.</h4>
 <% elsif params[:search] %>
   <h4>Results for "<%= params[:search] %>" (Count: <%= @wallpapers.length %>)</h4>
 <% elsif params[:tag] %>
   <h4>Wallpapers tagged "<%= params[:tag] %>" (Count: <%= @wallpapers.length %>)</h4>
+<% elsif params[:title] || params[:tag] || params[:image_width] || params[:image_height]%>
+  <% @wallpapers.length > 1 ? term = "wallpapers" : term = "wallpaper"%>
+  <h4><%= @wallpapers.length%> <%= term %> found:</h4>
 <% end %>
 <% @wallpapers.each_slice(4) do |slice| %>
   <div class="image-row">
