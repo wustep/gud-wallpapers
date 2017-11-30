@@ -19,10 +19,23 @@ Author:: Nishad
     border-style: inset;
     border-width: 5px;
   }
+  #nishads-picks {
+    border: 2px solid #a1c7ec;
+    padding: 10px;
+    border-radius: 3px;
+    margin-top: 15px;
+    background-color: #eff0f1;
+  }
+  #nishad-quote h3 {
+    margin-top: 2px;
+    display: inline-block;
+  }
   #nishad-image {
-    height: 76;
-    width: 67;
     float: left;
+    border-radius: 10px;
+    border: 1px solid black;
+    height: 65px;
+    margin: 0 5px 0 25px;
   }
   #wallpapers, #nishads-picks {
     .image-row {
