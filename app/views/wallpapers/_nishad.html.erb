@@ -2,6 +2,7 @@
 Randomized Nishad's Picks
 Author:: Ben, Stephen
 -->
+<!-- List of quotes -->
 <% @quotes = ["These are some of my favorites",
               "Check out these spicy 'papes",
               "I like wallpapers. Yes I do. I like wallpapers how 'bout you?",
@@ -25,6 +26,7 @@ Author:: Ben, Stephen
   <i>"<%= @quotes.sample %>" ― Nishad </i>
 </div>
 <div class="image-row">
+  <!-- Display the 4 images -->
   <% @nishad.each do |wallpaper| %>
     <div class="col-lg-auto col-md-3 col-sm-6 col-xs-12">
       <a class="wallpaper img-thumbnail img-responsive" href="<%= wallpaper_path(wallpaper) %>" style="width:100%; background-image: url(<%=wallpaper.image.url(:index) %>)"></a>
