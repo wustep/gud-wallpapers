@@ -25,7 +25,7 @@ class Wallpaper < ActiveRecord::Base
   },
   # Path on amazon webserver
   :path => "images/:class/nishad/:style/:id:title.:extension"
-
+  after_post_process :save_image_dimensions
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
   validates_attachment_presence :image
 
@@ -70,4 +70,12 @@ class Wallpaper < ActiveRecord::Base
   def get_aws_name
     self.image.path.split("/").last
   end
+
+  def save_image_dimensions
+    geo = Paperclip::Geometry.from_file(image.queued_for_write[:original])
+    self.image_width = geo.width
+    puts self.image_height
+    self.image_height = geo.height
+  end
+
 end
