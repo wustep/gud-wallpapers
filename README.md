@@ -16,6 +16,7 @@ Gud Wallpapers : wallpaper aggregator and sharing service
 * Image Uploading/Sorting/Tagging: Nishad
 * Image Searching/Filtering: Martin
 * User Gallery: Jason
+* Moderator/Deleting: Jason
 
 
 ## Running Instructions
