@@ -51,7 +51,7 @@ class Wallpaper < ActiveRecord::Base
       results = results.where("title LIKE ?", "%#{title}%")
     end
     if !tags.empty?
-      results = results.tagged_with(tags, wild:true)
+      results = results.tagged_with(tags, any:true)
     end
     if !image_height.empty?
       results = results.where(image_height: image_height)
@@ -87,4 +87,11 @@ class Wallpaper < ActiveRecord::Base
     puts self.image_height
     self.image_height = geo.height
   end
+
+  def most_popular_tags
+    ActsAsTaggableOn::Tagging.joins(:tag).where(taggable_id: self.id)
+    .select("COUNT(taggings.tag_id) as total, tags.name")
+    .group("tags.name").order("total DESC").limit(5)
+  end
+
 end
