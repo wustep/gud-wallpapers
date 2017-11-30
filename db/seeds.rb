@@ -20,25 +20,10 @@ session = Redd.it(
 @garbage_chars = '\/'
 # Cutoff for score of images to download
 @score_cutoff = 0
+# Image file types
+@image_types = [".jpg", "jpeg", ".gif", ".png", ".tif", ".tiff"]
 
-# Determine if a post is valid
-# Author:: Ben(11/12/17)
-def isValid?(post)
-  # Check for high enough score
-  if post.score < @score_cutoff
-    puts post.url + " - too low score"
-    return false
-  # Check for existence of image
-  elsif File.file?("../img/" + post.title)
-    puts post.url + " - already exists"
-    return false
-  # Check that the post derectly links to an image
-  elsif !post.url.end_with?(".jpg", "jpeg", ".gif", ".png", ".tif", ".tiff")
-    puts post.url + " - invalid extension"
-    return false
-  end
-  true
-end
+
 
 # Scrape wallpapers
 # Author:: Ben(11/12/17)
@@ -60,17 +45,22 @@ session.my_subreddits('subscriber').each do |subreddit|
     title.tr!(@garbage_chars, '')
     # Try to get the image if the post is valid
     begin
-      if isValid? post
+      if !@image_types.any? {|extension| post.url.end_with? extension} && !post.is_self
+        url = post.url + ".jpg"
+      else
+        url = post.url
+      end
+      if !post.is_self
           # Open and download the image
           wp = Wallpaper.new
           wp.title = post.title
-          wp.image = post.url
+          wp.image = url
           wp.set_owner_tag_list_on(reddit, :tags, subreddit.display_name)
           wp.save
           puts post.url + " - added from " + subreddit.display_name
       end
-    rescue # Catch page loading errors
-      puts post.url + " - invalid url"
+    rescue => error
+      puts post.url + " - error: " + error.inspect
     end
   end
 end
