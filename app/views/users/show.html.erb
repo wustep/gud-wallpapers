@@ -2,16 +2,19 @@
 View logged in user page
 
 Author:: Stephen, Nishad
+Update(11/28/17) :: [Jason] Added uploads/favorites logic.
 Help:: https://auth0.com/docs/quickstart/webapp/rails/03-user-profile
 #%>
 
 <section id="content" class="container">
+  <!-- User gallery buttons -->
   <section id="gallery-buttons" class="row">
     <div class="btn-group">
       <a href="<%= "/users/" + params[:id] + "/uploads"%>" class="btn btn-default">Uploads</a>
       <a href="<%= "/users/" + params[:id] + "/favorites"%>" class="btn btn-default">Favorites</a>
     </div>
   </section>
+  <!-- Page header, display whether user is viewing their uploads or favorites -->
   <section id="page-header-section">
     <h2 id="page-header"><%= params[:gallery] == "favorites" ? "Your Favorites (#{@wallpapers.length})" : "Your Uploads (#{@wallpapers.length})" %></h2>
     <% if params[:gallery] == "favorites" %>

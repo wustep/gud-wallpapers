@@ -4,6 +4,7 @@ Wallpaper index page -- show many loaded wallpapers
 Author:: Nishad
 #%>
 <section id="content" class="container">
+  <!-- Show sort buttons if not searching -->
   <% if params[:search].nil? && params[:title].nil? && params[:tags].nil?%>
     <section id="sort-buttons" class="row">
       <div class="btn-group">
@@ -13,17 +14,20 @@ Author:: Nishad
       </div>
     </section>
   <% end %>
+  <!-- Also show Nishad's Picks if not searching -->
   <% if !params[:search] && !params[:tag] && !@search%>
     <section id="nishads-picks">
       <%= render "nishad" %>
     </section>
   <% end %>
+  <!-- Render the wallpapers -->
   <section id="wallpapers">
     <%= render "/partials/images" %>
   </section>
 </section>
 <br>
 
+<!-- Button to load more -->
 <div id="load-more">Load More</button>
 </div>
 <div id="infinite-scrolling">

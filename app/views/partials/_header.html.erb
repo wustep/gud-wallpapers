@@ -18,6 +18,7 @@ Update(11/28/17):: [Martin] Added basic search bar
           <span class="icon-bar"></span>
         </button>
       </div>
+      <!-- Left side of the navbar. Includes user profile, upload, search bar, and advanced search -->
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <% if signed_in? %>
@@ -36,6 +37,7 @@ Update(11/28/17):: [Martin] Added basic search bar
           <% end %>
           </li>
         </ul>
+        <!-- Right side of the navbar. Includes login/logout button. -->
         <ul class="nav navbar-nav navbar-right">
           <li>
             <% if signed_in? %>
