@@ -80,11 +80,6 @@ class WallpapersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: @wallpaper
-    assert_response :success
-  end
-
   test "should update tags" do
     post :create, wallpaper: { image: fixture_file_upload("files/index.png", "image.png"), title: @wallpaper.title, tag_list: "test1,test2" }
     patch :update_tags, id: assigns(:wallpaper), taglist: ["test1", "test2", "test3"], :format => :js
