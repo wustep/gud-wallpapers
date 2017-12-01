@@ -2,6 +2,7 @@
 #
 # Author:: Nishad, Martin, Ben, Jason
 # Update(11/27/17):: [Ben] Added sort order logic
+# Update(11/28/17):: [Jason] Added delete wallpaper logic
 
 class WallpapersController < ApplicationController
   before_action :set_wallpaper, only: [:show, :edit, :update, :destroy, :update_tags]
@@ -140,6 +141,7 @@ class WallpapersController < ApplicationController
       end
     end
   end
+
   #Action to destroy a wallpaper
   # DELETE /wallpapers/1
   # DELETE /wallpapers/1.json
