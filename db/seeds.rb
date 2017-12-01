@@ -35,7 +35,7 @@ reddit.nickname = "Reddit"
 reddit.save
 session.my_subreddits('subscriber').each do |subreddit|
   # Iterate through top posts of the week on the account's front page
-  subreddit.top(:time => :day, :limit => 10).each do |post|
+  subreddit.top(:time => :week, :limit => 20).each do |post|
     title = post.title
     i = i + 1
     puts "\r\n" + i.to_s + ". " + title

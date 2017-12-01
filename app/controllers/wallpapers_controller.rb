@@ -20,6 +20,7 @@ class WallpapersController < ApplicationController
     # Check if we are searching something
     if params[:search]
       @wallpapers = Wallpaper.search(params[:search])
+      @results_count = @wallpapers.count
       # We can't call page on an array, which is returned from the tag search method, so special check here
       if @wallpapers.class == Array
         @wallpapers = Kaminari.paginate_array(@wallpapers).page(params[:page]).per(28)

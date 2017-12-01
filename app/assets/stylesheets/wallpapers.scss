@@ -18,12 +18,16 @@ Author:: Stephen */
   border: 2px solid #a1c7ec;
   padding: 10px;
   border-radius: 3px;
-  margin-top: 15px;
+  margin: 15px 0;
   background-color: #eff0f1;
 }
+#nishad-quote {
+  margin: 0 !important;
+}
 #nishad-quote h3 {
-  margin-top: 2px;
+  margin: 2px;
   display: inline-block;
+  padding: 3px;
 }
 #nishad-image {
   float: left;
@@ -115,7 +119,7 @@ Author:: Stephen
 */
 #wallpaper-buttons {
   margin-bottom: 20px;
-  
+
   form {
     display: inline-block;
   }

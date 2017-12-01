@@ -22,6 +22,19 @@ Author:: Nishad
   <% end %>
   <!-- Render the wallpapers -->
   <section id="wallpapers">
+    <!-- Display search results -->
+    <% if @wallpapers.blank? && params[:search]%>
+        <h4>Sorry! There are no wallpapers containing the term <%= params[:search] %>.</h4>
+    <% elsif @wallpapers.blank? && @search%>
+        <h4>Sorry! No wallpapers matching your search were found.</h4>
+    <% elsif params[:search] %>
+      <h4>Results for "<%= params[:search] %>" (Count: <%= @results_count %>)</h4>
+    <% elsif params[:tag] %>
+      <h4>Wallpapers tagged "<%= params[:tag] %>" (Count: <%= @results_count %>)</h4>
+    <% elsif params[:title] || params[:tag] || params[:image_width] || params[:image_height]%>
+      <% @wallpapers.length > 1 ? term = "wallpapers" : term = "wallpaper"%>
+      <h4><%= @results_count %> <%= term %> found:</h4>
+    <% end %>
     <%= render "/partials/images" %>
   </section>
 </section>
