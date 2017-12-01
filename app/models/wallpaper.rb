@@ -31,7 +31,7 @@ class Wallpaper < ActiveRecord::Base
 
   # Shortens the url of the image
   Paperclip.interpolates :title  do |attachment, style|
-    Digest::MD5.hexdigest(attachment.instance.title)[0..6]
+    Digest::MD5.hexdigest(attachment.instance.id.to_s + attachment.instance.title)[0..6]
   end
 
   # Finds wallpapers matching the search term in their titles and tags.
