@@ -2,6 +2,7 @@
 #
 # Author:: Ben, Nishad
 # Update(11/29/17):: [Ben] Added favoriting logic
+# Update(11/29/17):: [Jason] Added user ranking logic
 
 class User < ActiveRecord::Base
   # Association for favorites
@@ -42,6 +43,7 @@ class User < ActiveRecord::Base
   # Finds or creates a user using Omniauth
   #
   # Author:: Stephen
+  # Update(11/29/17):: [Jason] Added user rank
   def self.find_or_create_from_auth(auth)
     user = User.find_or_create_by(provider: auth['provider'], uid: auth['uid'])
     user.nickname = auth['info']['nickname']
