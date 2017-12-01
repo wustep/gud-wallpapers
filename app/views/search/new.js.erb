@@ -1,4 +1,7 @@
-//JS called that creates advanced search form modal
+/*
+JS called that creates advanced search form modal
+Author:: Nishad, Martin
+*/
 $('<%= j render "partials/search" %>').on('shown.bs.modal', function(e) {
   $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
 }).on('hidden.bs.modal', function() {

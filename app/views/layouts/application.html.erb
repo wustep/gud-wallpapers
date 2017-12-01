@@ -1,13 +1,14 @@
 <%#
-Main page.
+Main application page, loadded on all pages
 
-Author:: Nishad
+Author:: Stephen, Nishad
+Update(11/30/17):: [Stephen] Added viewport to scale for mobile better
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GudWallpapers</title>
+  <title>Gud Wallpapers</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
@@ -15,9 +16,7 @@ Author:: Nishad
 </head>
 <body>
 <!-- Render header partial and yield -->
-<%= render "/partials/header" %>
-
-<%= yield %>
-
+  <%= render "/partials/header" %>
+  <%= yield %>
 </body>
 </html>

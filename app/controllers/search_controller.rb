@@ -3,6 +3,7 @@
 # as well as image height and width. Each search field is optional.
 #
 # Author(11/29/17): Martin
+
 class SearchController < ApplicationController
 
     # Controller action that searches for wallpapers using title, tags, and dimensions

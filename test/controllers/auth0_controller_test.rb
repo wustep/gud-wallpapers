@@ -1,7 +1,8 @@
-require 'test_helper'
 # Test cases for the auth controller
 #
 # Author(11/30/17):: Nishad
+require 'test_helper'
+
 class Auth0ControllerTest < ActionController::TestCase
 
   test "should get callback on successful auth and create a user" do

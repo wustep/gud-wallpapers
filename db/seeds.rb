@@ -2,7 +2,7 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 # Author(11/11/17):: Ben
-# Update(11/29/17):: [Stephen] Revised to use secrets.yml instead of hard-coded values
+# Update(11/29/17):: [Stephen] Revised to use secrets.yml instead of hard-coded values, added more console messages
 
 require 'redd'
 require 'open-uri'

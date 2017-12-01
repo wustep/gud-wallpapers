@@ -1,5 +1,6 @@
 # Rails routes
 #
+# Author: Nishad, Stephen, Ben, Jason, Martin
 # Update(11/22/17):: [Nishad] Added initial wallpapers index route
 # Update(11/27/17):: [Stephen] Added omni auth callback & failure
 # Update(11/27/17):: [Ben] Added sort order route

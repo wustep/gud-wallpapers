@@ -3,10 +3,8 @@ Wallpaper form for editing or adding wallpapers
 
 Author:: Nishad
 #%>
-<div id="myModal" class="modal fade" role="dialog">
+<div id="wallpaper-edit-modal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -49,10 +47,9 @@ Author:: Nishad
 </div>
 
 <script>
-    //Client side validation for the form
+    // Client side validation for the form
     $("#new_wallpaper").validate({
-
-      //Set up the rules for the fields
+      // Set up the rules for the fields
       rules: {
         "wallpaper[title]": "required",
         "wallpaper[image]": {
@@ -60,16 +57,14 @@ Author:: Nishad
           extension: "jpg|jpeg|png|gif"
         }
       },
-
       //Error messages
       messages: {
-        "wallpaper[title]": "Please enter a title",
+        "wallpaper[title]": "Please enter a title!",
         "wallpaper[image]": {
-          required: "Please select an image",
-          extension: "Your file must be one of these types: .jpg, .jpeg, .png, .gif"
+          required: "Please select an image!",
+          extension: "Your file must be one of these types: .jpg, .jpeg, .png, .gif!"
         }
       },
-
       //Called when validation is successful
       submitHandler: function(form) {
         $("#new_wallpaper").submit();

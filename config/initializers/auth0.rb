@@ -1,9 +1,11 @@
 # Omniauth initializers
-# Source:: https://auth0.com/docs/quickstart/webapp/rails/01-login#install-the-dependencies
-# Implementer(11/27/17):: Stephen
+#
+# Reference:: https://auth0.com/docs/quickstart/webapp/rails/01-login#install-the-dependencies
+# Author(11/27/17):: Stephen
 
 # Be sure to restart your server when you modify this file.
 
+# Load middleware for OmniAuth with Auth0 as provider, using secrets.yml config vars
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider(
     :auth0,

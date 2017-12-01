@@ -1,6 +1,6 @@
 # User model
 #
-# Author:: Nishad
+# Author:: Ben, Nishad
 # Update(11/29/17):: [Ben] Added favoriting logic
 
 class User < ActiveRecord::Base
@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
     self.favorites.find_by_wallpaper_id(wallpaper.id)
   end
 
-  # Finds or creates a user useing Omniauth
+  # Finds or creates a user using Omniauth
   #
   # Author:: Stephen
   def self.find_or_create_from_auth(auth)

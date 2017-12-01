@@ -1,6 +1,6 @@
 # Favorite model
 #
-# Author:: Nishad
+# Author:: Ben
 
 class Favorite < ActiveRecord::Base
   belongs_to :user

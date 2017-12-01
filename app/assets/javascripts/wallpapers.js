@@ -5,7 +5,6 @@ Author:: Nishad
 */
 
 $(document).ready(function() {
-
   // Prevent enter from submitting forms (so that tags can be added with enter)
   $('form input').keydown(function(event){
     if(event.keyCode == 13) {
@@ -13,8 +12,7 @@ $(document).ready(function() {
     }
   });
 
-  // When the add tags button is clicked, hide the tag list and
-  // create an input to add tags
+  // When the add tags button is clicked, hide the tag list and create an input to add tags
   $('#plus').click(function() {
     $('#user-tags').hide();
     $('#plus').hide();
@@ -23,14 +21,14 @@ $(document).ready(function() {
     $("#user-tags-input").tagsinput('input').focus();
   });
 
-  //When the input is unfocused, hide it and show the (updated) tag list once again
+  // When the input is unfocused, hide it and show the (updated) tag list once again
   $('#done').click(function() {
     $('#user-tags-input-container').hide();
     $('#user-tags').show();
     $('#plus').show();
   });
 
-  //Use AJAX to add tags to the model as the user types them in
+  // Use AJAX to add tags to the model as the user types them in
   $('#user-tags-input').on('itemAdded', function(event) {
     var tag = event.item;
     var tagList = $('#user-tags-input').val();
@@ -52,7 +50,7 @@ $(document).ready(function() {
     }
   });
 
-  //Use AJAX to remove tags from the model as the user deletes them.
+  // Use AJAX to remove tags from the model as the user deletes them.
   $('#user-tags-input').on('itemRemoved', function(event) {
     var tag = event.item;
     var tagList = $('#user-tags-input').val();

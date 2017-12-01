@@ -1,7 +1,7 @@
 /*
-  Using JQuery, update the page when unfavorited
+Using JQuery, update the page when unfavorited
 
-  Author:: Ben
+Author:: Ben
 */
 $('#favorite-button').html('<%= j render partial: "favorite_button", locals: {wallpaper: @wallpaper} %>');
 $('#favorite-label').html('Favorites: <%= j @wallpaper.favorited_by.size.to_s %>');

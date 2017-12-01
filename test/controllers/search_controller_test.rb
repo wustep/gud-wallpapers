@@ -1,7 +1,6 @@
 # Test cases for the advanced search feature
 #
-# Author(11/30/17):: Nishad
-# Update(11/30/17):: [Martin] Added additional search cases
+# Author(11/30/17):: Nishad, Martin
 require 'test_helper'
 
 class SearchControllerTest < ActionController::TestCase

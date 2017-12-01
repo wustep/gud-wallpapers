@@ -1,4 +1,4 @@
-# Wallpaper model
+# Wallpaper Model
 #
 # Author:: Nishad
 # Update(11/29/17):: [Martin] Added advanced search method

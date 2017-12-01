@@ -1,6 +1,6 @@
 # Wallpaper Controller class
 #
-# Author:: Nishad
+# Author:: Nishad, Martin, Ben, Jason
 # Update(11/27/17):: [Ben] Added sort order logic
 
 class WallpapersController < ApplicationController
@@ -14,9 +14,8 @@ class WallpapersController < ApplicationController
   # GET /wallpapers/latest
   # GET /wallpapers/popular
   #
-  #Authors: Nishad, Ben, Martin
+  # Authors: Nishad, Ben, Martin
   def index
-
     # Check if we are searching something
     if params[:search]
       @wallpapers = Wallpaper.search(params[:search])
@@ -28,11 +27,10 @@ class WallpapersController < ApplicationController
         @wallpapers = @wallpapers.page params[:page]
       end
     else
-      #If not searching, then choose sorting order
+      # If not searching, then choose sorting order
       @wallpapers = Wallpaper.all
       # Get nishad's picks
       @nishad = @wallpapers.sample 4
-
       @sortOrder = params[:sortOrder]
       if @sortOrder == 'latest'
         @wallpapers = @wallpapers.order(created_at: :desc)
@@ -129,7 +127,7 @@ class WallpapersController < ApplicationController
   # Action to update tags on a wallpaper
   # PATCH/PUT /wallpapers/1/updatetags
   #
-  # Author: NIshad
+  # Author: Nishad
   def update_tags
     respond_to do |format|
       current_user.tag(@wallpaper, :with => params[:taglist], :on => :tags)
@@ -161,7 +159,7 @@ class WallpapersController < ApplicationController
     end
   end
 
-  #Action to favorite a wallpaper
+  # Action to favorite a wallpaper
   # POST /favorite
   #
   # Author: Ben
@@ -174,7 +172,7 @@ class WallpapersController < ApplicationController
     end
   end
 
-  #Action to unfavorite a wallpaper
+  # Action to unfavorite a wallpaper
   # POST /favorite
   #
   # Author: Ben

@@ -1,4 +1,7 @@
 # ApplicationController class
+# Containing methods to check user authentication from omniauth
+#
+# Author:: Nishad, Stephen
 
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
@@ -16,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   # Function that is called before any actions that need authorization.
   #
-  #Author: Nishad
+  # Author: Nishad
 	def authorize!
     respond_to do |format|
       format.html {redirect_to "/auth/auth0" unless current_user}

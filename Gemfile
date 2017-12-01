@@ -1,5 +1,7 @@
-source 'https://rubygems.org'
+# Ruby gemfile, listing dependencies of Project
+# Author: Nishad, Stephen, Ben
 
+source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # sqlite3 for the database for Active Record

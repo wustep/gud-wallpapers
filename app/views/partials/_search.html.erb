@@ -3,9 +3,8 @@ Wallpaper modal form for the advanced search.
 
 Author:: Martin
 #%>
-<div id="myModal" class="modal fade" role="dialog">
+<div id="advanced-search-modal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -13,7 +12,7 @@ Author:: Martin
         <h4 class="modal-title">Advanced Search</h4>
       </div>
       <div class="modal-body">
-          <!-- Form fields for each search parameter -->       
+          <!-- Form fields for each search parameter -->
           <%= form_tag('/advsearch', :method => "post", id: "search-form", class: "navbar-form", role: "search") do %>
             <div class="form-group">
             <%= label_tag :title %><br>

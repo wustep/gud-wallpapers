@@ -1,6 +1,8 @@
-//Hides the modal once submit is clicked
-$('#myModal').modal('hide');
+/*
+Hides the modal once submit is clicked
+*/
 
+$('#wallpaper-edit-modal').modal('hide');
 <% if !@wallpaper.errors.blank? %>
   //Create a new modal
   $('<%= j render "form" %>').on('shown.bs.modal', function(e) {
