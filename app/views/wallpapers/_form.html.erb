@@ -13,7 +13,7 @@ Author:: Nishad
         <h4 class="modal-title">Upload</h4>
       </div>
       <div class="modal-body">
-        <%= form_for(@wallpaper, remote: true) do |f| %>
+        <%= form_for(@wallpaper) do |f| %>
           <% if @wallpaper.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(@wallpaper.errors.count, "error") %> prohibited this wallpaper from being saved:</h2>

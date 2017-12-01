@@ -59,6 +59,7 @@ class WallpapersController < ApplicationController
   def tags
     @wallpapers = Wallpaper.tagged_with(params[:tag])
     @wallpapers = @wallpapers.order(priority: :desc)
+    @results_count = @wallpapers.count
     @wallpapers = @wallpapers.page params[:page]
     render :index
   end
@@ -103,7 +104,8 @@ class WallpapersController < ApplicationController
         format.json { render :show, status: :created, location: @wallpaper }
       else
         # Render create modal with errors
-        format.js {render 'create' }
+        format.html { redirect_to :index, notice: 'Error uploading image. Try again later.' }
+        format.js {redirect_to :index }
         format.json { render json: @wallpaper.errors, status: :unprocessable_entity }
       end
     end
