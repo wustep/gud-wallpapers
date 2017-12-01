@@ -73,7 +73,7 @@ production:
 # Make sure the secrets in this file are kept private
 # if you're sharing your code publicly.
 ````
-##Testing
+## Testing
 **Unit Testing:** Unit tests were written for all of the controllers. In addition, unit tests were written for the user and wallpaper models. These tests can be run by executing the command `rake test` from the root of the project.
 
 **Integration Testing:** Integration testing consisted of monitoring the interactions between the controllers, models, and views. Ensured through extensive use that these interact in an expected manner.
