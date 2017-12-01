@@ -9,7 +9,7 @@ Gud Wallpapers : wallpaper aggregator and sharing service
 * Documentation: Nishad
 
 ### Contributions
-* Database Planning: Stephen
+* Database Planning/ER Diagram: Stephen
 * Login/Authorization: Stephen
 * Reddit Scraping: Ben
 * Image Favoriting/View Count: Ben
@@ -17,9 +17,10 @@ Gud Wallpapers : wallpaper aggregator and sharing service
 * Image Searching/Filtering: Martin
 * User Gallery: Jason
 * Moderator/Deleting: Jason
-
+* Styling: Nishad, Stephen
 
 ## Running Instructions
+With Rails 4.2.6 installed:
  1. Go to the root of the project and run `bundle install`
  2. Download imagemagick:
     * Windows: http://imagemagick.sourceforge.net/http/www/windows.html
