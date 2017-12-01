@@ -73,3 +73,30 @@ production:
 # Make sure the secrets in this file are kept private
 # if you're sharing your code publicly.
 ````
+##Testing
+**Unit Testing:** Unit tests were written for all of the controllers. In addition, unit tests were written for the user and wallpaper models. These tests can be run by executing the command `rake test` from the root of the project.
+
+**Integration Testing:** Integration testing consisted of monitoring the interactions between the controllers, models, and views. Ensured through extensive use that these interact in an expected manner.
+
+**Systems Testing:** Systems testing was done through browsing the app and using all of its functionality. Make sure that the views are being properly generated and that the different features of the app work as expected.
+
+## Style Guide
+**General:**
+* Little top level code, most code should be in methods
+* 2 space tabs
+* Camel case for classes, snake case for variables and functions
+* Use blocks as much as possible
+* Functions should be short, if function is too big to view without scrolling then separate.
+* Classes should represent each entity in the application. 
+* Scraper classes should be separate from front end classes.
+* Method names should be descriptive and tell the user what they can do without having to look at documentation.
+* Use return only when returning in the middle of a function
+* Parenthesis only when logic requires it
+
+**Loops:**
+* Use little for/while loops, unless when nesting multiple loops
+* Use blocks as much as possible
+
+**If/else:**
+* If statements that have no else and have only one line after the if should be made into one line
+*if/elses that are only one line should be made into one line using the ternary operator
