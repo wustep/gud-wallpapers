@@ -2,6 +2,7 @@
 Wallpaper form for editing or adding wallpapers
 
 Author:: Nishad
+Update(12/1/17):: [Stephen] Added loading button and visually disabled upload button upon upload
 #%>
 <div id="wallpaper-edit-modal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -15,7 +16,6 @@ Author:: Nishad
           <% if @wallpaper.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(@wallpaper.errors.count, "error") %> prohibited this wallpaper from being saved:</h2>
-
               <ul>
               <% @wallpaper.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
@@ -35,7 +35,8 @@ Author:: Nishad
             <%= f.label "Tags" %><br>
             <%= f.text_field :tag_list, 'data-role' =>'tagsinput', id: "testID"%>
           <div class="actions">
-            <%= f.submit "Upload", class: "btn btn-primary" %>
+            <%= f.submit "Upload", class: "btn btn-primary", id: "wallpaper-upload-button" %>
+            <span id="upload-loading"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</span>
           </div>
         <% end %>
       </div>
@@ -47,27 +48,28 @@ Author:: Nishad
 </div>
 
 <script>
-    // Client side validation for the form
-    $("#new_wallpaper").validate({
-      // Set up the rules for the fields
-      rules: {
-        "wallpaper[title]": "required",
-        "wallpaper[image]": {
-          required: true,
-          extension: "jpg|jpeg|png|gif"
-        }
-      },
-      //Error messages
-      messages: {
-        "wallpaper[title]": "Please enter a title!",
-        "wallpaper[image]": {
-          required: "Please select an image!",
-          extension: "Your file must be one of these types: .jpg, .jpeg, .png, .gif!"
-        }
-      },
-      //Called when validation is successful
-      submitHandler: function(form) {
-        $("#new_wallpaper").submit();
+  // Client side validation for the form
+  $("#new_wallpaper").validate({
+    // Set up the rules for the fields
+    rules: {
+      "wallpaper[title]": "required",
+      "wallpaper[image]": {
+        required: true,
+        extension: "jpg|jpeg|png|gif"
       }
-    });
+    },
+    // Error messages
+    messages: {
+      "wallpaper[title]": "Please enter a title!",
+      "wallpaper[image]": {
+        required: "Please select an image!",
+        extension: "Your file must be one of these types: .jpg, .jpeg, .png, .gif!"
+      }
+    },
+    // Called when validation is successful
+    submitHandler: function(form) {
+      $("#upload-loading").css("display", "inline");
+      $("#new_wallpaper").submit();
+    }
+  });
 </script>

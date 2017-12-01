@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   # Function that is called before any actions that need authorization.
   #
-  # Author: Nishad
+  # Author: Nishad, Stephen
 	def authorize!
     respond_to do |format|
       format.html {redirect_to "/auth/auth0" unless current_user}
@@ -29,14 +29,14 @@ class ApplicationController < ActionController::Base
 
   # Checks if the user is signed in
   #
-  #Author: Nishad
+  # Author: Nishad
   def signed_in?
     !!current_user
   end
 
   # Sets the current user
   #
-  #Author: Nishad
+  # Author: Nishad
   def set_current_user(user)
     @current_user = user
     session[:user_id] = user.nil? ? nil : user.uid

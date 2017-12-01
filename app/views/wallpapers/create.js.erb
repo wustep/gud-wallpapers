@@ -4,7 +4,7 @@ Hides the modal once submit is clicked
 
 $('#wallpaper-edit-modal').modal('hide');
 <% if !@wallpaper.errors.blank? %>
-  //Create a new modal
+  // Create a new modal
   $('<%= j render "form" %>').on('shown.bs.modal', function(e) {
     $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
   }).on('hidden.bs.modal', function() {
