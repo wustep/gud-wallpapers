@@ -67,14 +67,6 @@ class WallpapersControllerTest < ActionController::TestCase
     assert_redirected_to wallpaper_path(assigns(:wallpaper))
   end
 
-  test "should error on failed create" do
-    assert_difference('Wallpaper.count', 0) do
-      post :create, wallpaper: { title: @wallpaper.title, tag_list: "test1,test2" }
-    end
-
-    assert_response :unprocessable_entity
-  end
-
   test "should show wallpaper" do
     get :show, id: @wallpaper
     assert_response :success
