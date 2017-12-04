@@ -74,6 +74,7 @@ production:
 # Make sure the secrets in this file are kept private
 # if you're sharing your code publicly.
 ````
+
 ## Testing
 **Unit Testing:** Unit tests were written for all of the controllers. In addition, unit tests were written for the user and wallpaper models. These tests can be run by executing the command `rake test` from the root of the project.
 
@@ -88,7 +89,7 @@ production:
 * Camel case for classes, snake case for variables and functions
 * Use blocks as much as possible
 * Functions should be short, if function is too big to view without scrolling then separate.
-* Classes should represent each entity in the application. 
+* Classes should represent each entity in the application.
 * Scraper classes should be separate from front end classes.
 * Method names should be descriptive and tell the user what they can do without having to look at documentation.
 * Use return only when returning in the middle of a function
@@ -100,4 +101,12 @@ production:
 
 **If/else:**
 * If statements that have no else and have only one line after the if should be made into one line
-*if/elses that are only one line should be made into one line using the ternary operator
+* if/elses that are only one line should be made into one line using the ternary operator
+
+## Setting a Moderator
+To set a user to be a moderator, their user_rank should be changed to 2. To do so, use the rails console.
+ 1. `rails c` in sudo or elevated command prompt
+ 2. `User.all` and find the correct user id to be changed
+ 3. `u = user.find(id)`, where id is the correct ID (e.g. 4)
+ 4. `u.user_rank = 2`
+ 5. `u.save` to commit changes

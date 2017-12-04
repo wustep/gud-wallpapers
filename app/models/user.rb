@@ -40,15 +40,17 @@ class User < ActiveRecord::Base
     self.favorites.find_by_wallpaper_id(wallpaper.id)
   end
 
-  # Finds or creates a user using Omniauth
+  # Finds or creates a user given Omniauth credentials
   #
-  # Author:: Stephen
+  # Author:: Stephen, Nishad
   # Update(11/29/17):: [Jason] Added user rank
   def self.find_or_create_from_auth(auth)
     user = User.find_or_create_by(provider: auth['provider'], uid: auth['uid'])
     user.nickname = auth['info']['nickname']
     user.email = auth['info']['name']
-    user.user_rank = 1; # Default rank is 1
+    unless user.user_rank
+      user.user_rank = 1; # Set default rank to 1
+    end
     user.save
     user
   end
